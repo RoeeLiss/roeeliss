@@ -1,0 +1,94 @@
+/* ============================================================
+   אדם ודייגו: הר כעס — פלטת צבעים ופונטים
+   מוכן להדבקה בפרויקט "הנחיות להורים"
+   ============================================================ */
+
+/* --- 1. פונטים ---
+   הדביקו את השורה הבאה בתוך <head> של העמוד: */
+/*
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+*/
+
+:root {
+  /* פונטים */
+  --font-heading: 'Heebo', sans-serif;      /* כותרות — משקל 800–900 */
+  --font-body:    'Assistant', sans-serif;  /* גוף טקסט — משקל 400–600 */
+
+  /* --- רקעים --- */
+  --cream:        #F6ECDD;  /* רקע בהיר ראשי */
+  --cream-warm:   #F1E2CC;  /* רקע קרם חם */
+  --ink-dark:     #2A1110;  /* חום-אדום כהה מאוד (הדר) */
+  --ink-footer:   #241010;  /* רקע פוטר */
+
+  /* --- טקסט --- */
+  --text-main:    #3D1A1A;  /* טקסט כהה על רקע בהיר */
+  --text-soft:    #6B4A42;  /* טקסט משני */
+  --text-cream:   #E8D6BE;  /* טקסט על רקע כהה */
+
+  /* --- אקסנט חם ("אש" / כעס / CTA) --- */
+  --orange:       #F0772D;  /* כתום ראשי — כפתורי פעולה */
+  --orange-light: #F8923F;  /* כתום בהיר לגרדיאנט */
+  --red:          #D62828;  /* אדום געש */
+  --rust:         #7A2E22;  /* חלודה */
+
+  /* --- אקסנט קר ("רוגע" / רגיעה / ויסות) --- */
+  --teal:         #3E8E84;  /* טורקיז ראשי */
+  --teal-dark:    #2E6B62;  /* טורקיז כהה */
+  --mint:         #86C7BD;  /* מנטה בהיר — טקסט על רקע כהה */
+  --mint-bg:      #E4F4F1;  /* רקע מנטה עדין */
+}
+
+/* --- דוגמאות שימוש --- */
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background: var(--cream);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  color: var(--text-main);
+}
+
+/* כפתור פעולה ראשי (כתום "אש") */
+.btn-primary {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(180deg, var(--orange-light), var(--orange));
+  border: none;
+  border-radius: 14px;
+  padding: 15px 32px;
+  box-shadow: 0 12px 28px rgba(240, 119, 45, .45);
+  cursor: pointer;
+}
+
+/* כפתור/אלמנט משני (טורקיז "רוגע") */
+.btn-calm {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: #fff;
+  background: var(--teal);
+  border: none;
+  border-radius: 14px;
+  padding: 15px 32px;
+  box-shadow: 0 12px 28px rgba(62, 142, 132, .4);
+  cursor: pointer;
+}
+
+/* כרטיס תוכן על רקע בהיר */
+.card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 8px 24px rgba(122, 46, 34, .08);
+}
+
+/* קישורים */
+a { color: var(--teal); }
+a:hover { color: var(--orange); }

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #3D1A1A; }
+  @keyframes vc-float { 0% { transform: translateY(0) scale(1); opacity: 0; } 12% { opacity: .9; } 70% { opacity: .55; } 100% { transform: translateY(-160px) scale(.4); opacity: 0; } }
+  @keyframes vc-glow { 0%,100% { opacity: .55; transform: scale(1); } 50% { opacity: .9; transform: scale(1.08); } }
+  @keyframes vc-pulse { 0%,100% { box-shadow: 0 16px 50px rgba(240,119,45,.5), 0 0 0 0 rgba(240,119,45,.0); } 50% { box-shadow: 0 16px 50px rgba(240,119,45,.7), 0 0 0 8px rgba(240,119,45,.08); } }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .vc-faq-plus { transform: rotate(45deg); }
+  input, textarea, button { font-family: 'Assistant', sans-serif; }
+  ::placeholder { color: #9a8a86; }
+</style>
+</helmet>
+<div dir="rtl" lang="he" style="font-family:'Assistant',sans-serif; color:#3D1A1A; background:#F6ECDD; overflow-x:hidden; -webkit-font-smoothing:antialiased;">
+
+  <!-- ============ HEADER (sticky) ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(45,18,18,.92); backdrop-filter:blur(10px); border-bottom:1px solid rgba(240,119,45,.25);">
+    <div style="max-width:1180px; margin:0 auto; padding:14px 18px; display:flex; align-items:center; gap:16px;">
+      <div style="display:flex; align-items:center; gap:10px; flex:0 0 auto;">
+        <div style="width:38px; height:38px; border-radius:11px; background:linear-gradient(145deg,#F0772D,#D62828); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(240,119,45,.4);">
+          <span style="font-family:'Heebo',sans-serif; font-weight:900; color:#fff; font-size:20px; line-height:1;">ר</span>
+        </div>
+        <span style="font-family:'Heebo',sans-serif; font-weight:800; color:#F6ECDD; font-size:19px; letter-spacing:.3px;">רועי ליס</span>
+      </div>
+      <div style="flex:1;"></div>
+      <a href="#purchase" onClick="{{ smoothJump }}" style="text-decoration:none; background:linear-gradient(180deg,#F8923F,#F0772D); color:#fff; font-family:'Heebo',sans-serif; font-weight:800; font-size:15px; padding:10px 20px; border-radius:12px; box-shadow:0 8px 20px rgba(240,119,45,.45); white-space:nowrap;">לרכישה</a>
+      <button aria-label="תפריט" onClick="{{ toggleMenu }}" style="flex:0 0 auto; background:rgba(246,236,221,.1); border:1px solid rgba(246,236,221,.2); width:42px; height:42px; border-radius:12px; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;">
+        <span style="width:18px; height:2px; background:#F6ECDD; border-radius:2px;"></span>
+        <span style="width:18px; height:2px; background:#F6ECDD; border-radius:2px;"></span>
+        <span style="width:18px; height:2px; background:#F6ECDD; border-radius:2px;"></span>
+      </button>
+    </div>
+    <!-- dropdown nav -->
+    <div id="mobile-nav" data-open="0" style="opacity:0; pointer-events:none; transform:translateY(-12px); transition:all .25s ease; background:rgba(45,18,18,.98); border-top:1px solid rgba(240,119,45,.2); overflow:hidden;">
+      <div style="max-width:1180px; margin:0 auto; padding:10px 18px 18px; display:flex; flex-wrap:wrap; gap:6px 22px;">
+        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+          <a href="#" style="text-decoration:none; color:#F6ECDD; font-family:'Assistant',sans-serif; font-weight:600; font-size:16px; padding:8px 4px; opacity:.9;">{{ item }}</a>
+        </sc-for>
+        <div style="display:flex; gap:14px; align-items:center; margin-inline-start:auto; padding-top:6px;">
+          <span style="color:#F6ECDD; opacity:.7; font-size:14px;">עגלה</span>
+          <span style="color:#F6ECDD; opacity:.7; font-size:14px;">איזור אישי</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO (hottest) ============ -->
+  <section style="position:relative; background:radial-gradient(120% 80% at 30% 0%, #6E2418 0%, #3D1A1A 55%, #2A1110 100%); overflow:hidden;">
+    <!-- lava glow -->
+    <div style="position:absolute; top:8%; right:-8%; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(240,119,45,.55), rgba(214,40,40,.25) 45%, transparent 70%); filter:blur(20px); animation:vc-glow 6s ease-in-out infinite;"></div>
+    <div id="hero-embers" style="position:absolute; inset:0; pointer-events:none;"></div>
+    <div style="position:relative; max-width:1180px; margin:0 auto; padding:56px 20px 70px; display:flex; flex-wrap:wrap-reverse; align-items:center; gap:48px;">
+      <!-- text col -->
+      <div style="flex:1 1 380px; min-width:300px;">
+        <span style="display:inline-block; background:#2BA89B; color:#fff; font-family:'Heebo',sans-serif; font-weight:800; font-size:13px; letter-spacing:.5px; padding:7px 15px; border-radius:999px; box-shadow:0 6px 16px rgba(43,168,155,.4);">מבוסס CBT · חדש בסדרה</span>
+        <h1 style="font-family:'Heebo',sans-serif; font-weight:900; color:#F6ECDD; font-size:clamp(32px,5.4vw,54px); line-height:1.12; margin:18px 0 0; text-wrap:balance;">כשהכעס מתפרץ כמו <span style="color:#F0772D;">הר געש</span> — לילד שלכם מגיעים <span style="color:#F0772D;">הכלים להירגע</span></h1>
+        <p style="color:#E8D6BE; font-size:19px; line-height:1.7; margin:20px 0 0; max-width:46ch;">הספר החדש בסדרת אדם ודייגו — כלים מקצועיים מהקליניקה לוויסות כעס ותסכול, בתוך הרפתקה שילדים אוהבים. בלי הטפות, עם המון חמלה.</p>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:18px; margin-top:30px;">
+          <button onClick="{{ addToCart }}" style="border:none; cursor:pointer; background:linear-gradient(180deg,#F8923F,#F0772D); color:#fff; font-family:'Heebo',sans-serif; font-weight:900; font-size:21px; padding:18px 34px; border-radius:16px; box-shadow:0 14px 34px rgba(240,119,45,.5), inset 0 1px 0 rgba(255,255,255,.3); animation:vc-pulse 3.2s ease-in-out infinite;">הוסיפו לסל — ₪49</button>
+          <div style="line-height:1.2;">
+            <span style="color:#E8D6BE; text-decoration:line-through; font-size:17px; opacity:.7;">₪69</span>
+            <div style="color:#2BA89B; font-weight:800; font-size:15px; margin-top:2px;">חיסכון של ₪20</div>
+          </div>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:24px; color:#E8D6BE; font-size:14.5px; font-weight:600;">
+          <span style="display:flex; align-items:center; gap:7px;"><span style="color:#2BA89B;">●</span> משלוח מהיר 1–5 ימים</span>
+          <span style="display:flex; align-items:center; gap:7px;"><span style="color:#2BA89B;">●</span> קיים במלאי</span>
+          <span style="display:flex; align-items:center; gap:7px;"><span style="color:#2BA89B;">●</span> רכישה ישירה מהסופר</span>
+        </div>
+      </div>
+      <!-- visual col -->
+      <div style="flex:1 1 320px; min-width:280px; display:flex; justify-content:center;">
+        <div style="position:relative;">
+          <div style="position:absolute; inset:-30px; background:radial-gradient(circle, rgba(240,119,45,.6), rgba(214,40,40,.25) 50%, transparent 72%); filter:blur(24px); animation:vc-glow 5s ease-in-out infinite;"></div>
+          <img src="assets/cover-har-kaas.jpg" alt="כריכת הספר אדם ודייגו: הר כעס" style="position:relative; width:min(360px,80vw); border-radius:14px; box-shadow:0 30px 70px rgba(0,0,0,.55), 0 0 0 1px rgba(246,236,221,.12); transform:rotate(-2deg);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST BAR (dark turquoise) ============ -->
+  <section style="background:linear-gradient(180deg,#1C6B62,#15564F); position:relative;">
+    <div style="height:4px; background:linear-gradient(90deg,transparent,#F0772D,#D62828,#F0772D,transparent); box-shadow:0 0 18px rgba(240,119,45,.7);"></div>
+    <div style="max-width:1180px; margin:0 auto; padding:30px 20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:22px;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <div style="flex:0 0 auto; width:48px; height:48px; border-radius:14px; background:rgba(246,236,221,.14); display:flex; align-items:center; justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F6ECDD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div><div style="font-family:'Heebo',sans-serif; font-weight:900; color:#fff; font-size:22px;">15,000+</div><div style="color:#CFF0EA; font-size:14.5px; font-weight:600;">ילדים בסדרה</div></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <div style="flex:0 0 auto; width:48px; height:48px; border-radius:14px; background:rgba(246,236,221,.14); display:flex; align-items:center; justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F6ECDD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div><div style="font-family:'Heebo',sans-serif; font-weight:900; color:#fff; font-size:22px;">מבוסס CBT</div><div style="color:#CFF0EA; font-size:14.5px; font-weight:600;">גישה מחקרית מוכחת</div></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <div style="flex:0 0 auto; width:48px; height:48px; border-radius:14px; background:rgba(246,236,221,.14); display:flex; align-items:center; justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F6ECDD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div><div style="font-family:'Heebo',sans-serif; font-weight:900; color:#fff; font-size:22px;">פסיכולוג חינוכי</div><div style="color:#CFF0EA; font-size:14.5px; font-weight:600;">מומחה לוויסות רגשי</div></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <div style="flex:0 0 auto; width:48px; height:48px; border-radius:14px; background:rgba(246,236,221,.14); display:flex; align-items:center; justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#F0772D" stroke="#F0772D" stroke-width="1.5" stroke-linejoin="round"><path d="m12 2 3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        </div>
+        <div><div style="font-family:'Heebo',sans-serif; font-weight:900; color:#fff; font-size:22px;">המלצות מקצועיות</div><div style="color:#CFF0EA; font-size:14.5px; font-weight:600;">מטפלים, גננות ומחנכים</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ANGER IS NOT THE ENEMY (cream) ============ -->
+  <section style="background:#F6ECDD; padding:74px 20px;">
+    <div style="max-width:760px; margin:0 auto; text-align:center;">
+      <div style="display:inline-flex; align-items:center; justify-content:center; width:74px; height:74px; border-radius:22px; background:linear-gradient(145deg,#FCEAD7,#F6D9BD); box-shadow:0 12px 26px rgba(122,46,34,.18); margin-bottom:8px;">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#F0772D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8l-2-5h-4z"/><path d="M12 16V8"/><path d="M9 8c0-2 1.5-4 3-4s3 2 3 4"/><circle cx="12" cy="5" r="0"/></svg>
+      </div>
+      <h2 style="font-family:'Heebo',sans-serif; font-weight:900; color:#3D1A1A; font-size:clamp(27px,4.4vw,40px); line-height:1.18; margin:14px 0 0; text-wrap:balance;">כעס הוא רגש טבעי — השאלה היא <span style="color:#2BA89B;">מה עושים איתו</span></h2>
+      <p style="color:#6B4A42; font-size:19px; line-height:1.8; margin:20px auto 0; max-width:58ch;">הכעס של הילד שלכם הוא לא תקלה ולא "התנהגות רעה" — הוא הר געש שעוד לא למד להירגע. במקום להילחם ברגש, אנחנו נותנים לילד מפה: לזהות מתי הלבה עולה, לעצור רגע לפני ההתפרצות, ולבחור מה לעשות. הספר הזה מדבר בשפה של ילדים, ומחזיק את ההורה ביד בדיוק ברגעים הקשים.</p>
+      <div style="display:inline-flex; align-items:center; gap:12px; margin-top:26px; background:rgba(43,168,155,.1); border:1px solid rgba(43,168,155,.3); border-radius:999px; padding:10px 20px;">
+        <span style="color:#7A2E22; font-weight:700; font-size:15.5px;">בעירה 🌋</span>
+        <svg width="26" height="14" viewBox="0 0 26 14" fill="none" stroke="#2BA89B" stroke-width="2" stroke-linecap="round"><path d="M2 7h20m0 0-4-4m4 4-4 4"/></svg>
+        <span style="color:#2BA89B; font-weight:800; font-size:15.5px;">נשימה ורוגע 🌿</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY THIS BOOK (cream, 2x2) ============ -->
+  <section style="background:linear-gradient(180deg,#F6ECDD,#F1E2CC); padding:24px 20px 80px;">
+    <div style="max-width:1080px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:42px;">
+        <h2 style="font-family:'Heebo',sans-serif; font-weight:900; color:#3D1A1A; font-size:clamp(26px,4.2vw,38px); margin:0;">למה דווקא הספר הזה?</h2>
+        <p style="color:#7A2E22; font-size:18px; margin:12px 0 0; font-weight:600;">כלים לוויסות כעס — בהרפתקה מופלאה.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(420px,1fr)); gap:22px;">
+        <div style="background:#fff; border-radius:22px; padding:30px; box-shadow:0 16px 36px rgba(122,46,34,.12); display:flex; gap:18px; align-items:flex-start;">
+          <div style="flex:0 0 auto; width:56px; height:56px; border-radius:50%; background:#2BA89B; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 18px rgba(43,168,155,.4);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div><h3 style="font-family:'Heebo',sans-serif; font-weight:800; color:#3D1A1A; font-size:21px; margin:2px 0 8px;">מבוסס CBT</h3><p style="color:#6B4A42; font-size:16.5px; line-height:1.65; margin:0;">לא עוד "ספר על רגשות" — אלא שיטה טיפולית מוכחת, מתורגמת לשפה שילדים מבינים ואוהבים.</p></div>
+        </div>
+        <div style="background:#fff; border-radius:22px; padding:30px; box-shadow:0 16px 36px rgba(122,46,34,.12); display:flex; gap:18px; align-items:flex-start;">
+          <div style="flex:0 0 auto; width:56px; height:56px; border-radius:50%; background:#2BA89B; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 18px rgba(43,168,155,.4);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <div><h3 style="font-family:'Heebo',sans-serif; font-weight:800; color:#3D1A1A; font-size:21px; margin:2px 0 8px;">כלים לרגע הכעס</h3><p style="color:#6B4A42; font-size:16.5px; line-height:1.65; margin:0;">"כפתור עצירה", נשימת הר הגעש וטכניקות מעשיות שאפשר להפעיל בדיוק כשהלבה מתחילה לעלות.</p></div>
+        </div>
+        <div style="background:#fff; border-radius:22px; padding:30px; box-shadow:0 16px 36px rgba(122,46,34,.12); display:flex; gap:18px; align-items:flex-start;">
+          <div style="flex:0 0 auto; width:56px; height:56px; border-radius:50%; background:#2BA89B; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 18px rgba(43,168,155,.4);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div><h3 style="font-family:'Heebo',sans-serif; font-weight:800; color:#3D1A1A; font-size:21px; margin:2px 0 8px;">ספר לשניים — שפה משותפת</h3><p style="color:#6B4A42; font-size:16.5px; line-height:1.65; margin:0;">קוראים יחד, ויוצרים שפה משותפת לרגעי המשבר: מילים שמרגיעות במקום להצית.</p></div>
+        </div>
+        <div style="background:#fff; border-radius:22px; padding:30px; box-shadow:0 16px 36px rgba(122,46,34,.12); display:flex; gap:18px; align-items:flex-start;">
+          <div style="flex:0 0 auto; width:56px; height:56px; border-radius:50%; background:#2BA89B; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 18px rgba(43,168,155,.4);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7a2.8 2.8 0 0 0-4-4l-7 7-1 5z"/><path d="M14 6l4 4"/></svg>
+          </div>
+          <div><h3 style="font-family:'Heebo',sans-serif; font-weight:800; color:#3D1A1A; font-size:21px; margin:2px 0 8px;">דפי הנחיה וצביעה</h3><p style="color:#6B4A42; font-size:16.5px; line-height:1.65; margin:0;">דפי פעילות וצביעה שמטמיעים את הכלים דרך הידיים — וגם הורדה דיגיטלית מתנה.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PEEK INSIDE (dark) ============ -->
+  <section style="position:relative; background:radial-gradient(120% 90% at 70% 0%, #6E2418 0%, #3D1A1A 60%); overflow:hidden; padding:74px 20px;">
+    <div style="height:4px; position:absolute; top:0; left:0; right:0; background:linear-gradient(90deg,transparent,#F0772D,#D62828,#F0772D,transparent); box-shadow:0 0 18px rgba(240,119,45,.7);"></div>
+    <div style="position:absolute; top:-40px; left:10%; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle, rgba(240,119,45,.4), transparent 70%); filter:blur(20px);"></div>
+    <div style="position:relative; max-width:1080px; margin:0 auto; text-align:center;">
+      <h2 style="font-family:'Heebo',sans-serif; font-weight:900; color:#F6ECDD; font-size:clamp(26px,4.2vw,38px); margin:0; text-wrap:balance;">רוצים לדפדף בספר לפני שאתם קונים?</h2>
+      <p style="color:#F0772D; font-weight:800; font-size:19px; margin:14px 0 0;">גלו את העמודים הראשונים — ההרפתקה אל פסגת הכעס מתחילה כאן!</p>
+      <div style="display:flex; gap:20px; overflow-x:auto; padding:36px 4px 28px; scroll-snap-type:x mandatory;">
+        <div style="flex:0 0 auto; scroll-snap-align:center;"><x-import component-from-global-scope="image-slot" from="./assets/image-slot.js" id="peek-1" shape="rounded" radius="14" placeholder="עמוד דוגמה 1" style="display:block; width:230px; height:300px; box-shadow:0 18px 40px rgba(0,0,0,.5); border:5px solid #F6ECDD; border-radius:14px;" hint-size="230px,300px"></x-import></div>
+        <div style="flex:0 0 auto; scroll-snap-align:center;"><x-import component-from-global-scope="image-slot" from="./assets/image-slot.js" id="peek-2" shape="rounded" radius="14" placeholder="עמוד דוגמה 2" style="display:block; width:230px; height:300px; box-shadow:0 18px 40px rgba(0,0,0,.5); border:5px solid #F6ECDD; border-radius:14px;" hint-size="230px,300px"></x-import></div>
+        <div style="flex:0 0 auto; scroll-snap-align:center;"><x-import component-from-global-scope="image-slot" from="./assets/image-slot.js" id="peek-3" shape="rounded" radius="14" placeholder="עמוד דוגמה 3" style="display:block; width:230px; height:300px; box-shadow:0 18px 40px rgba(0,0,0,.5); border:5px solid #F6ECDD; border-radius:14px;" hint-size="230px,300px"></x-import></div>
+        <div style="flex:0 0 auto; scroll-snap-align:center;"><x-import component-from-global-scope="image-slot" from="./assets/image-slot.js" id="peek-4" shape="rounded" radius="14" placeholder="עמוד דוגמה 4" style="display:block; width:230px; height:300px; box-shadow:0 18px 40px rgba(0,0,0,.5); border:5px solid #F6ECDD; border-radius:14px;" hint-size="230px,300px"></x-import></div>
+      </div>
+      <button onClick="{{ smoothJump }}" data-target="#purchase" style="border:none; cursor:pointer; background:linear-gradient(180deg,#F8923F,#F0772D); color:#fff; font-family:'Heebo',sans-serif; font-weight:800; font-size:18px; padding:15px 32px; border-radius:14px; box-shadow:0 12px 28px rgba(240,119,45,.5);">דפדפו בספר</button>
+    </div>
+  </section>
+
+  <!-- ============ SOCIAL PROOF (cream) ============ -->
+  <section style="background:#F6ECDD; padding:74px 20px;">
+    <div style="max-width:1080px; margin:0 auto;">
+      <h2 style="text-align:center; font-family:'Heebo',sans-serif; font-weight:900; color:#3D1A1A; font-size:clamp(26px,4.2vw,38px); margin:0 0 40px;">הורים מספרים על הספרים של רועי</h2>
+      <div style="background:linear-gradient(145deg,#E4F4F1,#CDEAE4); border-radius:26px; padding:38px; box-shadow:0 18px 44px rgba(43,168,155,.2); margin-bottom:24px;">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="#2BA89B" opacity=".5" style="margin-bottom:6px;"><path d="M10 7H5a3 3 0 0 0-3 3v7h7v-7H5a2 2 0 0 1 2-2zm9 0h-5a3 3 0 0 0-3 3v7h7v-7h-3a2 2 0 0 1 2-2z"/></svg>
+        <p style="font-family:'Heebo',sans-serif; font-weight:700; color:#1C4A44; font-size:clamp(20px,2.6vw,26px); line-height:1.5; margin:0; text-wrap:balance;">"בפעם הראשונה הבן שלי הצליח לעצור באמצע התפרצות ולהגיד 'אני צריך נשימה של הר געש'. הספר נתן לנו מילים משותפות שעבדו במציאות, לא רק על הנייר."</p>
+        <div style="display:flex; align-items:center; gap:14px; margin-top:24px;">
+          <div style="width:50px; height:50px; border-radius:50%; background:#2BA89B; color:#fff; font-family:'Heebo',sans-serif; font-weight:800; font-size:19px; display:flex; align-items:center; justify-content:center;">ש</div>
+          <div><div style="font-weight:800; color:#1C4A44; font-size:17px;">שירה ל׳</div><div style="color:#3E7A72; font-size:14.5px;">אמא לאורי, בן 7</div></div>
+          <div style="margin-inline-start:auto; color:#F0772D; font-size:18px; letter-spacing:2px;">★★★★★</div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:22px;">
+        <div style="background:#fff; border-radius:22px; padding:28px; box-shadow:0 12px 30px rgba(122,46,34,.1);">
+          <div style="color:#F0772D; font-size:16px; letter-spacing:2px; margin-bottom:10px;">★★★★★</div>
+          <p style="color:#5B3C35; font-size:16.5px; line-height:1.65; margin:0 0 18px;">"כאיש חינוך אני ממליץ על הסדרה להורים שמתקשים עם ויסות רגשי. הכלים מדויקים, מבוססי CBT, ומונגשים בצורה שילדים פשוט מתחברים אליה."</p>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:#7A2E22; color:#fff; font-family:'Heebo',sans-serif; font-weight:800; display:flex; align-items:center; justify-content:center;">ד</div>
+            <div><div style="font-weight:800; color:#3D1A1A; font-size:16px;">ד"ר עמית ב׳</div><div style="color:#9a7a72; font-size:14px;">פסיכולוג חינוכי</div></div>
+          </div>
+        </div>
+        <div style="background:#fff; border-radius:22px; padding:28px; box-shadow:0 12px 30px rgba(122,46,34,.1);">
+          <div style="color:#F0772D; font-size:16px; letter-spacing:2px; margin-bottom:10px;">★★★★★</div>
+          <p style="color:#5B3C35; font-size:16.5px; line-height:1.65; margin:0 0 18px;">"בגן שלנו אימצנו את 'נשימת הר הגעש'. ילדים שהיו מתפרצים לומדים לעצור. ספר שמשנה את האווירה בקבוצה כולה."</p>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:#2BA89B; color:#fff; font-family:'Heebo',sans-serif; font-weight:800; display:flex; align-items:center; justify-content:center;">מ</div>
+            <div><div style="font-weight:800; color:#3D1A1A; font-size:16px;">מיכל ר׳</div><div style="color:#9a7a72; font-size:14px;">אשת מקצוע לחינוך מיוחד</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOUBLE VALUE (cream) ============ -->
+  <section style="background:linear-gradient(180deg,#F6ECDD,#F1E2CC); padding:24px 20px 80px;">
+    <div style="max-width:1000px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:24px;">
+      <div style="background:linear-gradient(160deg,#E4F4F1,#CFEBE5); border-radius:24px; padding:34px; box-shadow:0 16px 38px rgba(43,168,155,.18);">
+        <div style="display:inline-flex; width:52px; height:52px; border-radius:15px; background:#2BA89B; align-items:center; justify-content:center; margin-bottom:16px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></svg>
+        </div>
+        <h3 style="font-family:'Heebo',sans-serif; font-weight:900; color:#1C4A44; font-size:24px; margin:0 0 16px;">מה הילדים יקבלו?</h3>
+        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:13px;">
+          <li style="display:flex; gap:11px; color:#1C4A44; font-size:16.5px; line-height:1.5;"><span style="color:#2BA89B; font-weight:900;">✓</span> "כפתור עצירה" לרגע שהכעס עולה</li>
+          <li style="display:flex; gap:11px; color:#1C4A44; font-size:16.5px; line-height:1.5;"><span style="color:#2BA89B; font-weight:900;">✓</span> טכניקות נשימה והרגעה פשוטות</li>
+          <li style="display:flex; gap:11px; color:#1C4A44; font-size:16.5px; line-height:1.5;"><span style="color:#2BA89B; font-weight:900;">✓</span> הבנה ש"כעס זה בסדר" — בלי בושה</li>
+        </ul>
+      </div>
+      <div style="background:linear-gradient(160deg,#F4DECB,#E9C7AE); border-radius:24px; padding:34px; box-shadow:0 16px 38px rgba(122,46,34,.18);">
+        <div style="display:inline-flex; width:52px; height:52px; border-radius:15px; background:#7A2E22; align-items:center; justify-content:center; margin-bottom:16px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg>
+        </div>
+        <h3 style="font-family:'Heebo',sans-serif; font-weight:900; color:#5A2017; font-size:24px; margin:0 0 16px;">ומה זה ייתן לכם, ההורים?</h3>
+        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:13px;">
+          <li style="display:flex; gap:11px; color:#5A2017; font-size:16.5px; line-height:1.5;"><span style="color:#7A2E22; font-weight:900;">✓</span> שפה משותפת לרגעי המשבר</li>
+          <li style="display:flex; gap:11px; color:#5A2017; font-size:16.5px; line-height:1.5;"><span style="color:#7A2E22; font-weight:900;">✓</span> הדרכה מקצועית בסלון — בלי קליניקה</li>
+          <li style="display:flex; gap:11px; color:#5A2017; font-size:16.5px; line-height:1.5;"><span style="color:#7A2E22; font-weight:900;">✓</span> <a href="#" style="color:#7A2E22; font-weight:800; text-decoration:underline;">עמוד הנחיות מפורט להורים</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ME (gradient brown -> orange) ============ -->
+  <section style="position:relative; background:linear-gradient(120deg,#3D1A1A 0%, #7A2E22 60%, #C9531F 100%); overflow:hidden; padding:74px 20px;">
+    <div style="position:absolute; bottom:-60px; left:-40px; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle, rgba(240,119,45,.4), transparent 70%); filter:blur(20px);"></div>
+    <div style="position:relative; max-width:1000px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:44px;">
+      <div style="flex:0 0 auto;">
+        <div style="position:relative; width:230px; height:230px;">
+          <div style="position:absolute; inset:-10px; border-radius:50%; background:radial-gradient(circle, rgba(246,236,221,.5), transparent 70%); filter:blur(12px);"></div>
+          <img src="assets/roi-lis.jpg" alt="רועי ליס, פסיכולוג חינוכי" style="position:relative; display:block; width:230px; height:230px; border-radius:50%; object-fit:cover; object-position:50% 30%; border:6px solid #F6ECDD; box-shadow:0 16px 40px rgba(0,0,0,.4);">
+        </div>
+      </div>
+      <div style="flex:1 1 320px; min-width:280px;">
+        <h2 style="font-family:'Heebo',sans-serif; font-weight:900; color:#F6ECDD; font-size:clamp(26px,4vw,38px); margin:0 0 16px;">קצת עליי</h2>
+        <p style="color:#F6E7D2; font-size:18.5px; line-height:1.8; margin:0 0 14px;">אני רועי ליס, פסיכולוג חינוכי. שנים אני יושב מול ילדים והורים שמתמודדים עם כעס שמתפרץ ומציף את כל הבית. מתוך הקליניקה נולדה סדרת "אדם ודייגו" — כדי שהכלים שעוזרים בחדר הטיפול יגיעו גם לסלון שלכם.</p>
+        <p style="color:#F6E7D2; font-size:18.5px; line-height:1.8; margin:0;">דייגו, הגולדן שמלווה את הסדרה, הוא החבר הנאמן שמראה לאדם שאפשר להישאר רגוע גם כשהר הכעס בוער. כי לפעמים הדמות שתלמד את הילד שלכם להירגע — היא בדיוק זו שהם הכי אוהבים.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ / SHIPPING (cream) ============ -->
+  <section style="background:#F6ECDD; padding:70px 20px;">
+    <div style="max-width:760px; margin:0 auto;">
+      <h2 style="text-align:center; font-family:'Heebo',sans-serif; font-weight:900; color:#3D1A1A; font-size:clamp(25px,4vw,36px); margin:0 0 8px;">מתי הספר יגיע אליי?</h2>
+      <p style="text-align:center; color:#7A2E22; font-weight:700; font-size:17px; margin:0 0 34px;">משלוח מהיר 1–5 ימי עסקים · קיים במלאי</p>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <details style="background:#fff; border-radius:16px; box-shadow:0 8px 22px rgba(122,46,34,.1); overflow:hidden;">
+          <summary style="display:flex; align-items:center; gap:14px; padding:20px 22px; font-family:'Heebo',sans-serif; font-weight:800; color:#3D1A1A; font-size:17.5px;"><span class="vc-faq-plus" style="flex:0 0 auto; color:#F0772D; font-size:24px; line-height:1; transition:transform .25s;">+</span> כמה זמן לוקח המשלוח?</summary>
+          <div style="padding:0 22px 20px 22px; color:#6B4A42; font-size:16.5px; line-height:1.65;">המשלוח מגיע תוך 1–5 ימי עסקים לכל הארץ. הספר קיים במלאי ונשלח מיד עם השלמת ההזמנה.</div>
+        </details>
+        <details style="background:#fff; border-radius:16px; box-shadow:0 8px 22px rgba(122,46,34,.1); overflow:hidden;">
+          <summary style="display:flex; align-items:center; gap:14px; padding:20px 22px; font-family:'Heebo',sans-serif; font-weight:800; color:#3D1A1A; font-size:17.5px;"><span class="vc-faq-plus" style="flex:0 0 auto; color:#F0772D; font-size:24px; line-height:1; transition:transform .25s;">+</span> לאיזה גיל הספר מתאים?</summary>
+          <div style="padding:0 22px 20px 22px; color:#6B4A42; font-size:16.5px; line-height:1.65;">הספר מתאים במיוחד לילדים בני 6 ומעלה, ונקרא נפלא יחד עם הורה גם בגילאים צעירים יותר.</div>
+        </details>
+        <details style="background:#fff; border-radius:16px; box-shadow:0 8px 22px rgba(122,46,34,.1); overflow:hidden;">
+          <summary style="display:flex; align-items:center; gap:14px; padding:20px 22px; font-family:'Heebo',sans-serif; font-weight:800; color:#3D1A1A; font-size:17.5px;"><span class="vc-faq-plus" style="flex:0 0 auto; color:#F0772D; font-size:24px; line-height:1; transition:transform .25s;">+</span> האם צריך לקרוא קודם את הספרים הקודמים?</summary>
+          <div style="padding:0 22px 20px 22px; color:#6B4A42; font-size:16.5px; line-height:1.65;">ממש לא. "הר כעס" הוא ספר עצמאי לחלוטין. כל ספר בסדרה עומד בפני עצמו ומתמקד באתגר רגשי אחר.</div>
+        </details>
+        <details style="background:#fff; border-radius:16px; box-shadow:0 8px 22px rgba(122,46,34,.1); overflow:hidden;">
+          <summary style="display:flex; align-items:center; gap:14px; padding:20px 22px; font-family:'Heebo',sans-serif; font-weight:800; color:#3D1A1A; font-size:17.5px;"><span class="vc-faq-plus" style="flex:0 0 auto; color:#F0772D; font-size:24px; line-height:1; transition:transform .25s;">+</span> מה כלול ברכישה?</summary>
+          <div style="padding:0 22px 20px 22px; color:#6B4A42; font-size:16.5px; line-height:1.65;">ספר מודפס באיכות גבוהה + גישה להורדת דפי הצביעה הדיגיטליים + טיפ מקצועי להרגעת ילד כועס.</div>
+        </details>
+        <details style="background:#fff; border-radius:16px; box-shadow:0 8px 22px rgba(122,46,34,.1); overflow:hidden;">
+          <summary style="display:flex; align-items:center; gap:14px; padding:20px 22px; font-family:'Heebo',sans-serif; font-weight:800; color:#3D1A1A; font-size:17.5px;"><span class="vc-faq-plus" style="flex:0 0 auto; color:#F0772D; font-size:24px; line-height:1; transition:transform .25s;">+</span> האם אפשר לקבל חשבונית למוסד / קליניקה?</summary>
+          <div style="padding:0 22px 20px 22px; color:#6B4A42; font-size:16.5px; line-height:1.65;">בהחלט. בעת ההזמנה ניתן לבקש חשבונית מס מסודרת לגן, בית ספר או קליניקה.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PURCHASE BLOCK (dark, anchor) ============ -->
+  <section id="purchase" style="position:relative; background:radial-gradient(120% 90% at 50% 0%, #6E2418 0%, #3D1A1A 60%, #2A1110 100%); overflow:hidden; padding:78px 20px;">
+    <div style="height:4px; position:absolute; top:0; left:0; right:0; background:linear-gradient(90deg,transparent,#F0772D,#D62828,#F0772D,transparent); box-shadow:0 0 18px rgba(240,119,45,.7);"></div>
+    <div id="purchase-embers" style="position:absolute; inset:0; pointer-events:none;"></div>
+    <div style="position:relative; max-width:680px; margin:0 auto;">
+      <div style="position:absolute; inset:-20px; background:radial-gradient(circle at 50% 40%, rgba(240,119,45,.4), transparent 65%); filter:blur(28px);"></div>
+      <div style="position:relative; background:#F6ECDD; border-radius:28px; padding:38px; box-shadow:0 30px 70px rgba(0,0,0,.5); display:flex; flex-wrap:wrap; gap:30px; align-items:center;">
+        <img src="assets/cover-har-kaas.jpg" alt="כריכת הספר" style="flex:0 0 auto; width:180px; border-radius:12px; box-shadow:0 16px 36px rgba(122,46,34,.4);">
+        <div style="flex:1 1 260px; min-width:240px;">
+          <h2 style="font-family:'Heebo',sans-serif; font-weight:900; color:#3D1A1A; font-size:28px; line-height:1.2; margin:0 0 6px;">אדם ודייגו: הר כעס</h2>
+          <p style="color:#7A2E22; font-size:15.5px; margin:0 0 18px;">רועי ליס · כריכה רכה · מבוסס CBT</p>
+          <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;">
+            <span style="font-family:'Heebo',sans-serif; font-weight:900; color:#D62828; font-size:42px;">₪49</span>
+            <span style="color:#9a7a72; text-decoration:line-through; font-size:21px;">₪69</span>
+            <span style="background:#2BA89B; color:#fff; font-weight:800; font-size:13px; padding:5px 11px; border-radius:999px;">חיסכון ₪20</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:14px;">
+            <div data-qty style="display:flex; align-items:center; gap:0; border:2px solid #E0CBB0; border-radius:12px; overflow:hidden;">
+              <button onClick="{{ decQty }}" style="border:none; background:#fff; color:#7A2E22; width:42px; height:46px; font-size:22px; cursor:pointer; font-weight:800;">−</button>
+              <input type="text" value="1" readonly style="width:44px; height:46px; border:none; text-align:center; font-size:18px; font-weight:800; color:#3D1A1A; background:#fff;">
+              <button onClick="{{ incQty }}" style="border:none; background:#fff; color:#7A2E22; width:42px; height:46px; font-size:22px; cursor:pointer; font-weight:800;">+</button>
+            </div>
+            <button onClick="{{ addToCart }}" style="flex:1 1 200px; border:none; cursor:pointer; background:linear-gradient(180deg,#F8923F,#F0772D); color:#fff; font-family:'Heebo',sans-serif; font-weight:900; font-size:21px; padding:16px 24px; border-radius:14px; box-shadow:0 14px 32px rgba(240,119,45,.5);">הוספה לסל</button>
+          </div>
+          <p style="color:#7A2E22; font-size:13.5px; margin:16px 0 0; display:flex; align-items:center; gap:7px;"><span style="color:#2BA89B;">●</span> משלוח מהיר 1–5 ימים · קיים במלאי · רכישה ישירה מהסופר</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ UPSELL (dark turquoise) ============ -->
+  <section style="position:relative; background:linear-gradient(135deg,#15564F,#1C6B62); overflow:hidden; padding:70px 20px;">
+    <div style="position:absolute; top:-50px; right:8%; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(240,119,45,.3), transparent 70%); filter:blur(20px);"></div>
+    <div style="position:relative; max-width:1000px; margin:0 auto; text-align:center;">
+      <span style="display:inline-block; background:#F0772D; color:#fff; font-family:'Heebo',sans-serif; font-weight:800; font-size:13px; letter-spacing:.5px; padding:7px 16px; border-radius:999px; box-shadow:0 8px 20px rgba(240,119,45,.4);">המשתלם ביותר</span>
+      <h2 style="font-family:'Heebo',sans-serif; font-weight:900; color:#fff; font-size:clamp(26px,4vw,38px); margin:16px 0 0; text-wrap:balance;">אספו את כל סדרת אדם ודייגו במחיר מבצע!</h2>
+      <p style="color:#CFF0EA; font-size:18px; margin:12px 0 0;">שלושה כלים רגשיים, שפה אחת — לכל אתגר את הספר שלו.</p>
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:22px; margin:38px 0 30px;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+          <x-import component-from-global-scope="image-slot" from="./assets/image-slot.js" id="bundle-forest" shape="rounded" radius="10" placeholder="יער המחשבות" style="display:block; width:170px; height:235px; border-radius:10px; box-shadow:0 16px 36px rgba(0,0,0,.4);" hint-size="170px,235px"></x-import>
+          <span style="color:#fff; font-weight:700; font-size:15px;">יער המחשבות</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:12px; transform:translateY(-12px);">
+          <img src="assets/cover-har-kaas.jpg" alt="הר כעס" style="width:184px; border-radius:10px; box-shadow:0 20px 44px rgba(0,0,0,.5); border:3px solid #F0772D;">
+          <span style="color:#F0772D; font-weight:800; font-size:15px;">הר כעס · חדש</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+          <x-import component-from-global-scope="image-slot" from="./assets/image-slot.js" id="bundle-land" shape="rounded" radius="10" placeholder="ארץ הרגשות" style="display:block; width:170px; height:235px; border-radius:10px; box-shadow:0 16px 36px rgba(0,0,0,.4);" hint-size="170px,235px"></x-import>
+          <span style="color:#fff; font-weight:700; font-size:15px;">ארץ הרגשות</span>
+        </div>
+      </div>
+      <button onClick="{{ addToCart }}" style="border:none; cursor:pointer; background:linear-gradient(180deg,#F8923F,#F0772D); color:#fff; font-family:'Heebo',sans-serif; font-weight:900; font-size:20px; padding:16px 38px; border-radius:14px; box-shadow:0 14px 32px rgba(240,119,45,.45);">הזמינו את כל הסדרה</button>
+    </div>
+  </section>
+
+  <!-- ============ LEAD MAGNET (clay-brown light) ============ -->
+  <section style="background:linear-gradient(160deg,#EBC9AE,#E0B392); padding:70px 20px;">
+    <div style="max-width:680px; margin:0 auto; background:rgba(255,255,255,.55); border-radius:26px; padding:40px; box-shadow:0 18px 44px rgba(122,46,34,.2); text-align:center;">
+      <div style="display:inline-flex; width:62px; height:62px; border-radius:18px; background:#F0772D; align-items:center; justify-content:center; margin-bottom:14px; box-shadow:0 10px 24px rgba(240,119,45,.4);">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      </div>
+      <h2 style="font-family:'Heebo',sans-serif; font-weight:900; color:#5A2017; font-size:clamp(24px,3.6vw,32px); margin:0 0 8px;">דפי צביעה של הר הכעס — מתנה</h2>
+      <p style="color:#6B3A2C; font-size:17px; line-height:1.6; margin:0 0 24px;">מלאו פרטים והורידו את דפי הצביעה + טיפ מקצועי להרגעת ילד כועס, ישירות למייל.</p>
+      <form onSubmit="{{ submitForm }}">
+        <div data-fields style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+          <input required placeholder="השם שלכם" style="flex:1 1 180px; min-width:160px; border:2px solid #D6A77F; border-radius:12px; padding:14px 16px; font-size:16px; background:#fff; color:#3D1A1A;">
+          <input required type="email" placeholder="כתובת אימייל" style="flex:1 1 180px; min-width:160px; border:2px solid #D6A77F; border-radius:12px; padding:14px 16px; font-size:16px; background:#fff; color:#3D1A1A;">
+          <button type="submit" style="flex:0 0 auto; border:none; cursor:pointer; background:linear-gradient(180deg,#F8923F,#F0772D); color:#fff; font-family:'Heebo',sans-serif; font-weight:800; font-size:17px; padding:14px 28px; border-radius:12px; box-shadow:0 10px 24px rgba(240,119,45,.4);">קבלו את הדפים</button>
+        </div>
+        <div data-success style="display:none; color:#2BA89B; font-weight:800; font-size:18px; padding:10px;">🌿 תודה! הדפים בדרך אליכם למייל.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT FORM (cream) ============ -->
+  <section style="background:#F6ECDD; padding:74px 20px;">
+    <div style="max-width:640px; margin:0 auto;">
+      <h2 style="text-align:center; font-family:'Heebo',sans-serif; font-weight:900; color:#3D1A1A; font-size:clamp(26px,4vw,36px); margin:0 0 6px;">בואו נדבר</h2>
+      <p style="text-align:center; color:#7A2E22; font-size:17px; margin:0 0 32px;">שאלה על הספר, על הסדרה או על ליווי מקצועי? כתבו לי.</p>
+      <form onSubmit="{{ submitForm }}" style="background:#fff; border-radius:24px; padding:34px; box-shadow:0 16px 40px rgba(122,46,34,.12);">
+        <div data-fields style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; flex-wrap:wrap; gap:14px;">
+            <input required placeholder="שם מלא" style="flex:1 1 200px; border:2px solid #E0CBB0; border-radius:12px; padding:14px 16px; font-size:16px; background:#FCF7EE; color:#3D1A1A;">
+            <input required type="email" placeholder="אימייל" style="flex:1 1 200px; border:2px solid #E0CBB0; border-radius:12px; padding:14px 16px; font-size:16px; background:#FCF7EE; color:#3D1A1A;">
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:14px;">
+            <input placeholder="טלפון" style="flex:1 1 200px; border:2px solid #E0CBB0; border-radius:12px; padding:14px 16px; font-size:16px; background:#FCF7EE; color:#3D1A1A;">
+            <input placeholder="נושא הפנייה" style="flex:1 1 200px; border:2px solid #E0CBB0; border-radius:12px; padding:14px 16px; font-size:16px; background:#FCF7EE; color:#3D1A1A;">
+          </div>
+          <textarea placeholder="ההודעה שלכם" rows="4" style="border:2px solid #E0CBB0; border-radius:12px; padding:14px 16px; font-size:16px; background:#FCF7EE; color:#3D1A1A; resize:vertical; font-family:'Assistant',sans-serif;"></textarea>
+          <label style="display:flex; gap:10px; align-items:flex-start; color:#6B4A42; font-size:14.5px; line-height:1.5; cursor:pointer;"><input type="checkbox" required style="margin-top:3px; width:17px; height:17px; accent-color:#2BA89B;"> אני מאשר/ת קבלת מענה ועדכונים במייל בהתאם למדיניות הפרטיות.</label>
+          <button type="submit" style="border:none; cursor:pointer; background:#2BA89B; color:#fff; font-family:'Heebo',sans-serif; font-weight:800; font-size:18px; padding:16px; border-radius:14px; box-shadow:0 12px 28px rgba(43,168,155,.4); margin-top:4px;">שליחת הודעה</button>
+        </div>
+        <div data-success style="display:none; color:#2BA89B; font-weight:800; font-size:18px; text-align:center; padding:20px;">🌿 תודה! ההודעה התקבלה ואחזור אליכם בהקדם.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER (darkest) ============ -->
+  <footer style="position:relative; background:#241010; overflow:hidden; padding:50px 20px 36px;">
+    <div style="position:absolute; top:0; right:0; width:160px; height:3px; background:linear-gradient(90deg,transparent,#D62828,#F0772D); box-shadow:0 0 14px rgba(240,119,45,.6);"></div>
+    <div style="position:absolute; bottom:0; left:0; width:160px; height:3px; background:linear-gradient(90deg,#F0772D,#D62828,transparent); box-shadow:0 0 14px rgba(240,119,45,.6);"></div>
+    <div style="max-width:1080px; margin:0 auto;">
+      <div style="display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between; padding-bottom:26px; border-bottom:1px solid rgba(246,236,221,.12);">
+        <div style="display:flex; align-items:center; gap:11px;">
+          <div style="width:34px; height:34px; border-radius:10px; background:linear-gradient(145deg,#F0772D,#D62828); display:flex; align-items:center; justify-content:center;"><span style="font-family:'Heebo',sans-serif; font-weight:900; color:#fff; font-size:18px;">ר</span></div>
+          <span style="font-family:'Heebo',sans-serif; font-weight:800; color:#F6ECDD; font-size:18px;">רועי ליס · פסיכולוג חינוכי</span>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px 22px;">
+          <a href="#" style="color:#C9B299; text-decoration:none; font-size:14.5px;">תקנון</a>
+          <a href="#" style="color:#C9B299; text-decoration:none; font-size:14.5px;">הצהרת נגישות</a>
+          <a href="#" style="color:#C9B299; text-decoration:none; font-size:14.5px;">מדיניות פרטיות</a>
+          <a href="#" style="color:#C9B299; text-decoration:none; font-size:14.5px;">קהילת הפייסבוק</a>
+        </div>
+      </div>
+      <p style="color:#8a7163; font-size:13px; text-align:center; margin:22px 0 0;">© 2026 רועי ליס · כל הזכויות שמורות · נבנה באהבה 🌋</p>
+    </div>
+  </footer>
+
+  <!-- cart toast -->
+  <div id="cart-toast" style="position:fixed; bottom:24px; left:50%; transform:translate(-50%,20px); opacity:0; pointer-events:none; transition:all .3s ease; background:#2BA89B; color:#fff; font-family:'Heebo',sans-serif; font-weight:800; font-size:16px; padding:15px 28px; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,.3); z-index:100; display:flex; align-items:center; gap:10px;">
+    <span style="font-size:20px;">✓</span> הספר נוסף לסל!
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    // ambient embers in dark sections
+    const spawn = (id, count) => {
+      const host = document.getElementById(id);
+      if (!host) return;
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('span');
+        const size = 2 + Math.random() * 4;
+        s.style.cssText = `position:absolute; bottom:-10px; left:${Math.random()*100}%; width:${size}px; height:${size}px; border-radius:50%; background:${Math.random()>0.5?'#F8A24A':'#F0772D'}; box-shadow:0 0 ${4+size*2}px #F0772D; animation:vc-float ${5+Math.random()*6}s linear ${Math.random()*6}s infinite;`;
+        host.appendChild(s);
+      }
+    };
+    spawn('hero-embers', 18);
+    spawn('purchase-embers', 14);
+  }
+
+  renderVals() {
+    const nav = ['טיפולים', 'סדרת אדם ודייגו', 'סדנאות למטפלים', 'מאמרים', 'מתנות של ידע', 'יצירת קשר'];
+
+    const incQty = (e) => {
+      const inp = e.currentTarget.closest('[data-qty]').querySelector('input');
+      inp.value = Math.min(99, (parseInt(inp.value) || 1) + 1);
+    };
+    const decQty = (e) => {
+      const inp = e.currentTarget.closest('[data-qty]').querySelector('input');
+      inp.value = Math.max(1, (parseInt(inp.value) || 1) - 1);
+    };
+    const addToCart = () => {
+      const t = document.getElementById('cart-toast');
+      if (!t) return;
+      t.style.opacity = '1';
+      t.style.transform = 'translate(-50%,0)';
+      clearTimeout(this._toastTimer);
+      this._toastTimer = setTimeout(() => {
+        t.style.opacity = '0';
+        t.style.transform = 'translate(-50%,20px)';
+      }, 2600);
+    };
+    const submitForm = (e) => {
+      e.preventDefault();
+      const f = e.currentTarget;
+      const fields = f.querySelector('[data-fields]');
+      const success = f.querySelector('[data-success]');
+      if (fields) fields.style.display = 'none';
+      if (success) success.style.display = 'block';
+    };
+    const toggleMenu = () => {
+      const m = document.getElementById('mobile-nav');
+      if (!m) return;
+      const open = m.getAttribute('data-open') === '1';
+      m.setAttribute('data-open', open ? '0' : '1');
+      m.style.opacity = open ? '0' : '1';
+      m.style.pointerEvents = open ? 'none' : 'auto';
+      m.style.transform = open ? 'translateY(-12px)' : 'translateY(0)';
+    };
+    const smoothJump = (e) => {
+      e.preventDefault();
+      const sel = e.currentTarget.getAttribute('data-target') || e.currentTarget.getAttribute('href');
+      const el = sel && document.querySelector(sel);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
+      const m = document.getElementById('mobile-nav');
+      if (m && m.getAttribute('data-open') === '1') toggleMenu();
+    };
+
+    return { nav, incQty, decQty, addToCart, submitForm, toggleMenu, smoothJump };
+  }
+}
+</script>
+</body>
+</html>

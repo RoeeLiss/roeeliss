@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Assistant:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #FFFFFF; }
+    * { box-sizing: border-box; }
+    a { color: #4A7FB5; text-decoration: none; }
+    a:hover { color: #2E5C8A; text-decoration: underline; }
+    input::placeholder, textarea::placeholder { font-family: 'Assistant', sans-serif; }
+  </style>
+</helmet>
+<div style="width: 0; height: 0; overflow: hidden; position: absolute;">
+  <x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="1,1"></x-import>
+</div>
+
+<div dir="rtl" lang="he" style="font-family: 'Assistant', sans-serif; color: #2F3A47; background: #FFFFFF; width: 100%;">
+
+  <!-- NAV -->
+  <div style="position: sticky; top: 16px; z-index: 50; padding: 0 24px;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border: 1px solid #EDF3FA; border-radius: 999px; box-shadow: 0 12px 32px -16px rgba(46,92,138,0.25);">
+      <div>
+        <div style="font-family: 'Rubik', sans-serif; font-weight: 600; font-size: 20px; color: #2E5C8A;">רועי ליס</div>
+        <div style="font-size: 13px; color: #4A7FB5; margin-top: 2px;">פסיכולוג חינוכי מומחה</div>
+        <div style="font-size: 13px; color: #4A7FB5;">מומחה בטיפול קוגניטיבי התנהגותי</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 28px; font-size: 16px;">
+        <a href="#" style="color: #2F3A47;">טיפולים</a>
+        <a href="#" style="color: #2F3A47;">אדם ודייגו בארץ הרגשות</a>
+        <a href="#" style="color: #2F3A47;">סדנאות למטפלים</a>
+        <a href="#" style="color: #2F3A47;">מאמרים</a>
+        <a href="#" style="color: #2F3A47;">מתנות של ידע</a>
+        <a href="#contact" style="background: #3E8E9E; color: #FFFFFF; padding: 10px 22px; border-radius: 999px; font-weight: 600;">בואו נדבר</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: HERO -->
+  <div data-screen-label="פתיחה" style="max-width: 1120px; margin: 0 auto; padding: 72px 32px 88px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center;">
+    <div>
+      <h1 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 44px; line-height: 1.25; color: #2E5C8A; margin: 0 0 24px;">
+        לכל ילד מגיעה ילדות מאושרת
+      </h1>
+      <p style="font-size: 18px; line-height: 1.7; color: #2F3A47; max-width: 480px; margin: 0 0 20px;">
+        היי, שמי רועי ליס. אני פסיכולוג חינוכי מומחה, מומחה ומדריך בטיפול קוגניטיבי־התנהגותי (CBT) בילדים ובני נוער, מטפל בסכמה תרפיה ובביופידבק — ומחבר סדרת ספרי הילדים "אדם ודייגו בארץ הרגשות".
+      </p>
+      <p style="font-size: 18px; line-height: 1.7; color: #2F3A47; max-width: 480px; margin: 0 0 20px;">
+        אני מאמין שהילדות היא התקופה המשמעותית והמעצבת ביותר בחייו של כל אדם. מגיע לכל ילד ולכל ילדה להתחיל את החיים כשמלוא האפשרויות פרוסות בפניהם — להגשים את היכולות שלהם וליהנות מהאוצרות הטמונים בהם.
+      </p>
+      <p style="font-size: 18px; line-height: 1.7; color: #2F3A47; max-width: 480px; margin: 0 0 20px;">
+        אבל זה לא תמיד פשוט. ילדים ומתבגרים רבים חיים בצל חרדות, מתמודדים עם קשיי קשב ולמידה, מתקשים למצוא את מקומם בעולם החברתי, או נאבקים להמשיך ולתפקד אחרי אירועי חיים קשים.
+      </p>
+      <p style="font-size: 18px; line-height: 1.7; color: #2F3A47; max-width: 480px; margin: 0;">
+        בשני העשורים האחרונים ליוויתי מאות ילדים, בני נוער והורים במגוון רחב של התמודדויות. למדתי שכשילד מקבל את הכלים הנכונים, בגובה העיניים ודרך משחק — משהו נפתח.
+      </p>
+    </div>
+    <div style="position: relative;">
+      <div style="width: 100%; aspect-ratio: 4/5; border-radius: 28px; overflow: hidden; box-shadow: 0 24px 60px -20px rgba(46,92,138,0.35);">
+        <image-slot id="about-hero" shape="rect" src="https://roeeliss.co.il/wp-content/uploads/2023/03/D9A2705-copy-768x512.jpg" placeholder="פורטרט רועי (D9A2705)"></image-slot>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: WHAT I DO TODAY -->
+  <div data-screen-label="מה אני עושה היום" style="background: #FDFCFA; padding: 96px 32px;">
+    <div style="max-width: 1120px; margin: 0 auto;">
+      <h2 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 34px; color: #2E5C8A; margin: 0 0 48px; text-align: center;">
+        מה אני עושה היום
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+        <div style="background: #FFFFFF; border: 1px solid #EDF3FA; border-radius: 24px; padding: 36px 28px; display: flex; flex-direction: column;">
+          <h3 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 22px; color: #2E5C8A; margin: 0 0 14px;">טיפול בקליניקה</h3>
+          <p style="font-size: 16px; line-height: 1.7; color: #2F3A47; margin: 0 0 24px; flex: 1;">בקליניקה שלי אני מטפל בילדים ובני נוער בגישה קוגניטיבית־התנהגותית, בשילוב סכמה תרפיה, ביופידבק ועבודה דרך משחק. ההורים הם שותפים מלאים בתהליך.</p>
+          <a href="#" style="font-weight: 600; color: #4A7FB5;">לעמוד הטיפולים ←</a>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #EDF3FA; border-radius: 24px; padding: 36px 28px; display: flex; flex-direction: column;">
+          <h3 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 22px; color: #2E5C8A; margin: 0 0 14px;">"אדם ודייגו בארץ הרגשות"</h3>
+          <p style="font-size: 16px; line-height: 1.7; color: #2F3A47; margin: 0 0 24px; flex: 1;">סדרת ספרי ילדים טיפוליים שכתבתי מתוך חדר הטיפולים, המבוססת על עקרונות ה-CBT: "יער המחשבות המפחידות" (על פחדים וחרדות) ו"הר הכעס" (על ויסות כעסים). הספרים מלווים אלפי משפחות בישראל ומשמשים גם מטפלים, יועצות ומורים.</p>
+          <a href="#" style="font-weight: 600; color: #4A7FB5;">לעמוד החנות ←</a>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #EDF3FA; border-radius: 24px; padding: 36px 28px; display: flex; flex-direction: column;">
+          <h3 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 22px; color: #2E5C8A; margin: 0 0 14px;">הכשרת מטפלים — PlayLiss</h3>
+          <p style="font-size: 16px; line-height: 1.7; color: #2F3A47; margin: 0 0 24px; flex: 1;">אני מלמד מטפלים, פסיכולוגים ויועצות לשלב משחק בעבודה טיפולית, במסגרת שיטת PlayLiss שפיתחתי. הסדנאות פועלות זו השנה השישית, במחזור השישי — בכנסים, בלמידה מקוונת, וגם בשפ"חים, מתי"אות ומסגרות מקצועיות נוספות.</p>
+          <a href="#" style="font-weight: 600; color: #4A7FB5;">לעמוד הסדנאות ←</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: DIEGO -->
+  <div data-screen-label="דייגו" style="background: #2E5C8A; padding: 72px 32px; color: #FFFFFF;">
+    <div style="max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: center;">
+      <div style="position: relative;">
+        <div style="width: 100%; aspect-ratio: 4/3; border-radius: 28px; overflow: hidden; box-shadow: 0 24px 60px -20px rgba(0,0,0,0.4);">
+          <image-slot id="diego-photo" shape="rect" src="https://roeeliss.co.il/wp-content/uploads/2023/07/roi-and-diego-768x576.webp" placeholder="רועי ודייגו יחד"></image-slot>
+        </div>
+      </div>
+      <div>
+        <h2 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 32px; margin: 0 0 20px;">ומי זה דייגו?</h2>
+        <p style="font-size: 18px; line-height: 1.7; color: #EDF3FA; max-width: 460px; margin: 0 0 20px;">
+          דייגו הוא הכלב הטיפולי שלי — ושותף מלא בעבודה עם ילדים. ילדים שמתקשים לדבר על פחד או בושה מוצאים לא פעם את הדרך דווקא דרכו: קל יותר לספר מה דייגו מרגיש מאשר מה אני מרגיש.
+        </p>
+        <p style="font-size: 18px; line-height: 1.7; color: #EDF3FA; max-width: 460px; margin: 0;">מתוך הקסם הזה שקורה בקליניקה נולדה סדרת הספרים: אדם, ילד כמו כל הילדים, ודייגו, החבר שיוצא איתו למסע בארץ הרגשות.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: THE PATH -->
+  <div data-screen-label="הדרך שהובילה אותי לכאן" style="background: #FDFCFA; padding: 100px 32px;">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <h2 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 32px; color: #2E5C8A; margin: 0 0 28px; text-align: center;">הדרך שלי</h2>
+      <p style="font-size: 18px; line-height: 1.8; color: #2F3A47; margin: 0 0 20px;">
+        למדתי מדעי ההתנהגות באוניברסיטת בן גוריון ופסיכולוגיה חברתית באוניברסיטה העברית, ולימדתי כמרצה באוניברסיטה העברית, באוניברסיטת תל אביב ובמכללות בית ברל וקריית אונו. העבודה כמאמן מנטאלי של ילדים ובני נוער במרכז הישראלי לטניס היא שגילתה לי כמה אני אוהב את העבודה איתם — ומשם המשכתי להתמחות בפסיכולוגיה חינוכית.
+      </p>
+      <p style="font-size: 18px; line-height: 1.8; color: #2F3A47; margin: 0;">
+        את ההכשרה הטיפולית שלי ב-CBT עשיתי בתכנית הדו־שנתית של מרכז חוס"ן לפסיכותרפיה קוגניטיבית־התנהגותית, וצברתי ניסיון בשירות הציבורי, במכונים פרטיים ובקליניקה שלי. כיום אני גם מדריך בהסמכה בתחום.
+      </p>
+    </div>
+  </div>
+
+  <!-- SECTION 6: LET'S TALK (split) -->
+  <div id="contact" data-screen-label="בואו נדבר" style="background: #FDFCFA; padding: 100px 32px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <h2 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 32px; color: #2E5C8A; margin: 0 0 48px; text-align: center;">בואו נדבר</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+        <div>
+          <h3 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 22px; color: #2E5C8A; margin: 0 0 12px;">הורים</h3>
+          <p style="font-size: 17px; line-height: 1.7; margin: 0 0 24px;">מתלבטים אם טיפול מתאים לילד שלכם? השאירו פרטים ונקבע שיחת היכרות קצרה.</p>
+        </div>
+        <div>
+          <h3 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 22px; color: #2E5C8A; margin: 0 0 12px;">מטפלים ואנשי חינוך</h3>
+          <p style="font-size: 17px; line-height: 1.7; margin: 0 0 24px;">רוצים לשמוע על סדנאות PlayLiss או על הדרכה? אשמח שנדבר.</p>
+        </div>
+      </div>
+      <sc-if value="{{ !contactSubmitted }}" hint-placeholder-val="{{ true }}">
+        <div style="background: #FFFFFF; border: 1px solid #EDF3FA; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 16px; max-width: 520px; margin: 0 auto; box-shadow: 0 12px 32px -18px rgba(46,92,138,0.18);">
+          <input type="text" placeholder="שם מלא" value="{{ contactName }}" onChange="{{ onContactNameChange }}" style="font-family: 'Assistant', sans-serif; font-size: 16px; padding: 14px 18px; border: 1px solid #B8CFE5; border-radius: 12px; text-align: right; outline: none;">
+          <input type="text" placeholder="טלפון" value="{{ contactPhone }}" onChange="{{ onContactPhoneChange }}" style="font-family: 'Assistant', sans-serif; font-size: 16px; padding: 14px 18px; border: 1px solid #B8CFE5; border-radius: 12px; text-align: right; outline: none;">
+          <input type="text" placeholder="דוא&quot;ל" value="{{ contactEmail }}" onChange="{{ onContactEmailChange }}" style="font-family: 'Assistant', sans-serif; font-size: 16px; padding: 14px 18px; border: 1px solid #B8CFE5; border-radius: 12px; text-align: right; outline: none;">
+          <select value="{{ contactRole }}" onChange="{{ onContactRoleChange }}" style="font-family: 'Assistant', sans-serif; font-size: 16px; padding: 14px 18px; border: 1px solid #B8CFE5; border-radius: 12px; text-align: right; outline: none; background: #FFFFFF; color: #2F3A47;">
+            <option value="">אני פונה כ...</option>
+            <option value="parent">הורה</option>
+            <option value="therapist">מטפל.ת</option>
+            <option value="other">אחר</option>
+          </select>
+          <textarea placeholder="הודעה" value="{{ contactMessage }}" onChange="{{ onContactMessageChange }}" rows="3" style="font-family: 'Assistant', sans-serif; font-size: 16px; padding: 14px 18px; border: 1px solid #B8CFE5; border-radius: 12px; text-align: right; outline: none; resize: none;"></textarea>
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #4A7FB5; cursor: pointer;">
+            <input type="checkbox" checked="{{ contactNewsletter }}" onChange="{{ onContactNewsletterChange }}" style="width: 18px; height: 18px;">
+            אשמח לקבל עדכונים ותכנים
+          </label>
+          <button onClick="{{ submitContact }}" style="font-family: 'Assistant', sans-serif; background: #2E5C8A; color: #FFFFFF; font-weight: 600; font-size: 17px; padding: 14px; border: none; border-radius: 999px; cursor: pointer;">דברו איתי</button>
+          <p style="font-size: 13px; color: #8FAAC7; margin: 0; text-align: center;">הפרטים נשמרים בהתאם ל<a href="https://roeeliss.co.il/privacy/" target="_blank" rel="noopener">מדיניות הפרטיות</a></p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ contactSubmitted }}" hint-placeholder-val="{{ false }}">
+        <div style="background: #FFFFFF; border-radius: 24px; padding: 40px; max-width: 520px; margin: 0 auto; box-shadow: 0 12px 32px -18px rgba(46,92,138,0.18); text-align: center;">
+          <p style="font-size: 18px; font-weight: 600; color: #2E5C8A; margin: 0;">תודה על הפנייה! אחזור אליכם בהקדם.</p>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div data-screen-label="פוטר" style="background: #22456A; color: #EDF3FA; padding: 56px 32px 32px;">
+    <div style="max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 32px;">
+      <div>
+        <div style="font-family: 'Rubik', sans-serif; font-weight: 600; font-size: 20px; color: #FFFFFF; margin-bottom: 12px;">רועי ליס</div>
+        <p style="font-size: 15px; line-height: 1.7; color: #B8CFE5; margin: 0; max-width: 280px;">פסיכולוג חינוכי מומחה, <br>מומחה בטיפול CBT לילדים ונוער</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px;">
+        <span>שפרינצק 3, תל אביב</span>
+        <a href="tel:0549107047" style="color: #EDF3FA;">054-910-7047</a>
+        <a href="mailto:roee@roeeliss.co.il" style="color: #EDF3FA;">roee@roeeliss.co.il</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px;">
+        <a href="#contact" style="color: #EDF3FA;">צור קשר</a>
+        <a href="https://roeeliss.co.il/%d7%aa%d7%a7%d7%a0%d7%95%d7%9f/" target="_blank" rel="noopener" style="color: #EDF3FA;">תקנון</a>
+        <a href="https://roeeliss.co.il/privacy/" target="_blank" rel="noopener" style="color: #EDF3FA;">מדיניות פרטיות</a>
+      </div>
+    </div>
+    <div style="max-width: 1120px; margin: 36px auto 0; padding-top: 28px; border-top: 1px solid #2E5C8A; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+      <div style="display: flex; gap: 12px;">
+        <a href="https://www.facebook.com/AdamVeDiego" target="_blank" rel="noopener" aria-label="פייסבוק" style="width: 34px; height: 34px; border-radius: 50%; background: #2E5C8A; display: flex; align-items: center; justify-content: center; color: #EDF3FA;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.23 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.23 22 17.08 22 12.06z"></path></svg>
+        </a>
+        <a href="https://www.instagram.com/adamanddiego/" target="_blank" rel="noopener" aria-label="אינסטגרם" style="width: 34px; height: 34px; border-radius: 50%; background: #2E5C8A; display: flex; align-items: center; justify-content: center; color: #EDF3FA;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+        </a>
+        <a href="https://www.youtube.com/@AdamandDiego" target="_blank" rel="noopener" aria-label="יוטיוב" style="width: 34px; height: 34px; border-radius: 50%; background: #2E5C8A; display: flex; align-items: center; justify-content: center; color: #EDF3FA;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 7.2s-.22-1.55-.9-2.23c-.86-.9-1.82-.9-2.26-.96C16.2 3.75 12 3.75 12 3.75h-.01s-4.2 0-7.34.26c-.44.06-1.4.06-2.26.96-.68.68-.9 2.23-.9 2.23S1.25 9 1.25 10.8v1.4c0 1.8.24 3.6.24 3.6s.22 1.55.9 2.23c.86.9 1.99.87 2.5.97 1.8.17 7.11.26 7.11.26s4.2-.01 7.34-.27c.44-.06 1.4-.06 2.26-.96.68-.68.9-2.23.9-2.23s.24-1.8.24-3.6v-1.4c0-1.8-.24-3.6-.24-3.6zM9.9 14.9V8.9l6.1 3-6.1 3z"></path></svg>
+        </a>
+        <a href="https://www.tiktok.com/@adamanddiego" target="_blank" rel="noopener" aria-label="טיקטוק" style="width: 34px; height: 34px; border-radius: 50%; background: #2E5C8A; display: flex; align-items: center; justify-content: center; color: #EDF3FA;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v13.6a3 3 0 1 1-2.4-2.94v-3.1a6.1 6.1 0 1 0 5.4 6.06V8.9a7.6 7.6 0 0 0 4.5 1.46V7.4a4.6 4.6 0 0 1-4.5-4.4z"></path></svg>
+        </a>
+      </div>
+      <div style="font-size: 13px; color: #8FAAC7;">© {{ year }} רועי ליס · פסיכולוג חינוכי מומחה · תל אביב</div>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    contactName: '',
+    contactPhone: '',
+    contactEmail: '',
+    contactRole: '',
+    contactMessage: '',
+    contactNewsletter: false,
+    contactSubmitted: false,
+  };
+
+  renderVals() {
+    return {
+      year: new Date().getFullYear(),
+      contactName: this.state.contactName,
+      contactPhone: this.state.contactPhone,
+      contactEmail: this.state.contactEmail,
+      contactRole: this.state.contactRole,
+      contactMessage: this.state.contactMessage,
+      contactNewsletter: this.state.contactNewsletter,
+      contactSubmitted: this.state.contactSubmitted,
+      onContactNameChange: (e) => this.setState({ contactName: e.target.value }),
+      onContactPhoneChange: (e) => this.setState({ contactPhone: e.target.value }),
+      onContactEmailChange: (e) => this.setState({ contactEmail: e.target.value }),
+      onContactRoleChange: (e) => this.setState({ contactRole: e.target.value }),
+      onContactMessageChange: (e) => this.setState({ contactMessage: e.target.value }),
+      onContactNewsletterChange: (e) => this.setState({ contactNewsletter: e.target.checked }),
+      submitContact: () => {
+        if (this.state.contactName.trim() || this.state.contactPhone.trim() || this.state.contactEmail.trim()) {
+          this.setState({ contactSubmitted: true });
+        }
+      },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

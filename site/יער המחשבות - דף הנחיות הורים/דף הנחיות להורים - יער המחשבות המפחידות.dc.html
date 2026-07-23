@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&amp;family=Assistant:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    html { scroll-behavior: smooth; }
+    @keyframes floatY { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-14px); } }
+    @keyframes twinkle  { 0%,100%{ opacity:.3 } 50%{ opacity:.9 } }
+    @keyframes twinkleB { 0%,100%{ opacity:.15 } 45%{ opacity:1 } }
+    @keyframes twinkleC { 0%,100%{ opacity:.55 } 30%{ opacity:.1 } 65%{ opacity:1 } }
+    @keyframes firefly  { 0%{ transform:translate(0,0); opacity:.15 } 25%{ opacity:.85 } 50%{ transform:translate(16px,-20px); opacity:.4 } 75%{ opacity:.8 } 100%{ transform:translate(0,0); opacity:.15 } }
+    @keyframes glowPulse { 0%,100%{ opacity: .5; transform: scale(1); } 50%{ opacity: .85; transform: scale(1.06); } }
+    @media (max-width: 820px) {
+      [data-nav] { display: none !important; }
+      [data-hdr-extra] { display: none !important; }
+      [data-hero] { grid-template-columns: 1fr !important; padding: 44px 20px 56px !important; text-align: center; gap: 28px !important; }
+      [data-hero-visual] img { width: 240px !important; }
+      [data-h1] { font-size: 33px !important; }
+      [data-h2] { font-size: 27px !important; }
+      [data-sec] { padding-top: 56px !important; padding-bottom: 56px !important; }
+      [data-2col] { grid-template-columns: 1fr !important; }
+      [data-3col] { grid-template-columns: 1fr !important; }
+      [data-breath] { grid-template-columns: 1fr !important; }
+      [data-q-grid] { grid-template-columns: 1fr !important; }
+      [data-tip] { flex-direction: column !important; text-align: center; }
+      [data-close] { grid-template-columns: 1fr !important; text-align: center; }
+      [data-close-photo] { justify-self: center; }
+    }
+  </style>
+  <script>
+    (function(){
+      function init(){
+        var bar=document.getElementById('readProgress');
+        if(bar){ window.addEventListener('scroll',function(){ var h=document.documentElement.scrollHeight-window.innerHeight; bar.style.width=(h>0?(window.scrollY/h*100):0)+'%'; },{passive:true}); }
+        var sel='[data-2col],[data-3col],[data-breath],[data-q-grid],[data-tip],[data-close],[data-breath-pacer],[data-h2]';
+        var els=document.querySelectorAll(sel);
+        if(!els.length){ return setTimeout(init,80); }
+        var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='none'; io.unobserve(e.target); } }); },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+        els.forEach(function(el){ el.style.opacity='0'; el.style.transform='translateY(26px)'; el.style.transition='opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)'; io.observe(el); });
+        setupBreath();
+        var cf=document.getElementById('coloringForm');
+        if(cf){ cf.addEventListener('submit',function(e){ e.preventDefault(); var m=document.getElementById('coloringMsg'), b=document.getElementById('coloringBtn'); if(m) m.style.display='block'; if(b){ b.textContent='נשלח בהצלחה ✓'; b.style.opacity='0.7'; } }); }
+        var ctf=document.getElementById('contactForm');
+        if(ctf){ ctf.addEventListener('submit',function(e){ e.preventDefault(); var m=document.getElementById('contactMsg'), b=document.getElementById('contactBtn'); if(m) m.style.display='block'; if(b){ b.textContent='נשלח בהצלחה ✓'; b.style.opacity='0.7'; } }); }
+      }
+      function setupBreath(){
+        var btn=document.getElementById('breathBtn'), belly=document.getElementById('breathBelly'), glow=document.getElementById('breathGlow'), label=document.getElementById('breathLabel');
+        if(!btn||!belly||!label){ return setTimeout(setupBreath,120); }
+        var phases=[{l:'שאיפה דרך האף…',d:4000,s:1.09,g:0.9},{l:'נשיפה ארוכה…',d:6000,s:0.93,g:0.42}];
+        var on=false,t=null;
+        function run(i){ if(!on)return; var p=phases[i];
+          belly.style.transition='transform '+p.d+'ms cubic-bezier(.37,0,.63,1)';
+          belly.style.transform='scale('+p.s+')';
+          if(glow){ glow.style.transition='transform '+p.d+'ms ease-in-out, opacity '+p.d+'ms ease-in-out'; glow.style.transform='scale('+(p.s*0.95)+')'; glow.style.opacity=p.g; }
+          label.textContent=p.l;
+          t=setTimeout(function(){run((i+1)%phases.length);},p.d);
+        }
+        btn.addEventListener('click',function(){ on=!on; if(on){ btn.textContent='⏸ עצרו'; run(0);} else { clearTimeout(t); belly.style.transition='transform .6s ease'; belly.style.transform='scale(1)'; if(glow){ glow.style.transition='transform .6s ease, opacity .6s ease'; glow.style.transform='scale(1)'; glow.style.opacity=0.5; } label.textContent='מוכנים?'; btn.textContent='▶ התחילו לנשום'; } });
+      }
+      if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',init);} else { init(); }
+    })();
+  </script>
+</helmet>
+
+<div id="readProgress" style="position: fixed; top: 0; right: 0; height: 4px; width: 0%; background: linear-gradient(90deg, #8FE0D0, #F0A95E); z-index: 60; transition: width .12s linear;"></div>
+
+<div dir="rtl" style="font-family: 'Assistant', sans-serif; color: #2A2350; background: #FBF6EC; overflow-x: clip; line-height: 1.6;">
+
+  <!-- ============ HEADER ============ -->
+  <header style="position: sticky; top: 0; z-index: 50; background: rgba(24,20,47,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(111,199,186,0.22);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+      <a href="https://www.roeeliss.co.il" target="_blank" style="display: flex; flex-direction: column; flex: none; line-height: 1.25; text-decoration: none;">
+        <span style="font-family: 'Heebo', sans-serif; font-weight: 900; font-size: 23px; color: #F6EEDC;">רועי ליס</span>
+        <span style="font-size: 12.5px; font-weight: 600; color: #8FE0D0;">פסיכולוג חינוכי מומחה</span>
+        <span style="font-size: 12.5px; font-weight: 600; color: #8FE0D0;">מומחה בטיפול קוגניטיבי התנהגותי</span>
+      </a>
+      <nav data-nav="" style="display: flex; align-items: center; gap: 22px; font-size: 15.5px; font-weight: 600; color: #D9D6E8;">
+        <a href="#welcome" style="color: inherit; text-decoration: none;" style-hover="color: #8FE0D0;">ברוכים הבאים</a>
+        <a href="#modules" style="color: inherit; text-decoration: none;" style-hover="color: #8FE0D0;">שלבי המסע</a>
+        <a href="#talk" style="color: inherit; text-decoration: none;" style-hover="color: #8FE0D0;">שיחה ופעילויות</a>
+        <a href="#help" style="color: inherit; text-decoration: none;" style-hover="color: #8FE0D0;">מתי לפנות לעזרה</a>
+        <a href="#gift" style="color: inherit; text-decoration: none;" style-hover="color: #8FE0D0;">דפי צביעה</a>
+        <a href="#contact" style="color: inherit; text-decoration: none;" style-hover="color: #8FE0D0;">בואו נדבר</a>
+      </nav>
+      <a data-hdr-extra="" href="https://www.roeeliss.co.il" target="_blank" style="flex: none; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; color: #18142F; text-decoration: none; background: linear-gradient(135deg, #8FE0D0, #46A593); font-weight: 800; font-size: 14.5px; padding: 9px 18px; border-radius: 999px; box-shadow: 0 6px 16px rgba(70,165,147,0.35);" style-hover="transform: translateY(-1px);">לדף הספר ←</a>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section data-screen-label="Hero" style="position: relative; background: radial-gradient(120% 100% at 78% 8%, #3A2F66 0%, #251F4A 42%, #18142F 100%); overflow: hidden;">
+    <sc-if value="{{ true }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute; inset:0; pointer-events:none; background-image: radial-gradient(2px 2px at 40px 60px, rgba(255,255,255,.9), transparent), radial-gradient(1.5px 1.5px at 160px 130px, rgba(255,255,255,.6), transparent), radial-gradient(1px 1px at 100px 220px, rgba(255,255,255,.5), transparent), radial-gradient(2px 2px at 250px 90px, rgba(255,255,255,.7), transparent); background-size:360px 300px; animation:twinkle 5s ease-in-out infinite;"></div>
+      <div style="position:absolute; inset:0; pointer-events:none; background-image: radial-gradient(1.5px 1.5px at 80px 140px, rgba(143,224,208,.8), transparent), radial-gradient(1px 1px at 220px 60px, rgba(200,182,242,.7), transparent), radial-gradient(1.5px 1.5px at 320px 200px, rgba(143,224,208,.6), transparent); background-size:300px 260px; animation:twinkleB 3.4s ease-in-out .8s infinite;"></div>
+      <div style="position:absolute; inset:0; pointer-events:none; background-image: radial-gradient(1.5px 1.5px at 120px 90px, rgba(244,236,218,.85), transparent), radial-gradient(1px 1px at 280px 160px, rgba(247,216,115,.7), transparent), radial-gradient(1px 1px at 60px 240px, rgba(244,236,218,.6), transparent); background-size:340px 280px; animation:twinkleC 4.6s ease-in-out .3s infinite;"></div>
+      <div style="position:absolute; inset:0; pointer-events:none; overflow:hidden;">
+        <span style="position:absolute; top:70px; left:10%; width:6px; height:6px; border-radius:50%; background:#F7D873; box-shadow:0 0 12px 3px rgba(247,216,115,.75); animation:firefly 9s ease-in-out infinite;"></span>
+        <span style="position:absolute; top:180px; left:24%; width:5px; height:5px; border-radius:50%; background:#8FE0D0; box-shadow:0 0 12px 3px rgba(143,224,208,.7); animation:firefly 10s ease-in-out .6s infinite;"></span>
+        <span style="position:absolute; top:120px; left:78%; width:6px; height:6px; border-radius:50%; background:#F0A95E; box-shadow:0 0 12px 3px rgba(240,169,94,.7); animation:firefly 11s ease-in-out 1.2s infinite;"></span>
+        <span style="position:absolute; top:240px; left:62%; width:5px; height:5px; border-radius:50%; background:#C8B6F2; box-shadow:0 0 12px 3px rgba(200,182,242,.7); animation:firefly 12s ease-in-out 2.2s infinite;"></span>
+      </div>
+    </sc-if>
+    <div style="position: absolute; top: -130px; right: -70px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(244,236,218,0.4), transparent 65%); filter: blur(22px); pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -40px; left: 0; right: 0; height: 120px; background: linear-gradient(180deg, transparent, rgba(24,20,47,0.6)); pointer-events: none;"></div>
+
+    <div data-hero="" style="position: relative; max-width: 1180px; margin: 0 auto; padding: 62px 24px 76px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 44px; align-items: center;">
+      <div>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background: rgba(143,224,208,0.12); border: 1px solid rgba(143,224,208,0.3); color: #8FE0D0; font-weight: 800; font-size: 14px; padding: 7px 16px; border-radius: 999px; margin-bottom: 20px;">📖 מדריך מלווה לספר · להורים</span>
+        <h1 data-h1="" style="font-family: 'Heebo', sans-serif; font-weight: 900; font-size: 47px; line-height: 1.2; color: #F6EEDC; margin: 0 0 18px;">יער המחשבות המפחידות — <span style="color: #F0A95E;">הנחיות להורים</span></h1>
+        <p style="font-size: 17px; color: #B7B0D2; margin: 0 0 26px; line-height: 1.75; max-width: 520px;">הסבר קצר על הטיפול הקוגניטיבי־התנהגותי (CBT) בחרדה בילדים, וכלים פרקטיים לשיחה ולפעילויות בעקבות הקריאה בספר — כדי שתוכלו ללוות את ילדכם, צעד אחר צעד, בדרך לנצח את החרדה.</p>
+        <div style="display: flex; gap: 22px; flex-wrap: wrap; color: #8FE0D0; font-size: 14px; font-weight: 700; margin-top: 8px;">
+          <span>⏱ זמן קריאה מוערך · 11 דקות</span>
+          <span>✓ מבוסס פרוטוקול CBT</span>
+        </div>
+      </div>
+
+      <div data-hero-visual="" style="position: relative; display: flex; justify-content: center; align-items: center;">
+        <div style="position: absolute; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(70,165,147,0.5), rgba(240,169,94,0.24) 48%, transparent 70%); filter: blur(26px); animation: glowPulse 6s ease-in-out infinite;"></div>
+        <img src="assets/duo.png" alt="אדם ודייגו" style="position: relative; width: 360px; max-width: 92%; filter: drop-shadow(0 26px 44px rgba(0,0,0,0.5)); animation: floatY 7s ease-in-out infinite;">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WELCOME ============ -->
+  <section data-screen-label="Welcome" id="welcome" data-sec="" style="background: #FBF6EC; padding: 84px 24px; scroll-margin-top: 96px;">
+    <div style="max-width: 820px; margin: 0 auto;">
+      
+      <h2 data-h2="" style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 38px; color: #2A2350; margin: 0 0 8px; line-height: 1.25;">ברוכים הבאים!</h2>
+      <p style="font-size: 21px; font-weight: 600; color: #2E7163; line-height: 1.6; margin: 18px 0 26px;">כולנו מפחדים לפעמים. אבל כשהפחד והחרדה פוגעים באיכות החיים של ילדיכם ושל הבית — אתם רוצים לדעת מה לעשות, ואיך.</p>
+      <div style="display: flex; flex-direction: column; gap: 18px; font-size: 17.5px; color: #4A4460; line-height: 1.8;">
+        <p style="margin: 0;">הספר <strong style="color: #2A2350;">"אָדָם ודְיֵיגוֹ בְּיַעַר הַמַחְשָׁבוֹת הַמַפְחִידוֹת"</strong> נולד מתוך הטיפולים שדייגו ואני העברנו יחד לילדים המתמודדים עם חרדה. במפגשי הדרכת ההורים נוכחתי לגלות שוב ושוב: כשיש לכם, ההורים, את הכלים המתאימים — אתם הכוח המשמעותי ביותר בהתמודדות של ילדכם.</p>
+        <p style="margin: 0;">הספר נכתב עבורכם בדיוק בשביל זה — והוא מבוסס על עקרונות הטיפול הקוגניטיבי־התנהגותי <span style="color: #2E7163; font-weight: 700;">(CBT)</span>, הטיפול היעיל והמקובל ביותר בעולם להפרעות חרדה בילדים.</p>
+        <p style="margin: 0;">בעמוד הזה תמצאו הנחיות פשוטות וכלים יעילים: איך לקרוא את הספר עם ילדכם, ומה לעשות ברגעי החרדה עצמם.</p>
+      </div>
+      <div style="display: flex; gap: 14px; align-items: flex-start; background: #fff; border-radius: 18px; padding: 22px 26px; margin-top: 28px; box-shadow: 0 12px 30px rgba(42,35,80,0.08); border-right: 4px solid #8FE0D0;">
+        <span style="font-size: 24px; flex: none; line-height: 1.2;">📝</span>
+        <p style="margin: 0; font-size: 15.5px; color: #5C5470; line-height: 1.7;">מטעמי נוחות הטקסט נכתב בלשון זכר, אך פונה כמובן לכל המינים.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODULES ROADMAP ============ -->
+  <section data-screen-label="Modules" id="modules" data-sec="" style="position: relative; background: radial-gradient(110% 90% at 22% 0%, #3A2F66 0%, #251F4A 50%, #18142F 100%); padding: 82px 24px; overflow: hidden; scroll-margin-top: 80px;">
+    <sc-if value="{{ true }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute; inset:0; pointer-events:none; background-image: radial-gradient(1.5px 1.5px at 60px 80px, rgba(255,255,255,.7), transparent), radial-gradient(1px 1px at 200px 160px, rgba(255,255,255,.5), transparent), radial-gradient(2px 2px at 320px 60px, rgba(255,255,255,.7), transparent); background-size:380px 240px; animation:twinkle 5s ease-in-out infinite;"></div>
+      <div style="position:absolute; inset:0; pointer-events:none; background-image: radial-gradient(1.5px 1.5px at 120px 140px, rgba(143,224,208,.75), transparent), radial-gradient(1px 1px at 280px 40px, rgba(200,182,242,.65), transparent), radial-gradient(1.5px 1.5px at 40px 200px, rgba(143,224,208,.6), transparent); background-size:340px 260px; animation:twinkleB 3.4s ease-in-out .8s infinite;"></div>
+      <div style="position:absolute; inset:0; pointer-events:none; background-image: radial-gradient(1.5px 1.5px at 220px 100px, rgba(244,236,218,.8), transparent), radial-gradient(1px 1px at 360px 180px, rgba(247,216,115,.65), transparent); background-size:400px 280px; animation:twinkleC 4.6s ease-in-out .3s infinite;"></div>
+      <div style="position:absolute; inset:0; pointer-events:none; overflow:hidden;">
+        <span style="position:absolute; top:90px; left:14%; width:6px; height:6px; border-radius:50%; background:#F7D873; box-shadow:0 0 12px 3px rgba(247,216,115,.75); animation:firefly 9s ease-in-out infinite;"></span>
+        <span style="position:absolute; top:220px; left:30%; width:5px; height:5px; border-radius:50%; background:#8FE0D0; box-shadow:0 0 12px 3px rgba(143,224,208,.7); animation:firefly 10s ease-in-out .6s infinite;"></span>
+        <span style="position:absolute; top:150px; left:72%; width:6px; height:6px; border-radius:50%; background:#F0A95E; box-shadow:0 0 12px 3px rgba(240,169,94,.7); animation:firefly 11s ease-in-out 1.2s infinite;"></span>
+        <span style="position:absolute; top:300px; left:56%; width:5px; height:5px; border-radius:50%; background:#C8B6F2; box-shadow:0 0 12px 3px rgba(200,182,242,.7); animation:firefly 12s ease-in-out 2.2s infinite;"></span>
+      </div>
+    </sc-if>
+    <div style="position: relative; max-width: 1080px; margin: 0 auto;">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto 14px;">
+        <h2 data-h2="" style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 36px; color: #F6EEDC; margin: 0 0 14px;">שלושת שלבי המסע</h2>
+        <p style="font-size: 17px; color: #B7B0D2; line-height: 1.7; margin: 0;">פרוטוקול הטיפול בנוי ממודולות — שלבים מובחנים, שלכל אחד מטרה משלו, וכל שלב נסמך על קודמיו. בספר, דייגו מנחה את אדם ועובר איתו את שלוש המודולות העיקריות:</p>
+      </div>
+      <div data-3col="" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 42px;">
+        <a href="#mod1" style="text-decoration: none; background: rgba(255,255,255,0.05); border: 1px solid rgba(143,224,208,0.22); border-radius: 22px; padding: 32px 26px; display: flex; flex-direction: column; gap: 14px;" style-hover="transform: translateY(-4px); border-color: rgba(143,224,208,0.5);">
+          <div style="width: 54px; height: 54px; border-radius: 16px; background: linear-gradient(135deg, #46A593, #2E7163); display: flex; align-items: center; justify-content: center; font-family: 'Heebo'; font-weight: 900; font-size: 24px; color: #F6EEDC; box-shadow: 0 8px 18px rgba(46,113,99,0.4);">1</div>
+          <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 23px; color: #F6EEDC; margin: 0;">פסיכו־הדרכה</h3>
+          <p style="margin: 0; font-size: 15.5px; color: #B7B0D2; line-height: 1.65;">ללמוד מהו פחד ומהי חרדה, להבחין ביניהם, ולזהות את התסמינים הגופניים.</p>
+        </a>
+        <a href="#mod2" style="text-decoration: none; background: rgba(255,255,255,0.05); border: 1px solid rgba(143,224,208,0.22); border-radius: 22px; padding: 32px 26px; display: flex; flex-direction: column; gap: 14px;" style-hover="transform: translateY(-4px); border-color: rgba(143,224,208,0.5);">
+          <div style="width: 54px; height: 54px; border-radius: 16px; background: linear-gradient(135deg, #46A593, #2E7163); display: flex; align-items: center; justify-content: center; font-family: 'Heebo'; font-weight: 900; font-size: 24px; color: #F6EEDC; box-shadow: 0 8px 18px rgba(46,113,99,0.4);">2</div>
+          <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 23px; color: #F6EEDC; margin: 0;">הקניית מיומנויות</h3>
+          <p style="margin: 0; font-size: 15.5px; color: #B7B0D2; line-height: 1.65;">כלים גופניים וקוגניטיביים להתמודדות עם החרדה — נשימה סרעפתית ומשפט אומץ.</p>
+        </a>
+        <a href="#mod3" style="text-decoration: none; background: rgba(255,255,255,0.05); border: 1px solid rgba(143,224,208,0.22); border-radius: 22px; padding: 32px 26px; display: flex; flex-direction: column; gap: 14px;" style-hover="transform: translateY(-4px); border-color: rgba(143,224,208,0.5);">
+          <div style="width: 54px; height: 54px; border-radius: 16px; background: linear-gradient(135deg, #46A593, #2E7163); display: flex; align-items: center; justify-content: center; font-family: 'Heebo'; font-weight: 900; font-size: 24px; color: #F6EEDC; box-shadow: 0 8px 18px rgba(46,113,99,0.4);">3</div>
+          <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 23px; color: #F6EEDC; margin: 0;">חשיפות הדרגתיות</h3>
+          <p style="margin: 0; font-size: 15.5px; color: #B7B0D2; line-height: 1.65;">חשיפה הדרגתית לגורמי החרדה, מהקל אל הקשה, עד לשרשרת התמודדויות מוצלחות.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODULE 1 ============ -->
+  <section data-screen-label="Module1" id="mod1" data-sec="" style="background: #FBF6EC; padding: 84px 24px; scroll-margin-top: 80px;">
+    <div style="max-width: 920px; margin: 0 auto;">
+      <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 26px;">
+        <div style="flex: none; width: 60px; height: 60px; border-radius: 18px; background: linear-gradient(135deg, #46A593, #2E7163); display: flex; align-items: center; justify-content: center; font-family: 'Heebo'; font-weight: 900; font-size: 27px; color: #F6EEDC; box-shadow: 0 10px 22px rgba(46,113,99,0.32);">1</div>
+        <div>
+          <span style="display: block; color: #3A8C7E; font-weight: 800; font-size: 14px;">שלב ראשון</span>
+          <h2 data-h2="" style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 34px; color: #2A2350; margin: 2px 0 0; line-height: 1.2;">שלב הפסיכו־הדרכה</h2>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 18px; font-size: 17.5px; color: #4A4460; line-height: 1.8;">
+        <p style="margin: 0;">בתחילת הטיפול מטרתנו ללמד את הילד, באופן מותאם גיל, על רגש הפחד ורגש החרדה, ולסייע לו להבין את ההבדל החשוב כל כך ביניהם. לאחר מכן נעזור לו לזהות את הסימפטומים הגופניים החזקים שהוא חווה, לנרמל ולתקף את העובדה שכולנו פוחדים לפעמים, וללמד שלחרדה — כמו לכל רגש — יש מבנה של גל: היא עולה במהירות, וכעבור זמן לא רב, פוחתת.</p>
+      </div>
+
+      <div data-2col="" style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 34px 0;">
+        <div style="background: linear-gradient(160deg, #E0F2EC, #C9E9E0); border-radius: 22px; padding: 30px; border: 1px solid rgba(58,140,126,0.2);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;"><span style="font-size: 24px;">⚡</span><h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 24px; color: #2A2350; margin: 0;">פחד</h3></div>
+          <p style="margin: 0; font-size: 16px; color: #2A3A45; line-height: 1.7;">אחד מששת הרגשות הבסיסיים. זה מה שאנחנו מרגישים כשאנחנו חשופים ל<strong>סכנה אמיתית</strong>. הגוף מגייס כוח במהירות: הלב דופק מהר, הדם זורם לשרירים, הפה מתייבש — כדי שנוכל לברוח או להילחם.</p>
+        </div>
+        <div style="background: linear-gradient(160deg, #EAE6F4, #DAD3EC); border-radius: 22px; padding: 30px; border: 1px solid rgba(74,58,140,0.2);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;"><span style="font-size: 24px;">🌀</span><h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 24px; color: #2A2350; margin: 0;">חרדה</h3></div>
+          <p style="margin: 0; font-size: 16px; color: #312A48; line-height: 1.7;">תגובת פחד קיצונית, המתרחשת כשאנחנו <strong>מוגנים — אבל חושבים מחשבה מפחידה</strong>. אנחנו במקום בטוח ומאמינים בכל ליבנו שאנו בסכנה. הגוף לא יודע את ההבדל, ומגיב בדיוק כמו בזמן פחד.</p>
+        </div>
+      </div>
+
+      <div style="position: relative; background: linear-gradient(135deg, #2E7163, #245A4F); border-radius: 22px; padding: 32px 34px; overflow: hidden; box-shadow: 0 20px 44px rgba(46,113,99,0.22);">
+        <div style="position: absolute; left: -30px; bottom: -50px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(143,224,208,0.3), transparent 65%); filter: blur(18px);"></div>
+        <div style="position: relative; display: flex; align-items: center; gap: 16px;">
+          <span style="font-size: 32px; flex: none;">🌊</span>
+          <div>
+            <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 22px; color: #F6EEDC; margin: 0 0 6px;">לחרדה יש מבנה של גל</h3>
+            <p style="margin: 0; font-size: 16px; color: #D6EFE9; line-height: 1.7;">כשם שהיא עולה בפתאומיות, כך תיחלש ותחלוף עוד מעט. למרות החוויה הרגשית החזקה — אנחנו למעשה בטוחים ומוגנים. הרגש אמיתי, אבל אין שם באמת מפלצת.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 40px;">
+        <p style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 22px; color: #2A2350; text-align: center; margin: 0 0 26px;">בסוף השלב הזה נרצה שילדכם —</p>
+        <div data-3col="" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+          <div style="background: #fff; border-radius: 22px; padding: 28px 24px; box-shadow: 0 16px 38px rgba(42,35,80,0.1); position: relative;">
+            <div style="position: absolute; top: -16px; right: 24px; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #F0A95E, #D98842); display: flex; align-items: center; justify-content: center; font-family: 'Heebo'; font-weight: 900; font-size: 19px; color: #fff; box-shadow: 0 8px 16px rgba(217,136,66,0.4);">1</div>
+            <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 20px; color: #2A2350; margin: 10px 0 10px;">ידע להבחין בין פחד וחרדה</h3>
+            <p style="margin: 0; font-size: 15px; color: #5C5470; line-height: 1.65;">שני הרגשות נחווים כמעט באותו אופן, אך ההבדל ביניהם קריטי: פחד בזמן סכנה, חרדה כשאנחנו בטוחים אבל חושבים על סכנה שתתרחש.</p>
+          </div>
+          <div style="background: #fff; border-radius: 22px; padding: 28px 24px; box-shadow: 0 16px 38px rgba(42,35,80,0.1); position: relative;">
+            <div style="position: absolute; top: -16px; right: 24px; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #F0A95E, #D98842); display: flex; align-items: center; justify-content: center; font-family: 'Heebo'; font-weight: 900; font-size: 19px; color: #fff; box-shadow: 0 8px 16px rgba(217,136,66,0.4);">2</div>
+            <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 20px; color: #2A2350; margin: 10px 0 10px;">ידע לזהות את המחשבות המפחידות</h3>
+            <p style="margin: 0; font-size: 15px; color: #5C5470; line-height: 1.65;">שיזהה את המחשבות המפחידות שלו, ויראה בהן את המקור של תחושת החרדה.</p>
+          </div>
+          <div style="background: #fff; border-radius: 22px; padding: 28px 24px; box-shadow: 0 16px 38px rgba(42,35,80,0.1); position: relative;">
+            <div style="position: absolute; top: -16px; right: 24px; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #F0A95E, #D98842); display: flex; align-items: center; justify-content: center; font-family: 'Heebo'; font-weight: 900; font-size: 19px; color: #fff; box-shadow: 0 8px 16px rgba(217,136,66,0.4);">3</div>
+            <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 20px; color: #2A2350; margin: 10px 0 10px;">ידע לזהות את התסמינים הגופניים</h3>
+            <p style="margin: 0; font-size: 15px; color: #5C5470; line-height: 1.65;">שאלו: מה קורה לך בגוף? איפה אתה מרגיש את החרדה? דפיקות לב, קוצר נשימה, רעד, כאבי ראש או בטן, יובש בפה, הזעה — ניתן להיעזר גם בדף הצביעה המצורף.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODULE 2 ============ -->
+  <section data-screen-label="Module2" id="mod2" data-sec="" style="background: linear-gradient(180deg, #F4ECDA, #FBF6EC); padding: 84px 24px; scroll-margin-top: 80px;">
+    <div style="max-width: 920px; margin: 0 auto;">
+      <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 26px;">
+        <div style="flex: none; width: 60px; height: 60px; border-radius: 18px; background: linear-gradient(135deg, #46A593, #2E7163); display: flex; align-items: center; justify-content: center; font-family: 'Heebo'; font-weight: 900; font-size: 27px; color: #F6EEDC; box-shadow: 0 10px 22px rgba(46,113,99,0.32);">2</div>
+        <div>
+          <span style="display: block; color: #3A8C7E; font-weight: 800; font-size: 14px;">שלב שני</span>
+          <h2 data-h2="" style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 34px; color: #2A2350; margin: 2px 0 0; line-height: 1.2;">הקניה ותרגול של מיומנויות</h2>
+        </div>
+      </div>
+      <p style="font-size: 17.5px; color: #4A4460; line-height: 1.8; margin: 0 0 34px;">ממש כמו אדם בתחילת הסיפור, ילדים המתמודדים עם חרדה חווים את עצמם חסרי אונים מול הסימפטומים הגופניים החזקים ומול שטף המחשבות המפחידות. מטרת השלב היא להקנות כלים שיסייעו בהתמודדות. בספר, דייגו מלמד את אדם שני סוגי כלים: <strong style="color: #2E7163;">גופניים</strong> ו<strong style="color: #4A3A8C;">קוגניטיביים</strong>.</p>
+
+      <div style="background: #fff; border-radius: 26px; padding: 8px; box-shadow: 0 22px 50px rgba(42,35,80,0.1); margin-bottom: 26px;">
+        <div data-breath="" style="display: grid; grid-template-columns: 1fr 0.85fr; gap: 0; align-items: stretch;">
+          <div style="padding: 36px 38px;">
+            <span style="display: inline-block; background: rgba(58,140,126,0.12); color: #2E7163; font-weight: 800; font-size: 13px; padding: 5px 13px; border-radius: 999px; margin-bottom: 14px;">🫁 כלים גופניים</span>
+            <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 25px; color: #2A2350; margin: 0 0 10px;">נשימה סרעפתית</h3>
+            <p style="font-size: 15.5px; color: #5C5470; line-height: 1.7; margin: 0 0 22px;">כולם אומרים לנו לנשום — אבל אף אחד לא מסביר איך לעשות זאת נכון, ולמה. נשימה סרעפתית נכונה מפעילה את עצב הוואגוס, מאיטה את קצב הלב ומפחיתה במהירות את תסמיני החרדה. כך תוכלו לתרגל עם ילדכם:</p>
+            <ol style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+              <li style="display: flex; gap: 13px; align-items: flex-start; font-size: 15.5px; color: #3A3550; line-height: 1.6;"><span style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #E0F2EC; color: #2E7163; font-family: 'Heebo'; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center;">1</span>שבו יחד במקום שקט ונוח.</li>
+              <li style="display: flex; gap: 13px; align-items: flex-start; font-size: 15.5px; color: #3A3550; line-height: 1.6;"><span style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #E0F2EC; color: #2E7163; font-family: 'Heebo'; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center;">2</span>בקשו ממנו לנשום עמוק, להרפות את הכתפיים ולשחרר את שרירי הגוף.</li>
+              <li style="display: flex; gap: 13px; align-items: flex-start; font-size: 15.5px; color: #3A3550; line-height: 1.6;"><span style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #E0F2EC; color: #2E7163; font-family: 'Heebo'; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center;">3</span>הניחו יד ימין על החזה ויד שמאל על הבטן.</li>
+              <li style="display: flex; gap: 13px; align-items: flex-start; font-size: 15.5px; color: #3A3550; line-height: 1.6;"><span style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #E0F2EC; color: #2E7163; font-family: 'Heebo'; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center;">4</span>שאפו אוויר דרך האף — שימו לב שהבטן עולה ומתנפחת, בעוד החזה נשאר במקומו.</li>
+              <li style="display: flex; gap: 13px; align-items: flex-start; font-size: 15.5px; color: #3A3550; line-height: 1.6;"><span style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #E0F2EC; color: #2E7163; font-family: 'Heebo'; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center;">5</span>כווצו את השפתיים ונשפו בעדינות — הנשיפה מתבצעת מהבטן.</li>
+              <li style="display: flex; gap: 13px; align-items: flex-start; font-size: 15.5px; color: #3A3550; line-height: 1.6;"><span style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #E0F2EC; color: #2E7163; font-family: 'Heebo'; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center;">6</span>חזרו על הפעולה במשך דקות אחדות.</li>
+            </ol>
+            <p style="font-size: 13.5px; color: #8A8299; line-height: 1.6; margin: 16px 0 0;">את שלבים 3–6 הדגימו קודם על עצמכם, ורק לאחר מכן בקשו מילדכם לחזור על הפעולות.</p>
+          </div>
+          <div style="position: relative; border-radius: 22px; overflow: hidden; min-height: 360px; display: flex; align-items: center; justify-content: center; padding: 18px;">
+            <img src="assets/breathing.png" alt="אדם ודייגו ביער" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 16px;">
+          </div>
+        </div>
+      </div>
+
+      <div data-breath-pacer="" style="position: relative; background: linear-gradient(135deg, #18142F, #2E2658); border-radius: 26px; padding: 40px 30px; margin-bottom: 26px; text-align: center; overflow: hidden;">
+        <span style="display: inline-block; color: #8FE0D0; font-weight: 800; font-size: 13px; margin-bottom: 14px;">תרגול אינטראקטיבי</span>
+        <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 24px; color: #F6EEDC; margin: 0 0 26px;">נשמו יחד עם אדם</h3>
+        <div style="position: relative; width: 300px; height: 300px; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center;">
+          <div id="breathGlow" style="position: absolute; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(143,224,208,0.5), rgba(70,165,147,0.14) 55%, transparent 72%); filter: blur(16px); opacity: 0.5; transition: transform .6s ease, opacity .6s ease;"></div>
+          <img id="breathBelly" src="assets/adam-breath.png" alt="אדם נושם בעיניים עצומות" style="position: relative; z-index: 2; height: 310px; width: auto; transform: scale(1); transition: transform .6s ease;">
+        </div>
+        <span id="breathLabel" style="display: inline-block; color: #8FE0D0; font-family: 'Heebo', sans-serif; font-weight: 900; font-size: 20px; min-height: 28px; margin-bottom: 18px;">מוכנים?</span>
+        <div>
+          <button id="breathBtn" type="button" style="background: linear-gradient(135deg, #8FE0D0, #46A593); color: #18142F; border: none; font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 16px; padding: 13px 30px; border-radius: 999px; cursor: pointer; box-shadow: 0 10px 24px rgba(70,165,147,0.35);">▶ התחילו לנשום</button>
+        </div>
+        <p style="font-size: 13px; color: #9A93BD; margin: 18px 0 0;">שאיפה דרך האף · נשיפה ארוכה ועדינה — הנשיפה הארוכה היא שמרגיעה את הגוף.</p>
+      </div>
+
+      <div data-tip="" style="display: flex; gap: 22px; align-items: center; background: linear-gradient(135deg, #18142F, #3A2F66); border-radius: 22px; padding: 30px 34px; box-shadow: 0 20px 44px rgba(24,20,47,0.3); margin-bottom: 26px;">
+        <div style="flex: none; width: 70px; height: 70px; border-radius: 18px; background: rgba(143,224,208,0.14); border: 1px solid rgba(143,224,208,0.3); display: flex; align-items: center; justify-content: center; font-size: 34px;">🫧</div>
+        <div>
+          <span style="display: inline-block; color: #8FE0D0; font-weight: 800; font-size: 13px; margin-bottom: 6px;">טיפ להורים&nbsp;</span>
+          <p style="margin: 0; font-size: 16px; color: #E6E1F2; line-height: 1.7;">בקליניקה, אני מאמן ילדים בנשימה סרעפתית באמצעות בועות סבון. נשיפה מהירה תוביל למספר רב של בועות קטנות ואילו נשימה סרעפתית ועמוקה, תוביל לבועה אחת גדולה. אנחנו מתאמנים ביחד עד שמצליחים ליצור שלוש בועות גדולות ברצף.&nbsp;</p>
+        </div>
+      </div>
+
+      <!-- Cognitive tool: courage sentence -->
+      <div style="background: #fff; border-radius: 26px; padding: 36px 38px; box-shadow: 0 22px 50px rgba(42,35,80,0.1);">
+        <span style="display: inline-block; background: rgba(74,58,140,0.1); color: #4A3A8C; font-weight: 800; font-size: 13px; padding: 5px 13px; border-radius: 999px; margin-bottom: 14px;">🧠 כלים קוגניטיביים</span>
+        <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 25px; color: #2A2350; margin: 0 0 12px;">משפט האומץ</h3>
+        <p style="font-size: 16px; color: #5C5470; line-height: 1.75; margin: 0 0 22px;">החרדה ניזונה ממחשבות מפחידות. הכלי הקוגניטיבי מלמד את הילד לזהות את המחשבה המפחידה, ולהחליף אותה ב<strong style="color: #4A3A8C;">משפט אומץ</strong> — משפט קצר, מציאותי ומרגיע, שהילד אומר לעצמו ברגעי החרדה. כך הוא לומד שהוא הבוס על המחשבות שלו, ולא להפך.</p>
+        <div data-2col="" style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+          <div style="background: linear-gradient(160deg, #EAE6F4, #DAD3EC); border-radius: 18px; padding: 24px;">
+            <span style="display: block; color: #6B5BB0; font-weight: 800; font-size: 13px; margin-bottom: 8px;">המחשבה המפחידה 🌀</span>
+            <p style="margin: 0; font-size: 16px; color: #312A48; line-height: 1.7; font-style: italic;">"בטוח יקרה משהו נורא, אני לא אצליח להתמודד עם זה."</p>
+          </div>
+          <div style="background: linear-gradient(160deg, #E0F2EC, #C9E9E0); border-radius: 18px; padding: 24px;">
+            <span style="display: block; color: #2E7163; font-weight: 800; font-size: 13px; margin-bottom: 8px;">משפט האומץ 💪</span>
+            <p style="margin: 0; font-size: 16px; color: #2A3A45; line-height: 1.7; font-style: italic;">"זו רק מחשבה מפחידה — אני בטוח ומוגן, וזה יחלוף עוד מעט."</p>
+          </div>
+        </div>
+        <p style="font-size: 13.5px; color: #8A8299; line-height: 1.6; margin: 18px 0 0;">בנו יחד עם ילדכם את משפט האומץ האישי שלו, ותרגלו אותו כשהוא רגוע — כדי שיהיה זמין ברגעי החרדה.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODULE 3 ============ -->
+  <section data-screen-label="Module3" id="mod3" data-sec="" style="background: linear-gradient(180deg, #E4F0EC, #EFF6F2); padding: 84px 24px; scroll-margin-top: 80px;">
+    <div style="max-width: 920px; margin: 0 auto;">
+      <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 26px;">
+        <div style="flex: none; width: 60px; height: 60px; border-radius: 18px; background: linear-gradient(135deg, #46A593, #2E7163); display: flex; align-items: center; justify-content: center; font-family: 'Heebo'; font-weight: 900; font-size: 27px; color: #F6EEDC; box-shadow: 0 10px 22px rgba(46,113,99,0.32);">3</div>
+        <div>
+          <span style="display: block; color: #3A8C7E; font-weight: 800; font-size: 14px;">שלב שלישי</span>
+          <h2 data-h2="" style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 34px; color: #2A2350; margin: 2px 0 0; line-height: 1.2;">חשיפות הדרגתיות</h2>
+        </div>
+      </div>
+      <p style="font-size: 17.5px; color: #4A4460; line-height: 1.8; margin: 0 0 34px;">עכשיו, כשבידי ילדכם כלים גופניים וקוגניטיביים, מגיע השלב המשמעותי ביותר: <strong style="color: #2E7163;">לפגוש את מה שמעורר חרדה — בקצב שלו, צעד אחר צעד</strong>. בחשיפה הדרגתית הילד מתמודד עם גורם החרדה מהקל אל הקשה, צובר שרשרת של התמודדויות מוצלחות, ולומד מניסיונו שהחרדה חולפת ושהוא מסוגל.</p>
+
+      <div style="background: linear-gradient(135deg, #2E7163, #245A4F); border-radius: 26px; padding: 38px 40px; box-shadow: 0 22px 50px rgba(46,113,99,0.2); margin-bottom: 30px;">
+        <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 23px; color: #F6EEDC; margin: 0 0 24px; text-align: center;">סולם החשיפה — מהקל אל הקשה</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 16px; background: rgba(143,224,208,0.1); border: 1px solid rgba(143,224,208,0.22); border-radius: 14px; padding: 16px 20px;">
+            <span style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #8FE0D0; color: #18142F; font-family: 'Heebo'; font-weight: 900; display: flex; align-items: center; justify-content: center;">1</span>
+            <span style="font-size: 16px; color: #E6F5F1; line-height: 1.5;">מתחילים מהמדרגה הקלה ביותר — מצב שמעורר חרדה קלה בלבד.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px; background: rgba(143,224,208,0.1); border: 1px solid rgba(143,224,208,0.22); border-radius: 14px; padding: 16px 20px;">
+            <span style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #8FE0D0; color: #18142F; font-family: 'Heebo'; font-weight: 900; display: flex; align-items: center; justify-content: center;">2</span>
+            <span style="font-size: 16px; color: #E6F5F1; line-height: 1.5;">נשארים במצב עד שהחרדה דועכת — הילד חווה בעצמו שהגל חולף.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px; background: rgba(143,224,208,0.1); border: 1px solid rgba(143,224,208,0.22); border-radius: 14px; padding: 16px 20px;">
+            <span style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #8FE0D0; color: #18142F; font-family: 'Heebo'; font-weight: 900; display: flex; align-items: center; justify-content: center;">3</span>
+            <span style="font-size: 16px; color: #E6F5F1; line-height: 1.5;">חוגגים את ההצלחה, ורק אז עולים למדרגה הבאה — מעט מאתגרת יותר.</span>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </section>
+
+  <!-- ============ TALK & ACTIVITIES ============ -->
+  <section data-screen-label="Talk" id="talk" data-sec="" style="background: linear-gradient(180deg, #F4ECDA, #FBF6EC); padding: 84px 24px; scroll-margin-top: 80px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto 44px;">
+        <span style="display: inline-block; color: #3A8C7E; font-weight: 800; font-size: 15px; margin-bottom: 12px;">בעקבות הקריאה</span>
+        <h2 data-h2="" style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 36px; color: #2A2350; margin: 0 0 14px; line-height: 1.25;">שיחה ופעילויות עם ילדכם</h2>
+        <p style="font-size: 17px; color: #5C5470; line-height: 1.7; margin: 0;">באמצעות שאלות מכַוונות תוכלו לעודד את ילדכם לדבר באופן גלוי על החרדות שלו ועל ההתמודדות איתן — ולהפוך את חוויית הקריאה בספר ללמידה גלויה ומפורשת.</p>
+      </div>
+
+      <div data-tip="" style="display: flex; gap: 22px; align-items: center; background: linear-gradient(135deg, #18142F, #3A2F66); border-radius: 22px; padding: 30px 34px; box-shadow: 0 20px 44px rgba(24,20,47,0.3); margin-bottom: 30px;">
+        <div style="flex: none; width: 70px; height: 70px; border-radius: 18px; background: rgba(240,169,94,0.18); border: 1px solid rgba(240,169,94,0.4); display: flex; align-items: center; justify-content: center; font-size: 34px;">📖</div>
+        <div>
+          <span style="display: inline-block; color: #F0A95E; font-weight: 800; font-size: 13px; margin-bottom: 6px;">בזמן הקריאה</span>
+          <p style="margin: 0; font-size: 16px; color: #E6E1F2; line-height: 1.7;">שימו לב מה קורה לילד שלכם — כיצד הוא מגיב? האם הוא חרד? האם הוא מתנתק? זו הזדמנות לנרמל ולתקף את רגשותיו ולהיות יחד איתו בחוויית הקריאה. אפשר לספר שגם אתם מרגישים פחד או מתח, ולהציע את הקִרבה שלכם — הפיזית והרגשית — כאבן הדרך הראשונה בהתמודדות המשותפת, בדיוק כמו שדייגו מציע לאדם: לעבור את זה ביחד.</p>
+        </div>
+      </div>
+
+      <p style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 22px; color: #2A2350; text-align: center; margin: 0 0 24px;">שאלות מנחות לאחר הקריאה</p>
+      <div data-q-grid="" style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+        <div style="background: #fff; border-radius: 20px; padding: 28px 30px; box-shadow: 0 14px 34px rgba(42,35,80,0.08); border-right: 4px solid #8FE0D0;">
+          <span style="font-size: 26px;">💬</span>
+          <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 20px; color: #2A2350; margin: 8px 0 12px;">על החרדה שלך</h3>
+          <ul style="margin: 0; padding-right: 20px; font-size: 15.5px; color: #5C5470; line-height: 1.9;">
+            <li>האם אתה מרגיש, או הרגשת פעם, חרדה?</li>
+            <li>מה היו המחשבות המפחידות שלך?</li>
+            <li>מה אתה מרגיש בגוף בזמן חרדה?</li>
+            <li>מה קורה לנשימה שלך בזמן חרדה?</li>
+            <li>מהם הדברים שאתה מפסיד בגלל החרדה שלך?</li>
+            <li>האם אתה מכיר ילדים נוספים שמתמודדים עם חרדות?</li>
+            <li>מה ניסית לעשות כדי להתמודד עד עכשיו? מה עזר לך?</li>
+          </ul>
+        </div>
+        <div style="background: #fff; border-radius: 20px; padding: 28px 30px; box-shadow: 0 14px 34px rgba(42,35,80,0.08); border-right: 4px solid #F0A95E;">
+          <span style="font-size: 26px;">🐕</span>
+          <h3 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 20px; color: #2A2350; margin: 8px 0 12px;">בעקבות אדם ודייגו</h3>
+          <ul style="margin: 0; padding-right: 20px; font-size: 15.5px; color: #5C5470; line-height: 1.9;">
+            <li>מה היית מציע לאדם לעשות כדי להתמודד עם החרדה?</li>
+            <li>מה אתה מזהה שדייגו מציע לאדם כדי להתמודד?</li>
+            <li>מה לדעתך עזר לאדם לנצח את החרדה? מה יעזור לך?</li>
+            <li>מה דייגו סיפק לאדם כדי שיתמודד בהצלחה?</li>
+            <li>אילו כלים מהסיפור יוכלו לעזור לך לנצח את החרדה?</li>
+            <li>מה אתה צריך ממני כדי לנצח את החרדה שלך?</li>
+            <li>איך תרגיש אחרי שתנצח את החרדה שלך?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHEN TO SEEK HELP ============ -->
+  <section data-screen-label="Help" id="help" data-sec="" style="position: relative; background: radial-gradient(110% 90% at 78% 0%, #3A2F66 0%, #251F4A 50%, #18142F 100%); padding: 82px 24px; overflow: hidden; scroll-margin-top: 80px;">
+    <sc-if value="{{ true }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute; inset:0; pointer-events:none; background-image: radial-gradient(1.5px 1.5px at 80px 100px, rgba(255,255,255,.7), transparent), radial-gradient(1px 1px at 240px 180px, rgba(255,255,255,.5), transparent), radial-gradient(2px 2px at 360px 70px, rgba(255,255,255,.7), transparent); background-size:400px 260px; animation:twinkle 5s ease-in-out infinite;"></div>
+      <div style="position:absolute; inset:0; pointer-events:none; background-image: radial-gradient(1.5px 1.5px at 140px 60px, rgba(143,224,208,.75), transparent), radial-gradient(1px 1px at 300px 200px, rgba(200,182,242,.65), transparent), radial-gradient(1.5px 1.5px at 60px 160px, rgba(143,224,208,.6), transparent); background-size:360px 280px; animation:twinkleB 3.4s ease-in-out .8s infinite;"></div>
+      <div style="position:absolute; inset:0; pointer-events:none; background-image: radial-gradient(1.5px 1.5px at 200px 120px, rgba(244,236,218,.8), transparent), radial-gradient(1px 1px at 380px 60px, rgba(247,216,115,.65), transparent); background-size:420px 300px; animation:twinkleC 4.6s ease-in-out .3s infinite;"></div>
+      <div style="position:absolute; inset:0; pointer-events:none; overflow:hidden;">
+        <span style="position:absolute; top:80px; left:12%; width:6px; height:6px; border-radius:50%; background:#F7D873; box-shadow:0 0 12px 3px rgba(247,216,115,.75); animation:firefly 9s ease-in-out infinite;"></span>
+        <span style="position:absolute; top:200px; left:28%; width:5px; height:5px; border-radius:50%; background:#8FE0D0; box-shadow:0 0 12px 3px rgba(143,224,208,.7); animation:firefly 10s ease-in-out .6s infinite;"></span>
+        <span style="position:absolute; top:140px; left:74%; width:6px; height:6px; border-radius:50%; background:#F0A95E; box-shadow:0 0 12px 3px rgba(240,169,94,.7); animation:firefly 11s ease-in-out 1.2s infinite;"></span>
+        <span style="position:absolute; top:280px; left:58%; width:5px; height:5px; border-radius:50%; background:#C8B6F2; box-shadow:0 0 12px 3px rgba(200,182,242,.7); animation:firefly 12s ease-in-out 2.2s infinite;"></span>
+      </div>
+    </sc-if>
+    <div style="position: relative; max-width: 860px; margin: 0 auto;">
+      <div style="text-align: center; max-width: 700px; margin: 0 auto 40px;">
+        <span style="display: inline-block; color: #8FE0D0; font-weight: 800; font-size: 15px; margin-bottom: 12px;">חשוב לדעת</span>
+        <h2 data-h2="" style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 36px; color: #F6EEDC; margin: 0 0 14px; line-height: 1.25;">מתי לפנות לעזרה מקצועית?</h2>
+        <p style="font-size: 17px; color: #B7B0D2; line-height: 1.7; margin: 0;">חרדות צצות פעמים רבות וחולפות באופן ספונטני, כחלק מהתפתחות בריאה ותקינה. אך יש מצבים שבהם חרדות אינן חולפות, ומביאות איתן סבל רב ופגיעה משמעותית בחיי הילד — ולעיתים בחיי המשפחה כולה. הורים יכולים לעשות המון, אך לעיתים נדרשת עזרה של מטפל קוגניטיבי־התנהגותי מוסמך. תוכלו לדעת שיש צורך בפנייה לאיש מקצוע כאשר:</p>
+      </div>
+      <div data-3col="" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(143,224,208,0.2); border-radius: 18px; padding: 24px 26px; display: flex; gap: 14px; align-items: flex-start;">
+          <span style="flex: none; font-size: 22px;">⏳</span>
+          <p style="margin: 0; font-size: 15.5px; color: #D9D6E8; line-height: 1.65;">ישנה מצוקה רגשית משמעותית הגורמת לסבל מתמשך (מעל חודש).</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(143,224,208,0.2); border-radius: 18px; padding: 24px 26px; display: flex; gap: 14px; align-items: flex-start;">
+          <span style="flex: none; font-size: 22px;">🚪</span>
+          <p style="margin: 0; font-size: 15.5px; color: #D9D6E8; line-height: 1.65;">מתפתחות הימנעויות, וילדכם מצמצם את מרחב החיים שלו — עד לפגיעה תפקודית.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(143,224,208,0.2); border-radius: 18px; padding: 24px 26px; display: flex; gap: 14px; align-items: flex-start;">
+          <span style="flex: none; font-size: 22px;">🔄</span>
+          <p style="margin: 0; font-size: 15.5px; color: #D9D6E8; line-height: 1.65;">ההתערבויות שלכם, ההורים, מגבירות את המתח עם הילד במקום להוביל לשיפור ולנחמה.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(143,224,208,0.2); border-radius: 18px; padding: 24px 26px; display: flex; gap: 14px; align-items: flex-start;">
+          <span style="flex: none; font-size: 22px;">🫂</span>
+          <p style="margin: 0; font-size: 15.5px; color: #D9D6E8; line-height: 1.65;">אתם עצמכם מרגישים צורך בתמיכה והכוונה.</p>
+        </div>
+      </div>
+      <p style="text-align: center; font-size: 15.5px; color: #B7B0D2; line-height: 1.7; margin: 30px 0 0;">טיפול קוגניטיבי־התנהגותי (CBT) הוא הטיפול המקובל בעולם כיעיל ביותר בחרדות בקרב ילדים. תוכלו למצוא מטפל מיומן קרוב לביתכם באמצעות <a href="https://itacbt.co.il/therapists-index/" target="_blank" style="color: #8FE0D0; font-weight: 700; text-decoration: none;" style-hover="text-decoration: underline;">אתר איט"ה — האגודה הישראלית לטיפול קוגניטיבי־התנהגותי</a>.</p>
+    </div>
+  </section>
+
+  <!-- ============ COLORING PAGES DOWNLOAD ============ -->
+  <section data-screen-label="Coloring" id="gift" data-sec="" style="position: relative; background: radial-gradient(120% 110% at 20% 0%, #46A593 0%, #2E7163 55%, #245A4F 100%); padding: 76px 24px; overflow: hidden; scroll-margin-top: 80px;">
+    <div style="position: absolute; top: -90px; left: -60px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(244,236,218,0.28), transparent 65%); filter: blur(20px); pointer-events: none;"></div>
+    <div data-close="" style="position: relative; max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center;">
+      <div data-close-photo="" style="border-radius: 22px; overflow: hidden; box-shadow: 0 22px 50px rgba(0,0,0,0.28);">
+        <img src="assets/scene-day.png" alt="אדם ודייגו" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+      </div>
+      <div>
+        <span style="display: inline-block; color: #F0A95E; font-weight: 800; font-size: 14px; background: rgba(240,169,94,0.16); border: 1px solid rgba(240,169,94,0.4); padding: 6px 14px; border-radius: 999px; margin-bottom: 16px;">🎨 דפי צביעה</span>
+        <h2 data-h2="" style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 30px; color: #F6EEDC; margin: 0 0 14px; line-height: 1.3;">מלאו את הפרטים והורידו את דפי הצביעה לילדים</h2>
+        <p style="font-size: 16px; color: #D6EFE9; line-height: 1.7; margin: 0 0 26px;">הצטרפו לרשימת העדכונים שלנו ותוכלו להוריד את דפי הצביעה לילדים מתוך הספר "אָדָם וּדְיֵיגוֹ בְּיַעַר הַמַּחְשָׁבוֹת הַמַּפְחִידוֹת".</p>
+        <form id="coloringForm" style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <input type="text" name="name" placeholder="שם" required="" style="font-family: 'Assistant', sans-serif; font-size: 16px; color: #2A2350; background: #fff; border: none; border-radius: 12px; padding: 14px 18px; outline: none;">
+            <input type="email" name="email" placeholder="אימייל" required="" style="font-family: 'Assistant', sans-serif; font-size: 16px; color: #2A2350; background: #fff; border: none; border-radius: 12px; padding: 14px 18px; outline: none;">
+          </div>
+          <button type="submit" id="coloringBtn" style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 17px; color: #18142F; background: linear-gradient(135deg, #F0A95E, #D98842); border: none; border-radius: 12px; padding: 15px 20px; cursor: pointer; box-shadow: 0 12px 26px rgba(217,136,66,0.4);" style-hover="transform: translateY(-2px);">להורדת דפי צביעה לילדים ←</button>
+          <p id="coloringMsg" style="display: none; margin: 4px 0 0; font-size: 14.5px; color: #F6EEDC; font-weight: 700; text-align: center;">תודה! דפי הצביעה בדרך אליכם 🎉</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section data-screen-label="Contact" id="contact" data-sec="" style="background: #FBF6EC; padding: 84px 24px; scroll-margin-top: 80px;">
+    <div style="max-width: 820px; margin: 0 auto; text-align: center;">
+      <span style="display: inline-block; color: #3A8C7E; font-weight: 800; font-size: 15px; margin-bottom: 10px;">בואו נדבר</span>
+      <h2 style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 34px; color: #2A2350; margin: 0 0 12px; line-height: 1.25;">אני כאן בשבילכם</h2>
+      <p style="font-size: 17px; color: #5C5470; line-height: 1.7; margin: 0 auto 40px; max-width: 620px;">יש לכם שאלה על הספר? אשמח לשמוע מכם.</p>
+
+      <form id="contactForm" style="background: #fff; border-radius: 28px; padding: 40px; box-shadow: 0 24px 56px rgba(42,35,80,0.1); text-align: right; display: flex; flex-direction: column; gap: 16px;">
+        <input type="text" name="fullname" placeholder="שם מלא" required="" style="font-family: 'Assistant', sans-serif; font-size: 16px; color: #2A2350; background: #FBF9F3; border: 1.5px solid #E5DFCF; border-radius: 14px; padding: 16px 20px; outline: none; width: 100%; box-sizing: border-box;" style-focus="border-color: #46A593;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <input type="email" name="email" placeholder="אימייל" required="" style="font-family: 'Assistant', sans-serif; font-size: 16px; color: #2A2350; background: #FBF9F3; border: 1.5px solid #E5DFCF; border-radius: 14px; padding: 16px 20px; outline: none; width: 100%; box-sizing: border-box;" style-focus="border-color: #46A593;">
+          <input type="tel" name="phone" placeholder="טלפון" style="font-family: 'Assistant', sans-serif; font-size: 16px; color: #2A2350; background: #FBF9F3; border: 1.5px solid #E5DFCF; border-radius: 14px; padding: 16px 20px; outline: none; width: 100%; box-sizing: border-box;" style-focus="border-color: #46A593;">
+        </div>
+        <textarea name="message" placeholder="ההודעה שלכם…" rows="4" style="font-family: 'Assistant', sans-serif; font-size: 16px; color: #2A2350; background: #FBF9F3; border: 1.5px solid #E5DFCF; border-radius: 14px; padding: 16px 20px; outline: none; width: 100%; box-sizing: border-box; resize: vertical;" style-focus="border-color: #46A593;"></textarea>
+        <label style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #5C5470; cursor: pointer; justify-content: flex-end;">
+          אשמח לקבל עדכונים ומתנות של ידע במייל
+          <input type="checkbox" name="newsletter" style="width: 18px; height: 18px; accent-color: #46A593;">
+        </label>
+        <button type="submit" id="contactBtn" style="font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 18px; color: #fff; background: linear-gradient(135deg, #5E9A8A, #3E7D6E); border: none; border-radius: 14px; padding: 18px 20px; cursor: pointer; box-shadow: 0 12px 28px rgba(46,113,99,0.3); margin-top: 4px;" style-hover="transform: translateY(-2px);">שליחת הודעה</button>
+        <p id="contactMsg" style="display: none; margin: 2px 0 0; font-size: 15px; color: #2E7163; font-weight: 700; text-align: center;">תודה! ההודעה נשלחה, אחזור אליכם בהקדם 🌿</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="position: relative; width: 100%; background: #18142F; padding: 40px 24px 22px; overflow: hidden;">
+    <div style="position: absolute; top: 0; right: 0; width: 260px; height: 3px; background: linear-gradient(90deg, #46A593, #8FE0D0);"></div>
+    <div dir="rtl" style="max-width: 900px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 28px; padding-bottom: 26px; border-bottom: 1px solid rgba(246,238,220,0.1);">
+
+        <!-- Brand -->
+        <div>
+          <p style="font-family: 'Heebo', sans-serif; font-weight: 900; font-size: 19px; color: #F6EEDC; margin: 0 0 6px;">רועי ליס</p>
+          <p style="font-size: 12.5px; font-weight: 600; color: #8FE0D0; line-height: 1.6; margin: 0;">פסיכולוג חינוכי מומחה<br>מומחה בטיפול קוגניטיבי התנהגותי</p>
+        </div>
+
+        <!-- Contact -->
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600; color: #B7B0D2;">
+          <span>שפרינצק 3, תל אביב</span>
+          <a href="tel:0549107047" style="font-size: 14px; font-weight: 600; color: #B7B0D2; text-decoration: none;" style-hover="color: #F6EEDC;">054-910-7047</a>
+          <a href="mailto:roee@roeeliss.co.il" style="font-size: 14px; font-weight: 600; color: #B7B0D2; text-decoration: none; direction: ltr; unicode-bidi: embed;" style-hover="color: #F6EEDC;">roee@roeeliss.co.il</a>
+        </div>
+
+        <!-- Links -->
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <p style="font-family: 'Heebo', sans-serif; font-weight: 700; font-size: 14px; color: #F6EEDC; margin: 0 0 2px;">צור קשר</p>
+          <a href="#" style="font-size: 14px; font-weight: 600; color: #B7B0D2; text-decoration: none;" style-hover="color: #F6EEDC;">תקנון</a>
+          <a href="#" style="font-size: 14px; font-weight: 600; color: #B7B0D2; text-decoration: none;" style-hover="color: #F6EEDC;">מדיניות פרטיות</a>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 14px; margin-top: 22px;">
+        <a href="https://www.facebook.com/AdamVeDiego" target="_blank" aria-label="Facebook" style="width: 40px; height: 40px; border-radius: 50%; background: #2A2547; display: flex; align-items: center; justify-content: center; color: #F6EEDC; text-decoration: none;" style-hover="background: #46A593;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+        <a href="https://www.instagram.com/adamanddiego/" target="_blank" aria-label="Instagram" style="width: 40px; height: 40px; border-radius: 50%; background: #2A2547; display: flex; align-items: center; justify-content: center; color: #F6EEDC; text-decoration: none;" style-hover="background: #46A593;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"></circle></svg>
+        </a>
+        <a href="https://www.youtube.com/@AdamandDiego" target="_blank" aria-label="YouTube" style="width: 40px; height: 40px; border-radius: 50%; background: #2A2547; display: flex; align-items: center; justify-content: center; color: #F6EEDC; text-decoration: none;" style-hover="background: #46A593;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.5a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8c1.5.5 7.8.5 7.8.5s6.3 0 7.8-.5a2.5 2.5 0 0 0 1.8-1.8c.4-1.5.4-4.7.4-4.7ZM10 15.2V8.8L15.8 12 10 15.2Z"></path></svg>
+        </a>
+        <a href="https://www.tiktok.com/@adamanddiego" target="_blank" aria-label="TikTok" style="width: 40px; height: 40px; border-radius: 50%; background: #2A2547; display: flex; align-items: center; justify-content: center; color: #F6EEDC; text-decoration: none;" style-hover="background: #46A593;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82a4.28 4.28 0 0 1-.9-2.6H12.9v13.02a2.6 2.6 0 1 1-1.84-2.49v-3.1a5.7 5.7 0 1 0 4.74 5.63V9.4a7.15 7.15 0 0 0 4.2 1.35V7.85a4.27 4.27 0 0 1-3.4-2.03Z"></path></svg>
+        </a>
+      </div>
+
+      <p style="text-align: center; font-size: 12.5px; color: #8F88AD; margin: 18px 0 0;">© 2026 רועי ליס · פסיכולוג חינוכי מומחה · תל אביב</p>
+    </div>
+  </footer>
+
+</div></x-dc>
+</body>
+</html>

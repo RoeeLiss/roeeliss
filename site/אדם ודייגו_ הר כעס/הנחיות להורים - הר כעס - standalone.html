@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#2A1110">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#2A1110"/>
+    <path d="M100 40 L140 120 Q145 145 100 160 Q55 145 60 120 Z" fill="#F0772D"/>
+    <circle cx="100" cy="95" r="14" fill="#E8D6BE"/>
+  </svg>
+</template>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&amp;family=Assistant:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #2A1110; }
+    html { scroll-behavior: smooth; }
+    a { color: #3E8E84; }
+    a:hover { color: #F0772D; }
+    @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+    @keyframes ag-float { 0%,100% { transform: rotate(-6deg) translateY(0); } 50% { transform: rotate(-6deg) translateY(-6px); } }
+    @keyframes riseIn { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+    @keyframes vc-float { 0% { transform: translateY(0) scale(1); opacity: 0; } 12% { opacity: .9; } 70% { opacity: .55; } 100% { transform: translateY(-160px) scale(.4); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { [data-embers] span { animation: none !important; } }
+    [data-reveal] { animation: riseIn both; animation-timeline: view(); animation-range: entry 2% cover 26%; }
+    [data-hcard] { transition: transform .35s ease, box-shadow .35s ease; }
+    [data-hcard]:hover { transform: translateY(-8px); box-shadow: 0 26px 54px rgba(122,46,34,.22); }
+    input, textarea, button { font-family: 'Assistant', sans-serif; }
+    ::placeholder { color: #9a8a86; }
+  </style>
+</helmet>
+
+<div dir="rtl" lang="he" style="font-family:'Assistant',sans-serif; color:#3D1A1A; background:#F6ECDD; -webkit-font-smoothing:antialiased; overflow-x:clip; line-height:1.6;">
+
+  <!-- HEADER -->
+  <header data-screen-label="Header" style="position:sticky; top:0; z-index:50; background:rgba(42,17,16,.94); backdrop-filter:blur(10px); box-shadow:0 4px 20px rgba(0,0,0,.35); border-bottom:1px solid rgba(240,119,45,.28);">
+    <div style="max-width:1240px; margin:0 auto; padding:13px 18px; display:flex; align-items:center; gap:16px;">
+      <a href="https://www.roeeliss.co.il" target="_blank" rel="noopener" style="display:flex; flex-direction:column; line-height:1.25; flex:0 0 auto; text-decoration:none;">
+        <span style="font-family:'Heebo',sans-serif; font-weight:900; color:#F6ECDD; font-size:22px;">רועי ליס</span>
+        <span style="font-family:'Assistant',sans-serif; font-weight:600; color:#86C7BD; font-size:12px;">פסיכולוג חינוכי מומחה</span>
+        <span style="font-family:'Assistant',sans-serif; font-weight:600; color:#86C7BD; font-size:12px;">מומחה בטיפול קוגניטיבי התנהגותי</span>
+      </a>
+      <nav style="flex:1 1 auto; display:flex; justify-content:center; align-items:center; gap:6px 20px; flex-wrap:wrap; font-size:15px; font-weight:600;">
+        <a href="https://roeeliss.co.il/product-category/adam-and-diego/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; white-space:nowrap; color:#2A1110; text-decoration:none; background:linear-gradient(135deg,#86C7BD,#3E8E84); font-weight:800; padding:8px 15px; border-radius:999px; box-shadow:0 6px 16px rgba(62,142,132,.35);">✨ סדרת אדם ודייגו</a>
+        <a href="#hero" style="text-decoration:none; color:#E8D6BE; white-space:nowrap;">יוצאים לדרך</a>
+        <a href="#understand" style="text-decoration:none; color:#E8D6BE; white-space:nowrap;">למה כועסים</a>
+        <a href="#brakes" style="text-decoration:none; color:#E8D6BE; white-space:nowrap;">ברקס!</a>
+        <a href="#talk" style="text-decoration:none; color:#E8D6BE; white-space:nowrap;">בבית</a>
+        <a href="#help" style="text-decoration:none; color:#E8D6BE; white-space:nowrap;">מתי לפנות</a>
+        <a href="#coloring" style="text-decoration:none; color:#F8923F; font-weight:800; white-space:nowrap;">דפי צביעה</a>
+      </nav>
+      <div style="display:flex; align-items:center; gap:14px; flex:0 0 auto;">
+        <span style="color:#E8D6BE; font-size:19px;">🛒</span>
+        <a href="https://roeeliss.co.il/product/adam-and-diego-volcanger/" style="text-decoration:none; background:linear-gradient(180deg,#F8923F,#F0772D); color:#fff; font-family:'Heebo',sans-serif; font-weight:800; font-size:14.5px; padding:9px 20px; border-radius:12px; box-shadow:0 8px 20px rgba(240,119,45,.45); white-space:nowrap;">לרכישה</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <header id="hero" data-screen-label="Hero" style="position:relative; background:radial-gradient(120% 90% at 25% 30%, #4A231E 0%, #2A1110 55%, #1C0B0A 100%); color:#E8D6BE; padding:96px 60px 80px; scroll-margin-top:96px; overflow:hidden;">
+    <div style="position:absolute; inset:0; background-image:radial-gradient(rgba(232,214,190,.5) 1px, transparent 1.5px), radial-gradient(rgba(232,214,190,.35) 1px, transparent 1.5px); background-size:140px 140px, 90px 90px; background-position:0 0, 45px 60px; opacity:.5;"></div>
+    <div style="position:absolute; top:8%; right:-8%; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(240,119,45,.4), rgba(214,40,40,.18) 45%, transparent 70%); filter:blur(20px);"></div>
+    <div id="hero-embers" data-embers="" style="position:absolute; inset:0; pointer-events:none;"></div>
+    <div style="position:relative; display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center; max-width:1080px; margin:0 auto;">
+      <div>
+        <h1 style="font-family:'Heebo',sans-serif; font-weight:900; font-size:46px; line-height:1.15; margin:0 0 18px; color:#E8D6BE;">אדם ודייגו: הר כעס —<br><span style="color:#F0772D;">הנחיות להורים</span></h1>
+        <p style="font-size:18px; line-height:1.6; margin:0 0 26px; color:rgba(232,214,190,.82); max-width:46ch;">איך עוזרים לילדים להתמודד טוב יותר עם כעסים וקשיי ויסות רגשי? מדריך קצר להורים על פי עקרונות ה־CBT.</p>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:22px; font-weight:700; font-size:15px; color:#86C7BD;">
+          <span style="display:inline-flex; align-items:center; gap:8px;">⏱ זמן קריאה · 5 דקות</span>
+          <span style="display:inline-flex; align-items:center; gap:8px;">✓ מבוסס על עקרונות CBT</span>
+        </div>
+      </div>
+      <div style="position:relative; animation:floatY 7s ease-in-out infinite; justify-self:end;">
+        <div style="position:absolute; inset:-30%; background:radial-gradient(circle, rgba(240,119,45,.35), transparent 70%); filter:blur(10px);"></div>
+        <img src="assets/scene-dog-comfort.jpg" alt="אדם ודייגו יושבים יחד" style="position:relative; width:100%; max-width:430px; display:block; clip-path:inset(0 42% 6% 4% round 12px);">
+      </div>
+    </div>
+  </header>
+
+  <!-- זה לא הוגן -->
+  <section data-screen-label="Not Fair" data-reveal="" style="padding:56px 60px; max-width:820px; margin:0 auto; text-align:center;">
+    <h2 style="font-family:'Heebo',sans-serif; font-weight:900; font-size:40px; margin:0 0 18px; color:#F0772D;">"זה לא הוגן!"</h2>
+    <p style="font-size:20px; line-height:1.65; margin:0; color:#6B4A42;">אנחנו מצפים מהילדים לעצור את תגובת הכעס — אבל לא מלמדים אותם <strong style="font-weight:800; color:#F0772D;">איך לעשות את זה</strong>.</p>
+    <p style="display:inline-block; font-size:18px; line-height:1.6; margin:22px auto 0; font-weight:700; color:#2c6a62; background:#eaf5f3; border:1px solid rgba(62,142,132,.3); border-radius:14px; padding:14px 26px;">הניסיון מלמד: כשמלמדים ילדים את הכלים המתאימים — התוצאות לא מאחרות לבוא.</p>
+  </section>
+
+  <!-- למה כועסים -->
+  <section id="understand" data-screen-label="Understand" data-reveal="" style="background:#F1E2CC; padding:56px 60px; scroll-margin-top:96px;">
+    <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
+      <div>
+        <div style="font-weight:700; color:#F8923F; font-size:14px; margin-bottom:10px;">01 · הבנה</div>
+        <h3 style="font-family:'Heebo',sans-serif; font-weight:700; font-size:30px; margin:0 0 16px; color:#3D1A1A;">למה אנחנו כועסים?</h3>
+        <p style="font-size:17px; margin:0 0 16px; color:#6B4A42;">כמו שדייגו מלמד את אדם, כעס הוא רגש טבעי, כולם כועסים לפעמים. כעס הוא רגש בסיסי ואוניברסלי המתאפיין בתחושת עוינות, תסכול או תוקפנות כלפי מישהו או משהו שנתפס כמקור לכאב, איום או עוול.</p>
+        <p style="font-size:17px; margin:0; color:#6B4A42;">כדי שנוכל להגן על הגבול שלנו שהופר, התגובה הגופנית שכולנו מרגישים כשאנחנו כועסים היא לגדול, להתנפח ולהגיב בתוקפנות. אנחנו הופכים, ממש כמו אדם, ל<strong style="color: rgb(240, 119, 45);">הר כעס</strong>.</p>
+      </div>
+      <div data-hcard="" style="background:#fff; border:1px solid #EAD9BF; border-radius:20px; padding:30px; text-align:center; box-shadow:0 14px 30px -20px rgba(0,0,0,.25);">
+        <div style="width:100%; aspect-ratio:496/577; border-radius:14px; overflow:hidden;">
+          <image-slot id="anger-mountain-illustration" shape="rect" fit="contain" src="assets/anger-mountain-illustration-left.jpg" placeholder="איור: אדם הופך להר כעס"></image-slot>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- הרסני לאדפטיבי -->
+  <section data-screen-label="Destructive vs Adaptive" data-reveal="" style="padding:60px 60px; max-width:900px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:34px;">
+      <div style="font-weight:700; color:#F8923F; font-size:14px; margin-bottom:10px;">02 · המטרה</div>
+      <h3 style="font-family:'Heebo',sans-serif; font-weight:700; font-size:32px; margin:0 0 14px; color:#3D1A1A;">המטרה שלנו: להפוך כעס הרסני לכעס אדפטיבי</h3>
+      
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+      <div data-hcard="" style="background:#fdf1ea; border:1px solid rgba(240,119,45,.3); border-radius:18px; padding:26px;">
+        <div style="font-family:'Heebo',sans-serif; font-weight:900; font-size:20px; color:#F0772D; margin-bottom:10px;">כעס הרסני</div>
+        <p style="margin:0; font-size:16px; color:#3D1A1A;">מתפרצים בלי שליטה. הילד משלם מחיר כפול: נענש על ההתפרצות — והצורך הרגשי שבגללו כעס נדחק ולא נשמע.</p>
+      </div>
+      <div data-hcard="" style="background:#eaf5f3; border:1px solid rgba(62,142,132,.35); border-radius:18px; padding:26px;">
+        <div style="font-family:'Heebo',sans-serif; font-weight:900; font-size:20px; color:#3E8E84; margin-bottom:10px;">כעס אדפטיבי</div>
+        <p style="margin:0; font-size:16px; color:#3D1A1A;">מצליחים להסביר במילים מה פגע בנו ומה היה לא בסדר — ולקבל מענה לצורך הרגשי.</p>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:18px; line-height:1.6; margin:30px auto 0; max-width:66ch; color:#6B4A42;">ילדים משלמים מחיר כפול על ביטוי הרסני של כעס. לא רק שעולם המבוגרים ממהר לכעוס עליהם בחזרה ולהעניש אותם על ההתפרצות, הסיבה שבגללה הם כעסו נדחקת, לא נשמעת והצורך הרגשי שלהם לא מקבל מענה.</p>
+    <p style="text-align:center; font-size:18px; line-height:1.6; margin:18px auto 0; max-width:66ch; color:#6B4A42;">הם לא זוכים להסביר במילים מה הפריע להם, ופעמים רבות לומדים שעולם המבוגרים לא הוגן, לא קשוב להם — ולפעמים נוצרת אצלם ההבנה השגויה שעולם המבוגרים, בין אם מדובר בהורים או בצוות בית הספר, עוין אותם ופועל נגדם באופן מכוון.</p>
+    <p style="text-align:center; font-size:18px; line-height:1.6; margin:18px auto 0; max-width:60ch; color:#6B4A42;">מכאן, המטרה שלנו כשאנחנו מלמדים שליטה בכעסים ובניית יכולת ויסות רגשי, אינה למחוק או לבטל את הכעס — <strong style="color:#3D1A1A;">אי אפשר למחוק רגשות</strong>. המטרה שלנו היא לעזור לילדים לעשות את המעבר מכעס הרסני לכעס אדפטיבי. כדי שזה יקרה, המיומנות הראשונה שאותה אנחנו רוצים ללמד ילדים היא היכולת לעצור.</p>
+  </section>
+
+  <!-- ציטוט -->
+  <section data-screen-label="Quote" data-reveal="" style="background:#2A1110; color:#E8D6BE; padding:56px 60px;">
+    <blockquote style="max-width:760px; margin:0 auto; text-align:center;">
+      <div style="font-family:'Heebo',sans-serif; font-size:46px; line-height:0; color:#F8923F; height:24px;">”</div>
+      <p style="font-family:'Heebo',sans-serif; font-weight:500; font-size:24px; line-height:1.5; margin:0 0 18px; color:#E8D6BE;">אחת המיומנויות החשובות שאנחנו יכולים להקנות לילדינו היא לקבל החלטות נכונות במצבים של מתח גבוה — לעצור לפני שפועלים, לשקול את התוצאות, ולהתחשב ברגשות האחרים.</p>
+      <cite style="font-style:normal; font-weight:700; color:#F8923F; font-size:15px;">— פרופ' דן סיגל</cite>
+    </blockquote>
+  </section>
+
+  <!-- ברקס + פרוטוקול -->
+  <section id="brakes" data-screen-label="Brakes Tool" data-reveal="" style="background:#F1E2CC; padding:60px 60px; scroll-margin-top:96px;">
+    <div style="max-width:900px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:36px;">
+        <div style="font-weight:700; color:#F8923F; font-size:14px; margin-bottom:10px;">03 · הכלי</div>
+        <h3 style="font-family:'Heebo',sans-serif; font-weight:700; font-size:32px; margin:0 0 14px; color:#3D1A1A;">קודם כל — לעצור! <span style="color:#F0772D;">ברקס</span></h3>
+        <p style="font-size:17px; margin:0 auto; max-width:60ch; color:#6B4A42;">בזמן התפרצות אי אפשר לחשוב. קודם מכבים את הר הכעס עם מילת הקסם. בספר, דייגו מלמד את אדם לעצור באמצעות "שיני דרקון" — נשימות עמוקות וארוכות שמצננות את הלהבה ומחזירות את השליטה. רק כשרגועים אפשר לבחון מה קרה ולבחור אחרת — בעזרת פרוטוקול בן ארבעה שלבים.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+        <div data-hcard="" style="background:#fff; border:1px solid #EAD9BF; border-radius:18px; padding:24px; display:flex; gap:16px;">
+          <div style="flex:none; width:40px; height:40px; border-radius:12px; background:#3E8E84; color:#fff; font-family:'Heebo',sans-serif; font-weight:900; font-size:20px; display:grid; place-items:center;">1</div>
+          <div><div style="font-weight:800; font-size:17px; margin-bottom:6px;">ונטילציה</div><p style="margin:0; font-size:15px; color:#6B4A42;">מקשיבים למה שהפריע — בלי להשתיק ובלי להתווכח. "אני רוצה להקשיב לכל מה שיש לך לומר, אבל אתה צריך להירגע כדי שאוכל להקשיב."</p></div>
+        </div>
+        <div data-hcard="" style="background:#fff; border:1px solid #EAD9BF; border-radius:18px; padding:24px; display:flex; gap:16px;">
+          <div style="flex:none; width:40px; height:40px; border-radius:12px; background:#3E8E84; color:#fff; font-family:'Heebo',sans-serif; font-weight:900; font-size:20px; display:grid; place-items:center;">2</div>
+          <div><div style="font-weight:800; font-size:17px; margin-bottom:6px;">תיקוף ולקיחת אחריות</div><p style="margin:0; font-size:15px; color:#6B4A42;">נותנים תוקף לרגש — לא להתנהגות. ואם באמת היה משהו לא בסדר, אומרים לו שהוא צודק.</p></div>
+        </div>
+        <div data-hcard="" style="background:#fff; border:1px solid #EAD9BF; border-radius:18px; padding:24px; display:flex; gap:16px;">
+          <div style="flex:none; width:40px; height:40px; border-radius:12px; background:#3E8E84; color:#fff; font-family:'Heebo',sans-serif; font-weight:900; font-size:20px; display:grid; place-items:center;">3</div>
+          <div><div style="font-weight:800; font-size:17px; margin-bottom:6px;">בדיקת מציאות</div><p style="margin:0; font-size:15px; color:#6B4A42;">בודקים יחד: האם הפרשנות בהכרח נכונה? או שאולי הופיע דרקון כעס ושכנע אותך שקרה משהו אחר?</p></div>
+        </div>
+        <div data-hcard="" style="background:#fff; border:1px solid #EAD9BF; border-radius:18px; padding:24px; display:flex; gap:16px;">
+          <div style="flex:none; width:40px; height:40px; border-radius:12px; background:#3E8E84; color:#fff; font-family:'Heebo',sans-serif; font-weight:900; font-size:20px; display:grid; place-items:center;">4</div>
+          <div><div style="font-weight:800; font-size:17px; margin-bottom:6px;">פתרונות ותרגול</div><p style="margin:0; font-size:15px; color:#6B4A42;">מה נעשה בפעם הבאה שיקרה משהו דומה? איך תעצור את הר הכעס ותספר לנו מה הפריע לך?</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- אפרת -->
+  <section data-screen-label="ABC Model" data-reveal="" style="padding:60px 60px; max-width:900px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:30px;">
+      <div style="font-weight:700; color:#F8923F; font-size:14px; margin-bottom:10px;">04 · הגישה הקוגניטיבית</div>
+      <h3 style="font-family:'Heebo',sans-serif; font-weight:700; font-size:32px; margin:0 0 14px; color:#3D1A1A;">כעס על פי הגישה הקוגניטיבית־התנהגותית</h3>
+      <p style="font-size:17px; margin:0 auto; max-width:66ch; color:#6B4A42;">מודל אפר"ת, הבסיס של התפיסה הקוגניטיבית, הוא כלי פשוט ויעיל להבין באמצעותו את הדינמיקה של מכלול הרגשות והתגובות שלנו — ובהמשך, לשנות אותה. השלב הקריטי אינו האירוע עצמו, אלא <strong style="color:#3D1A1A;">הפרשנות</strong>: הסיפור שהילד מספר לעצמו על מה שקרה. בספר, הפרשנות מופיעה בדמות <strong style="color:#F0772D;">דרקוני הכעס</strong>, והיא זו שמובילה במהירות לרגש — ומתוך הרגש, לתגובה.</p>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px; margin-bottom:40px;">
+      <span style="background:#fff; border:1px solid #EAD9BF; border-radius:30px; padding:10px 20px; font-weight:700; font-size:15px;">אירוע</span>
+      <span style="color:#F8923F; font-weight:800; font-size:18px;">←</span>
+      <span style="background:#F0772D; color:#fff; border-radius:30px; padding:10px 20px; font-weight:700; font-size:15px;">פרשנות · דרקון הכעס</span>
+      <span style="color:#F8923F; font-weight:800; font-size:18px;">←</span>
+      <span style="background:#fff; border:1px solid #EAD9BF; border-radius:30px; padding:10px 20px; font-weight:700; font-size:15px;">רגש</span>
+      <span style="color:#F8923F; font-weight:800; font-size:18px;">←</span>
+      <span style="background:#fff; border:1px solid #EAD9BF; border-radius:30px; padding:10px 20px; font-weight:700; font-size:15px;">תגובה</span>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+      <figure data-hcard="" style="margin:0; background:#fff; border:1px solid #EAD9BF; border-radius:18px; overflow:hidden;">
+        <img src="https://roeeliss.co.il/wp-content/uploads/2024/01/RoeeL-2_Book-draft-v.6-5-3.webp" alt="אדם והכדור" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+        <figcaption style="padding:16px;">
+          <div style="font-weight:800; color:#F0772D; font-size:15px; margin-bottom:4px;">"היא עשתה לי את זה בכוונה!"</div>
+          <div style="font-size:13px; color:#6B4A42;">הכדור של נועה פוגע בראשו — הטיית חשיבה המייחסת עוינות וכוונה לפגוע.</div>
+        </figcaption>
+      </figure>
+      <figure data-hcard="" style="margin:0; background:#fff; border:1px solid #EAD9BF; border-radius:18px; overflow:hidden;">
+        <img src="https://roeeliss.co.il/wp-content/uploads/2024/01/RoeeL-2_Book-draft-v.6-5-5.webp" alt="אדם והלגו" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+        <figcaption style="padding:16px;">
+          <div style="font-weight:800; color:#F0772D; font-size:15px; margin-bottom:4px;">"אתה אף פעם לא תצליח!"</div>
+          <div style="font-size:13px; color:#6B4A42;">אדם מסתבך בהרכבת הלגו — הטיית חשיבה המובילה לתסכול, רגש קרוב מאוד לכעס.</div>
+        </figcaption>
+      </figure>
+      <figure data-hcard="" style="margin:0; background:#fff; border:1px solid #EAD9BF; border-radius:18px; overflow:hidden;">
+        <img src="https://roeeliss.co.il/wp-content/uploads/2024/01/RoeeL-2_Book-draft-v.6-5-7.webp" alt="אדם מפסיד במשחק" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+        <figcaption style="padding:16px;">
+          <div style="font-weight:800; color:#F0772D; font-size:15px; margin-bottom:4px;">"זה לא הוגן!"</div>
+          <div style="font-size:13px; color:#6B4A42;">הפסד במשחק לאימו — פרשנות נפוצה מאוד אצל ילדים, שכדאי לבחון יחד.</div>
+        </figcaption>
+      </figure>
+    </div>
+    <p style="text-align:center; font-size:17px; line-height:1.65; margin:30px auto 0; max-width:66ch; color:#6B4A42;">הוגנות היא מושג מופשט, וילדים — בעיקר מתחת לגיל תשע — מתקשים לתפוס אותו. כשמסבירים שהוגנות פירושה לפעול בתוך מסגרת כללים ידועה ומוסכמת, ושואלים בדיעבד האם האירוע היה הוגן, רוב הילדים יסכימו שכן. כדאי לשאול גם לגבי הפעם הבאה, כדי לעזור להם להתמודד עם סיטואציות דומות בעתיד.</p>
+  </section>
+
+  <!-- הורים שימו לב -->
+  <section data-screen-label="Parents Note" data-reveal="" style="padding:54px 60px; max-width:820px; margin:0 auto;">
+    <div style="background:#F8923F; color:#2a2113; border-radius:22px; padding:34px 38px; display:flex; gap:22px; align-items:flex-start;">
+      <div style="flex:none; font-family:'Heebo',sans-serif; font-weight:900; font-size:38px; line-height:1;">!</div>
+      <div>
+        <h3 style="font-family:'Heebo',sans-serif; font-weight:900; font-size:26px; margin:0 0 12px;">הורים, שימו לב</h3>
+        <p style="margin:0; font-size:17px; line-height:1.6;">ילדים לומדים להגיב לכעס גם בחיקוי. איך <em style="font-style:normal; font-weight:800;">אתם</em> כועסים? נסו לתרגם למילים את התהליך: "כשאני ממש כועסת, אני...". וגם אתם מוזמנים להשתמש בברקס!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- רעיונות לשיחה -->
+  <section id="talk" data-screen-label="Talk Ideas" data-reveal="" style="padding:20px 60px 60px; max-width:900px; margin:0 auto; scroll-margin-top:96px;">
+    <div style="text-align:center; margin-bottom:30px;">
+      <div style="font-weight:700; color:#F8923F; font-size:14px; margin-bottom:10px;">05 · בבית</div>
+      <h3 style="font-family:'Heebo',sans-serif; font-weight:700; font-size:32px; margin:0; color:#3D1A1A;">רעיונות לשיחה ולפעילות</h3>
+    </div>
+    <div style="display:grid; grid-template-columns:0.9fr 1.1fr; gap:26px; align-items:start;">
+      <div data-hcard="" style="background:#fff; border:1px solid #EAD9BF; border-radius:18px; padding:26px;">
+        <div style="font-weight:800; font-size:17px; margin-bottom:10px; color:#3E8E84;">בזמן הקריאה</div>
+        <p style="margin:0 0 18px; font-size:15px; color:#6B4A42;">שימו לב איך הילד מגיב — האם מזדהה עם אדם? מביא דוגמאות משלו? זו הזדמנות לנרמל ולתקף את הרגשות שלו, ולהיות יחד איתו בחוויה.</p>
+        <div style="border-top:1px dashed #EAD9BF; padding-top:18px;">
+          <div style="font-weight:800; font-size:15px; margin-bottom:12px;">רמזור הכעס</div>
+          <div style="display:flex; gap:14px; align-items:center;">
+            <span style="width:22px; height:22px; border-radius:50%; background:#47A96B; box-shadow:0 0 0 4px rgba(71,169,107,.2);"></span><span style="font-size:13px; color:#6B4A42;">רגוע</span>
+            <span style="width:22px; height:22px; border-radius:50%; background:#F8923F; box-shadow:0 0 0 4px rgba(248,146,63,.2);"></span><span style="font-size:13px; color:#6B4A42;">בינוני</span>
+            <span style="width:22px; height:22px; border-radius:50%; background:#F0772D; box-shadow:0 0 0 4px rgba(240,119,45,.2);"></span><span style="font-size:13px; color:#6B4A42;">התפרצות</span>
+          </div>
+        </div>
+      </div>
+      <div data-hcard="" style="background:#fff; border:1px solid #EAD9BF; border-radius:18px; padding:26px;">
+        <div style="font-weight:800; font-size:17px; margin-bottom:14px; color:#3E8E84;">שאלות מנחות אחרי הקריאה</div>
+        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;">
+          <li style="display:flex; gap:10px; font-size:15px;"><span style="color:#F0772D; font-weight:800;">•</span><span>מה מכעיס אותך? מזהים יחד את הטריגרים המועדים להתפרצות.</span></li>
+          <li style="display:flex; gap:10px; font-size:15px;"><span style="color:#F0772D; font-weight:800;">•</span><span>איפה בגוף אתה מרגיש את הכעס — בראש? בכתפיים? בכפות הידיים?</span></li>
+          <li style="display:flex; gap:10px; font-size:15px;"><span style="color:#F0772D; font-weight:800;">•</span><span>מה דרקוני הכעס אומרים לך בזמן כעס?</span></li>
+          <li style="display:flex; gap:10px; font-size:15px;"><span style="color:#F0772D; font-weight:800;">•</span><span>מה עוזר לך להתמודד בדרך כלל? מה עובד ומה פחות?</span></li>
+          <li style="display:flex; gap:10px; font-size:15px;"><span style="color:#F0772D; font-weight:800;">•</span><span>מתי מחר תוכל להשתמש בברקס — ומה תרוויח מזה?</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- מתי לפנות -->
+  <section id="help" data-screen-label="When to Seek Help" data-reveal="" style="background:#2A1110; color:#E8D6BE; padding:58px 60px; scroll-margin-top:96px;">
+    <div style="max-width:820px; margin:0 auto;">
+      <h3 style="font-family:'Heebo',sans-serif; font-weight:700; font-size:30px; margin:0 0 10px; color:#E8D6BE; text-align:center;">מתי לפנות לאיש מקצוע?</h3>
+      <p style="text-align:center; font-size:16px; color:rgba(232,214,190,.75); margin:0 auto 30px; max-width:58ch;">הברקס כלי יעיל מאוד, אך לעיתים נדרשת הבנה מעמיקה יותר. שווה לפנות למטפל/ת CBT כאשר:</p>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+        <div style="background:rgba(232,214,190,.08); border:1px solid rgba(232,214,190,.16); border-radius:16px; padding:22px;"><div style="font-family:'Heebo',sans-serif; font-weight:900; color:#F8923F; font-size:26px; margin-bottom:8px;">01</div><p style="margin:0; font-size:15px; color:#E8D6BE;">מצוקה רגשית משמעותית שנמשכת מעל חודש.</p></div>
+        <div style="background:rgba(232,214,190,.08); border:1px solid rgba(232,214,190,.16); border-radius:16px; padding:22px;"><div style="font-family:'Heebo',sans-serif; font-weight:900; color:#F8923F; font-size:26px; margin-bottom:8px;">02</div><p style="margin:0; font-size:15px; color:#E8D6BE;">ההתערבות שלכם מגבירה את המתח במקום להרגיע.</p></div>
+        <div style="background:rgba(232,214,190,.08); border:1px solid rgba(232,214,190,.16); border-radius:16px; padding:22px;"><div style="font-family:'Heebo',sans-serif; font-weight:900; color:#F8923F; font-size:26px; margin-bottom:8px;">03</div><p style="margin:0; font-size:15px; color:#E8D6BE;">אתם עצמכם מרגישים צורך בתמיכה ובהכוונה.</p></div>
+      </div>
+      <p style="text-align:center; font-size:15px; margin:26px 0 0; color:rgba(232,214,190,.8);">אפשר למצוא מטפל/ת מוסמכ/ת דרך <a href="https://itacbt.co.il/therapists-index/" target="_blank" rel="noopener" style="color:#86C7BD;">אתר איט"ה — האגודה הישראלית ל־CBT</a>.</p>
+    </div>
+  </section>
+
+  <!-- חתימה -->
+  <section data-screen-label="Signature" data-reveal="" style="padding:56px 60px; max-width:720px; margin:0 auto; text-align:center;">
+    <img src="https://roeeliss.co.il/wp-content/uploads/2023/04/liss.jpg" alt="רועי ליס ודייגו" style="width:96px; height:96px; border-radius:50%; object-fit:cover; border:4px solid #fff; box-shadow:0 10px 24px -12px rgba(0,0,0,.4); margin-bottom:18px;">
+    <p style="font-family:'Heebo',sans-serif; font-weight:700; font-size:24px; margin:0 0 6px; color:#3D1A1A;">מאחלים לכם הצלחה — ומקווים לראותכם גם בספרים הבאים</p>
+    <p style="font-size:15px; color:#6B4A42; margin:0;">רועי ודייגו · רועי ליס, פסיכולוג חינוכי מומחה ומטפל CBT</p>
+  </section>
+
+  <!-- CTA דפי צביעה -->
+  <section id="coloring" data-screen-label="Coloring Pages CTA" data-reveal="" style="background:#F0772D; padding:54px 60px; scroll-margin-top:96px;">
+    <div style="max-width:640px; margin:0 auto; text-align:center; color:#fff;">
+      <div style="font-weight:700; font-size:14px; opacity:.85; margin-bottom:10px;">מתנה מהספר</div>
+      <h3 style="font-family:'Heebo',sans-serif; font-weight:900; font-size:30px; margin:0 0 12px;">הורידו את דפי הצביעה לילדים</h3>
+      <p style="font-size:16px; margin:0 0 24px; opacity:.92;">נצחו את דרקוני הכעס — השאירו פרטים ושלחו לכם את דפי הצביעה מתוך "אדם ודייגו: הר כעס".</p>
+      <form onsubmit="return false" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+        <input type="text" placeholder="שם" style="flex:1 1 140px; min-width:0; border:none; border-radius:12px; padding:14px 16px; font-size:15px; background:#fff; color:#3D1A1A;">
+        <input type="email" placeholder="אימייל" style="flex:1 1 180px; min-width:0; border:none; border-radius:12px; padding:14px 16px; font-size:15px; background:#fff; color:#3D1A1A;">
+        <button type="submit" style="flex:0 0 auto; border:none; border-radius:14px; padding:14px 26px; font-family:'Heebo',sans-serif; font-weight:800; font-size:16px; background:linear-gradient(180deg,#F8923F,#F0772D); color:#fff; cursor:pointer; box-shadow:0 12px 28px rgba(240,119,45,.45);">שלחו לי!</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer data-screen-label="Footer" style="position:relative; background:#241010; padding:36px 24px 24px;">
+    <div style="position:absolute; top:0; right:0; width:160px; height:3px; background:linear-gradient(90deg,transparent,#D62828,#F0772D); box-shadow:0 0 14px rgba(240,119,45,.6);"></div>
+    <div style="max-width:900px; margin:0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; padding-bottom:20px; border-bottom:1px solid rgba(246,236,221,.12);">
+        <div style="text-align:right;">
+          <span style="font-family:'Heebo',sans-serif; font-weight:900; font-size:19px; color:#F6ECDD; display:block;">רועי ליס</span>
+          <span style="font-size:12.5px; font-weight:600; color:#86C7BD; display:block;">פסיכולוג חינוכי מומחה<br>מומחה בטיפול קוגניטיבי התנהגותי</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; font-size:14px;">
+          <span style="color:#C9B299; font-weight:600;">שפרינצק 3, תל אביב</span>
+          <span style="color:#C9B299; font-weight:600;">054-910-7047</span>
+          <span style="color:#C9B299; font-weight:600; direction:ltr; unicode-bidi:embed;">roee@roeeliss.co.il</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; font-size:14px;">
+          <span style="color:#F6ECDD; font-weight:700; font-family:'Heebo';">צור קשר</span>
+          <a href="https://roeeliss.co.il/" style="color:#C9B299; text-decoration:none;">תקנון</a>
+          <a href="https://roeeliss.co.il/" style="color:#C9B299; text-decoration:none;">מדיניות פרטיות</a>
+        </div>
+      </div>
+      <div style="text-align:center; font-size:12.5px; color:#8a7163; padding-top:18px;">© 2026 רועי ליס · פסיכולוג חינוכי מומחה · תל אביב</div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const host = document.getElementById('hero-embers');
+    if (host && !reduce) {
+      host.innerHTML = '';
+      for (let i = 0; i < 18; i++) {
+        const s = document.createElement('span');
+        const size = 2 + Math.random() * 4;
+        s.style.cssText = 'position:absolute; bottom:-10px; left:' + (Math.random() * 100) + '%; width:' + size + 'px; height:' + size + 'px; border-radius:50%; background:' + (Math.random() > 0.5 ? '#F8A24A' : '#F0772D') + '; box-shadow:0 0 ' + (4 + size * 2) + 'px #F0772D; animation:vc-float ' + (5 + Math.random() * 6) + 's linear ' + (Math.random() * 6) + 's infinite;';
+        host.appendChild(s);
+      }
+    }
+  }
+  renderVals() { return {}; }
+}
+
+</script>
+</body>
+</html>

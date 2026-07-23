@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Command php -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Command node -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Command python -ErrorAction SilentlyContinue)",
+      "Bash(xargs -I{} echo {})",
+      "Bash(unzip -l \"C:\\\\Users\\\\roeel\\\\OneDrive\\\\Documents\\\\roeeliss.co.il\\\\עמודי הסדנאות.zip\")",
+      "Bash(powershell -Command \"Start-Process powershell -ArgumentList '-NoExit','-File','C:\\\\Users\\\\roeel\\\\OneDrive\\\\Documents\\\\roeeliss.co.il\\\\serve.ps1' -WindowStyle Hidden\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8090/)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri http://localhost:8090/ -UseBasicParsing -TimeoutSec 3; $r.StatusCode } catch { $_.Exception.Message })",
+      "PowerShell(Get-Process powershell -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 8090 -ErrorAction SilentlyContinue)",
+      "PowerShell(Start-Job -ScriptBlock { & powershell -File 'C:\\\\Users\\\\roeel\\\\OneDrive\\\\Documents\\\\roeeliss.co.il\\\\serve.ps1' } | Out-Null; Start-Sleep -Seconds 2; Get-Job)",
+      "PowerShell(Start-Sleep -Seconds 1; try { $r = Invoke-WebRequest -Uri http://localhost:8090/ -UseBasicParsing -TimeoutSec 3; $r.StatusCode } catch { $_.Exception.Message })",
+      "PowerShell(Receive-Job -Id 1 -Keep)",
+      "PowerShell(Get-Job -Id 1)",
+      "Bash(awk 'NR==23{print length\\($0\\)}' \"site/עמוד הבית של רועי ליס/roee-liss-elementor-template.json\")",
+      "Bash(awk 'NR==23' \"site/עמוד הבית של רועי ליס/roee-liss-elementor-template.json\")",
+      "Read(//c/Users/roeel/AppData/Local/Temp/claude/**)",
+      "Bash(grep -o \"topics.map[^}]\\\\{0,600\\\\}\" /c/Users/roeel/AppData/Local/Temp/claude/line23.txt)",
+      "Bash(grep -o 'topics[^\\\\\\\\]\\\\{0,50\\\\}' /c/Users/roeel/AppData/Local/Temp/claude/line23.txt)",
+      "Bash(grep -o \"id=\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"[^\\\\\\\\\\\\\\\\]*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"\" \"site/עמוד הבית של רועי ליס/עמוד הטיפולים - רועי ליס.dc.html\")",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}

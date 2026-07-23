@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Assistant:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin: 0; background: #FDFCFA; }
+    * { box-sizing: border-box; }
+    a { color: #2E5C8A; text-decoration: none; }
+    a:hover { color: #22456A; text-decoration: underline; }
+    ::-webkit-scrollbar { height: 6px; }
+  </style>
+</helmet>
+
+<div dir="rtl" lang="he" style="font-family: 'Assistant', sans-serif; color: #2F3A47; background: #FDFCFA; width: 100%; min-height: 100%;">
+
+  <!-- HEADER (site-wide, from design guide) -->
+  <div style="position: sticky; top: 16px; z-index: 50; padding: 0 24px;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 14px 28px; display: flex;
+         align-items: center; justify-content: space-between; background: rgba(255,255,255,0.92);
+         backdrop-filter: blur(10px); border: 1px solid #EDF3FA; border-radius: 999px;
+         box-shadow: 0 12px 32px -16px rgba(46,92,138,0.25); font-family: 'Assistant', sans-serif;">
+      <a href="../עמוד הבית של רועי ליס/עמוד הבית של רועי ליס.dc.html" style="text-decoration: none;">
+        <div style="font-family: 'Rubik', sans-serif; font-weight: 600; font-size: 20px; color: #2E5C8A;">רועי ליס</div>
+        <div style="font-size: 13px; color: #4A7FB5; margin-top: 2px;">פסיכולוג חינוכי מומחה</div>
+        <div style="font-size: 13px; color: #4A7FB5;">מומחה בטיפול קוגניטיבי התנהגותי</div>
+      </a>
+      <div style="display: flex; align-items: center; gap: 28px; font-size: 16px;">
+        <a href="../עמוד הבית של רועי ליס/עמוד הטיפולים - רועי ליס.dc.html" style="color: #2F3A47;">טיפולים</a>
+        <a href="../עמוד הסדרה של אדם ודייגו/אדם ודייגו - עמוד עצמאי.html" target="_blank" rel="noopener" style="color: #2F3A47;">אדם ודייגו בארץ הרגשות</a>
+        <a href="../עמודי הסדנאות/Workshop Main Page.dc.html" style="color: #2F3A47;">סדנאות למטפלים</a>
+        <a href="../עיצוב עמוד המאמרים/Articles Page.dc.html" style="color: #2F3A47;">מאמרים</a>
+        <a href="./מתנות של ידע.dc.html" style="color: #2E5C8A; font-weight: 700;">מתנות של ידע</a>
+        <a href="../עמוד הבית של רועי ליס/עמוד הבית של רועי ליס.dc.html#contact" style="background: #3E8E9E; color: #FFFFFF; padding: 10px 22px;
+           border-radius: 999px; font-weight: 600;">בואו נדבר</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: HERO / INTRO -->
+  <div style="max-width: 1120px; margin: 0 auto; padding: 72px 32px 56px;">
+    <div style="max-width: 640px;">
+      <div style="font-size: 14px; font-weight: 600; color: #3E8E9E; letter-spacing: 0.5px; margin-bottom: 10px;">הבלוג של רואי ליס</div>
+      <h1 style="font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 48px; color: #2E5C8A; margin: 0 0 20px; line-height: 1.15;">מתנות של ידע</h1>
+      <p style="font-size: 18px; line-height: 1.7; color: #2F3A47; max-width: 560px; margin: 0 0 20px;">כל פוסט כאן הוא מתנה קטנה: טיפ, כלי או רעיון מתוך הקליניקה שלי — משהו שאפשר לקחת הביתה או לקליניקה ולהשתמש בו עוד היום.</p>
+      <div style="font-size: 15px; color: #7C8794; font-style: italic;">— רועי ליס, פסיכולוג חינוכי והמחבר של אדם ודייגו</div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: FEATURED -->
+  <div style="max-width: 1120px; margin: 0 auto; padding: 0 32px 56px;">
+    <div style="background: #22456A; border-radius: 24px; overflow: hidden; display: flex; flex-wrap: wrap; align-items: stretch;">
+      <div style="flex: 1 1 420px; min-width: 280px;">
+        <image-slot id="featured-image" shape="rect" placeholder="תמונה: קובץ המשחקים הגדול" style="width: 100%; height: 100%; min-height: 280px;"></image-slot>
+      </div>
+      <div style="flex: 1 1 420px; min-width: 280px; padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; gap: 16px;">
+        <div style="display: inline-flex; align-self: flex-start; background: #3E8E9E; color: #22456A; font-weight: 700; font-size: 13px; padding: 6px 16px; border-radius: 999px;">המתנה הגדולה</div>
+        <h2 style="font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 32px; color: #FDFCFA; margin: 0;">קובץ המשחקים הגדול</h2>
+        <p style="font-size: 17px; line-height: 1.7; color: #EDF3FA; margin: 0; max-width: 440px;">אוסף משחקים שאפשר לשחק איתם בבית — כלי רגשי וטיפולי בגובה העיניים של הילד, בלי שזה ירגיש כמו "טיפול". שווה להתחיל כאן.</p>
+        <a href="#" style="display: inline-flex; align-self: flex-start; background: #3E8E9E; color: #22456A; font-weight: 700; font-size: 17px; padding: 14px 32px; border-radius: 999px; margin-top: 8px;" style-hover="background: #357E8D;">לקבלת המתנה</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: FILTER CHIPS -->
+  <div style="max-width: 1120px; margin: 0 auto; padding: 0 32px 24px;">
+    <div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px;">
+      <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+        <div onclick="{{ selectCategory }}" data-cat="{{ cat.id }}" style="{{ cat.chipStyle }}">{{ cat.label }}</div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- SECTION 4: POSTS GRID -->
+  <div style="max-width: 1120px; margin: 0 auto; padding: 0 32px 64px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px;">
+      <sc-for list="{{ filteredPosts }}" as="post" hint-placeholder-count="6">
+        <div style="background: #FFFFFF; border: 1px solid #DCE7F4; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 32px -18px rgba(44,74,59,0.35);">
+          <image-slot id="{{ post.imageId }}" shape="rect" placeholder="{{ post.imgPlaceholder }}" style="width: 100%; aspect-ratio: 16/9;"></image-slot>
+          <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
+            <div style="align-self: flex-start; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; color: #FFFFFF; background: {{ post.catColor }};">{{ post.catLabel }}</div>
+            <h3 style="font-family: 'Rubik', sans-serif; font-weight: 600; font-size: 20px; color: #2E5C8A; margin: 0; line-height: 1.35;">{{ post.title }}</h3>
+            <p style="font-size: 15px; line-height: 1.6; color: #7C8794; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ post.excerpt }}</p>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 10px; border-top: 1px solid #EDF3FA;">
+              <span style="font-size: 13px; color: #7C8794;">{{ post.readTime }}</span>
+              <a href="#" style="font-size: 14px; font-weight: 600; color: #2E5C8A;">לפתוח את המתנה ←</a>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- SECTION 5: BOOKS CTA -->
+  <div style="max-width: 1120px; margin: 0 auto; padding: 0 32px 64px;">
+    <div style="background: #EDF3FA; border: 1px solid #DCE7F4; border-radius: 24px; padding: 48px 44px;">
+      <div style="text-align: center; max-width: 640px; margin: 0 auto 36px;">
+        <h2 style="font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 30px; color: #2E5C8A; margin: 0 0 14px;">הטיפים האלה נולדו מתוך הספרים</h2>
+        <p style="font-size: 16px; line-height: 1.7; color: #2F3A47; margin: 0;">סדרת "אדם ודייגו בארץ הרגשות" — ספרים טיפוליים מבוססי CBT שעוזרים לילדים להתמודד עם פחד וכעס, מגיל 6 ומעלה.</p>
+      </div>
+      <div style="display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;">
+        <sc-for list="{{ books }}" as="book" hint-placeholder-count="2">
+          <div style="background: #FFFFFF; border: 1px solid #DCE7F4; border-radius: 18px; padding: 24px; width: 260px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+            <image-slot id="{{ book.imageId }}" shape="rounded" radius="10" placeholder="{{ book.placeholder }}" style="width: 140px; height: 200px;"></image-slot>
+            <div style="text-align: center;">
+              <div style="font-family: 'Rubik', sans-serif; font-weight: 600; font-size: 18px; color: #2E5C8A;">{{ book.title }}</div>
+              <div style="font-size: 14px; color: #7C8794; margin-top: 4px;">{{ book.subtitle }}</div>
+            </div>
+            <a href="#" style="background: #2E5C8A; color: #FDFCFA; font-weight: 600; font-size: 15px; padding: 10px 26px; border-radius: 999px;" style-hover="background: #22456A;">לספר</a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: NEWSLETTER -->
+  <div style="max-width: 1120px; margin: 0 auto; padding: 0 32px 64px;">
+    <div style="background: #2E5C8A; border-radius: 24px; padding: 52px 44px; text-align: center;">
+      <h2 style="font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 28px; color: #FDFCFA; margin: 0 0 12px;">רוצים לקבל מתנה של ידע ישר למייל?</h2>
+      <p style="font-size: 16px; line-height: 1.7; color: #EDF3FA; margin: 0 0 8px; max-width: 480px; margin-left: auto; margin-right: auto;">פעם בחודש אני שולח טיפ אחד קצר ומעשי. בלי ספאם, בלי הצפה — רק מתנות.</p>
+      <div style="font-size: 14px; color: #3E8E9E; font-weight: 600; margin-bottom: 28px;">נרשמים ומקבלים את קובץ המשחקים הגדול במתנה</div>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; max-width: 460px; margin: 0 auto;">
+        <input type="email" placeholder="האימייל שלכם" style="flex: 1 1 260px; padding: 14px 20px; border-radius: 999px; border: none; font-size: 16px; font-family: 'Assistant', sans-serif; background: #FDFCFA; color: #2F3A47;">
+        <button style="flex: 0 0 auto; background: #3E8E9E; color: #22456A; font-weight: 700; font-size: 16px; padding: 14px 32px; border-radius: 999px; border: none; cursor: pointer; font-family: 'Assistant', sans-serif;" style-hover="background: #357E8D;">אני רוצה מתנה</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: CLOSING -->
+  <div style="max-width: 1120px; margin: 0 auto; padding: 0 32px 64px; text-align: center;">
+    <p style="font-size: 17px; line-height: 1.7; color: #2F3A47; margin: 0 0 16px;">יש נושא שהייתם רוצים שאכתוב עליו? אני תמיד שמח לשמוע — כתבו לי.</p>
+    <a href="#" style="display: inline-flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #DCE7F4; color: #2E5C8A; font-weight: 600; font-size: 15px; padding: 12px 26px; border-radius: 999px;">כתבו לי בוואטסאפ</a>
+  </div>
+
+  <!-- FOOTER (site-wide, from design guide) -->
+  <div style="background: #22456A; color: #EDF3FA; padding: 56px 32px 32px; font-family: 'Assistant', sans-serif;">
+    <div style="max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between;
+         flex-wrap: wrap; gap: 32px;">
+      <div>
+        <div style="font-family: 'Rubik', sans-serif; font-weight: 600; font-size: 20px;
+             color: #FFFFFF; margin-bottom: 12px;">רועי ליס</div>
+        <p style="font-size: 15px; line-height: 1.7; color: #B8CFE5; margin: 0; max-width: 280px;">
+          פסיכולוג חינוכי מומחה, <br>מומחה בטיפול CBT בילדים ונוער</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px;">
+        <span>שפרינצק 3, תל אביב</span>
+        <a href="tel:0549107047" style="color: #EDF3FA;">054-910-7047</a>
+        <a href="mailto:roee@roeeliss.co.il" style="color: #EDF3FA;">roee@roeeliss.co.il</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px;">
+        <a href="#" style="color: #EDF3FA;">לקהילת הפייסבוק של אדם ודייגו</a>
+        <a href="#contact" style="color: #EDF3FA;">צור קשר</a>
+        <a href="#" style="color: #EDF3FA;">תקנון</a>
+      </div>
+    </div>
+    <div style="max-width: 1120px; margin: 40px auto 0; padding-top: 24px;
+         border-top: 1px solid #2E5C8A; font-size: 13px; color: #8FAAC7;">
+      © 2026 רועי ליס · פסיכולוג חינוכי מומחה · תל אביב
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    activeCategory: 'all',
+  };
+
+  categoriesRaw = [
+    { id: 'all', label: 'הכול' },
+    { id: 'fear', label: 'פחד וחרדה', color: '#4A7FB5' },
+    { id: 'anger', label: 'כעס וויסות רגשי', color: '#22456A' },
+    { id: 'games', label: 'משחקים ככלי רגשי', color: '#3E8E9E' },
+    { id: 'behind', label: 'מאחורי הקלעים של אדם ודייגו', color: '#7C8794' },
+    { id: 'parents', label: 'להורים — כללי', color: '#2E5C8A' },
+  ];
+
+  posts = [
+    {
+      id: 'p1',
+      title: '"אדם, אני אוהב אותך גם כשאתה הר כעס"',
+      excerpt: 'השורה הכי מרגשת בספר "אדם ודייגו: הר כעס" — והמשפט הכי חשוב שילד צריך לשמוע אחרי התפרצות.',
+      category: 'anger',
+      readTime: '3 דקות קריאה',
+      imageId: 'post-1',
+      imgPlaceholder: 'תמונה: הר כעס',
+    },
+    {
+      id: 'p2',
+      title: 'טבעות רגש – דרך קסומה ללמד ילדים מודעות רגשית',
+      excerpt: 'ויסות רגשי מתחיל במודעות: איך עוזרים לילד לשים לב שמשהו השתנה בגוף ובתחושה שלו.',
+      category: 'parents',
+      readTime: '3 דקות קריאה',
+      imageId: 'post-2',
+      imgPlaceholder: 'תמונה: טבעות רגש',
+    },
+    {
+      id: 'p3',
+      title: 'למה לא שואלים ילדים "למה"? חלק א\'',
+      excerpt: 'כשילד מקבל כתפיים משוכות ו"לא יודע" במקום תשובה — יש סיבה טובה לזה, וגם דרך אחרת לשאול.',
+      category: 'parents',
+      readTime: '3 דקות קריאה',
+      imageId: 'post-3',
+      imgPlaceholder: 'תמונה: שאלות לילדים',
+    },
+    {
+      id: 'p4',
+      title: 'למה בחרתי דווקא בברקס ככלי המרכזי ב"הר כעס"?',
+      excerpt: 'הסיפור מאחורי הבחירה העיצובית, ומה דן סיגל כתב על המיומנות החשובה שהברקס מלמדת.',
+      category: 'behind',
+      readTime: '4 דקות קריאה',
+      imageId: 'post-4',
+      imgPlaceholder: 'תמונה: מאחורי הקלעים',
+    },
+    {
+      id: 'p5',
+      title: 'שינו את החוקים בטאקי!',
+      excerpt: 'ממציא הטאקי הכריז: קלף שינוי הכיוון הוא קלף ככל הקלפים ואינו מעניק תור נוסף. מה זה אומר עבורנו כהורים?',
+      category: 'games',
+      readTime: '2 דקות קריאה',
+      imageId: 'post-5',
+      imgPlaceholder: 'תמונה: משחק טאקי',
+    },
+    {
+      id: 'p6',
+      title: 'למה זה כל כך חשוב לדבר עם ילדים על רגשות?',
+      excerpt: 'זיהוי וביטוי רגשות הם הכלים הראשוניים לבניית בריאות נפשית חזקה וליכולת התמודדות עם החיים.',
+      category: 'parents',
+      readTime: '4 דקות קריאה',
+      imageId: 'post-6',
+      imgPlaceholder: 'תמונה: ילדים ורגשות',
+    },
+    {
+      id: 'p7',
+      title: 'איך לעצור התקף חרדה',
+      excerpt: 'עלייה משמעותית במספר הילדים והמבוגרים שחווים התקפי חרדה — כלים מעשיים לרגע עצמו.',
+      category: 'fear',
+      readTime: '4 דקות קריאה',
+      imageId: 'post-7',
+      imgPlaceholder: 'תמונה: התקף חרדה',
+    },
+    {
+      id: 'p8',
+      title: '13 דברים ש"הקול בראש 2" מלמד אותנו על חרדה!',
+      excerpt: 'חרדה מתפתחת מאוחר יותר מפחד, ודורשת יכולת לצפות קדימה ולדמיין תרחישים עתידיים. מה אפשר ללמוד מהסרט.',
+      category: 'fear',
+      readTime: '5 דקות קריאה',
+      imageId: 'post-8',
+      imgPlaceholder: 'תמונה: הקול בראש 2',
+    },
+    {
+      id: 'p9',
+      title: 'טיפול בחרדה והארי פוטר',
+      excerpt: '"זו רק חרדה, לא יקרה לי כלום" — איך עולם הקסמים הופך למשל טיפולי לילדים עם חרדה.',
+      category: 'fear',
+      readTime: '3 דקות קריאה',
+      imageId: 'post-9',
+      imgPlaceholder: 'תמונה: טיפול בחרדה',
+    },
+  ];
+
+  books = [
+    { id: 'b1', title: 'יער המחשבות המפחידות', subtitle: 'על פחד וחרדה', imageId: 'book-1', placeholder: 'כריכה: יער המחשבות המפחידות' },
+    { id: 'b2', title: 'הר כעס', subtitle: 'על כעס וויסות רגשי', imageId: 'book-2', placeholder: 'כריכה: הר כעס' },
+  ];
+
+  selectCategory = (e) => {
+    const id = e.currentTarget.getAttribute('data-cat');
+    this.setState({ activeCategory: id });
+  };
+
+  chipStyle(active) {
+    return active
+      ? 'background:#2E5C8A;color:#FDFCFA;font-weight:700;font-size:15px;padding:10px 22px;border-radius:999px;white-space:nowrap;cursor:pointer;flex:0 0 auto;'
+      : 'background:transparent;color:#2E5C8A;font-weight:600;font-size:15px;padding:10px 22px;border-radius:999px;white-space:nowrap;cursor:pointer;flex:0 0 auto;border:1px solid #B8CFE5;';
+  }
+
+  renderVals() {
+    const activeCategory = this.state.activeCategory;
+    const catMap = {};
+    this.categoriesRaw.forEach(c => { catMap[c.id] = c; });
+
+    const categories = this.categoriesRaw.map(c => ({
+      id: c.id,
+      label: c.label,
+      chipStyle: this.chipStyle(activeCategory === c.id),
+    }));
+
+    const filteredPosts = this.posts
+      .filter(p => activeCategory === 'all' || p.category === activeCategory)
+      .map(p => ({
+        ...p,
+        catLabel: catMap[p.category].label,
+        catColor: catMap[p.category].color,
+      }));
+
+    return {
+      categories,
+      filteredPosts,
+      books: this.books,
+      selectCategory: this.selectCategory,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

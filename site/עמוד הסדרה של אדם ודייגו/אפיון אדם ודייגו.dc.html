@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Gveret+Levin+AlefAlefAlef&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#edeae4;font-family:Assistant,system-ui,sans-serif;color:#2f2a25}
+  .doc{max-width:1140px;margin:0 auto;padding:38px 28px 90px}
+  .row{display:grid;grid-template-columns:1fr 300px;gap:26px;align-items:start;margin-bottom:30px}
+  .wire{position:relative;border:1.6px dashed #bdb8b0;border-radius:9px;background:#fff;padding:22px}
+  .badge{position:absolute;top:-13px;right:20px;width:27px;height:27px;border-radius:50%;background:#2f2a25;color:#fff;font:700 14px Assistant;display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 2px 5px rgba(0,0,0,.18)}
+  .ph{background:repeating-linear-gradient(45deg,#ebeae5,#ebeae5 7px,#f6f5f2 7px,#f6f5f2 14px);border:1px solid #ddd9d3;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#9a948c;font:600 11px ui-monospace,Menlo,monospace;text-align:center;padding:8px;line-height:1.5}
+  .cta{background:#c4673f;color:#fff;border-radius:8px;text-align:center;font:700 15px Assistant;padding:13px 20px}
+  .cta2{border:1.7px solid #2f2a25;color:#2f2a25;border-radius:8px;text-align:center;font:600 15px Assistant;padding:12px 20px;background:#fff}
+  .tag{display:inline-block;background:#eef1ea;color:#5c7150;border:1px solid #d6ddcf;border-radius:20px;font:600 11px Assistant;padding:3px 11px}
+  .lbl{font:700 12px Assistant;color:#9a948c;letter-spacing:.05em}
+  .h{font:800 22px Assistant;color:#2f2a25;margin:0}
+  .sub{font:500 14px Assistant;color:#6f6960;line-height:1.55}
+  .note{background:#fdf3a6;padding:15px 17px;border-radius:3px;color:#46402f;box-shadow:0 3px 10px rgba(0,0,0,.12);font-family:"Gveret Levin AlefAlefAlef",Assistant;font-size:19px;line-height:1.5;transform:rotate(-.6deg)}
+  .note .nt{display:block;font:700 12px Assistant;letter-spacing:.08em;color:#8a7b2e;margin-bottom:6px}
+  .note b{color:#1f1b16}
+  .secname{font:700 13px Assistant;color:#b07a4a;letter-spacing:.04em;margin:0 4px 8px}
+  @media(max-width:880px){.row{grid-template-columns:1fr}}
+</style>
+</helmet>
+
+<div dir="rtl" class="doc">
+
+  <!-- ===== DOC HEADER ===== -->
+  <div style="border-bottom:2px solid #d4cfc6;padding-bottom:22px;margin-bottom:34px">
+    <div style="font:700 13px Assistant;color:#b07a4a;letter-spacing:.1em">אפיון עמוד נחיתה · גרסה לסקירה</div>
+    <h1 style="font:800 34px Assistant;margin:8px 0 6px">״אדם ודייגו בארץ הרגשות״</h1>
+    <div style="font:500 16px Assistant;color:#6f6960;line-height:1.55;max-width:760px">מבנה עמוד מלא, מסודר לפי סדר הגלילה. הקהל הראשי — <b>הורים</b> (מטפלים כמשני). המטרה — <b>מכירת החבילה (89₪)</b>. רוב התנועה מגיעה מקמפייני פייסבוק, ולכן ההיגיון בנוי למובייל ולשכנוע מהיר.</div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap;margin-top:16px">
+      <div style="display:flex;align-items:center;gap:8px;font:600 13px Assistant;color:#6f6960"><span style="width:22px;height:22px;border-radius:50%;background:#2f2a25;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px">№</span> סדר הסקשנים בעמוד</div>
+      <div style="display:flex;align-items:center;gap:8px;font:600 13px Assistant;color:#6f6960"><span style="width:26px;height:16px;border-radius:3px;background:#fdf3a6;border:1px solid #e6d97a"></span> הערת אפיון — למה זה כאן</div>
+      <div style="display:flex;align-items:center;gap:8px;font:600 13px Assistant;color:#6f6960"><span style="width:26px;height:16px;border-radius:3px;background:repeating-linear-gradient(45deg,#ebeae5,#ebeae5 4px,#f6f5f2 4px,#f6f5f2 8px);border:1px solid #ddd9d3"></span> מקום לתמונה / איור</div>
+    </div>
+  </div>
+
+  <!-- ===== 1 · HEADER ===== -->
+  <div class="secname">HEADER · כותרת עליונה דביקה</div>
+  <div class="row">
+    <div class="wire">
+      <div class="badge">1</div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:3px"><div style="font:800 16px Assistant">רועי ליס</div><div style="font:500 11px Assistant;color:#9a948c">פסיכולוג חינוכי מומחה</div></div>
+        <div style="flex:1;display:flex;gap:20px;justify-content:center;color:#9a948c;font:600 13px Assistant"><span>הספרים</span><span>המלצות</span><span>למטפלים</span><span>שאלות נפוצות</span></div>
+        <div style="width:24px;height:24px;border:1.6px solid #c2bdb4;border-radius:6px"></div>
+        <div class="cta" style="padding:9px 16px;font-size:13px">לחבילה · 89₪</div>
+      </div>
+    </div>
+    <div class="note"><span class="nt">למה</span>נשארת דביקה בגלילה עם <b>כפתור חבילה קבוע</b> — שההורה תמיד יכול לרכוש בקליק אחד, בלי לחפש.</div>
+  </div>
+
+  <!-- ===== 2 · HERO ===== -->
+  <div class="secname">HERO · החלק הנראה ראשון</div>
+  <div class="row">
+    <div class="wire">
+      <div class="badge">2</div>
+      <div style="display:flex;gap:24px">
+        <div style="flex:1.05;display:flex;flex-direction:column;gap:13px;justify-content:center">
+          <div class="lbl">סדרת ספרי הרגשות · גיל 6+</div>
+          <div style="font:800 30px/1.2 Assistant">כלים רגשיים בסיפורים<br>שילדים אוהבים</div>
+          <div class="sub">סיפורי הרפתקה שמלמדים את הילד להתמודד עם פחדים וכעסים — בכלים מעולם ה־CBT, בשפה שלו.</div>
+          <div style="display:flex;gap:11px;margin-top:5px"><div class="cta" style="flex:1.3">קנו את החבילה ←</div><div class="cta2" style="flex:1">לכל הספרים</div></div>
+          <div style="font:600 12px Assistant;color:#9a948c">★ מומלץ ע״י פרופ׳ ופסיכיאטרים · משלוח 1–5 ימי עסקים</div>
+        </div>
+        <div class="ph" style="flex:1;min-height:250px">תמונת גיבור:<br>שתי הכריכות<br>על רקע מפת ״ארץ הרגשות״</div>
+      </div>
+    </div>
+    <div class="note"><span class="nt">למה</span>מי שמגיע מפייסבוק חייב להבין ב־3 שניות מה זה ולמי. כותרת רגשית + <b>CTA לחבילה כבר למעלה</b> + רמז להמלצות מקצועיות. כאן ייכנס רקע מפת ארץ הרגשות.</div>
+  </div>
+
+  <!-- ===== 3 · TRUST BAR ===== -->
+  <div class="secname">TRUST BAR · פס אמון</div>
+  <div class="row">
+    <div class="wire" style="padding:16px 22px">
+      <div class="badge">3</div>
+      <div style="display:flex;gap:0;text-align:center">
+        <div style="flex:1;font:600 13px Assistant;color:#5c564d;padding:4px 8px">מבוסס שיטת CBT</div>
+        <div style="width:1px;background:#e1ddd6"></div>
+        <div style="flex:1;font:600 13px Assistant;color:#5c564d;padding:4px 8px">המלצת פרופ׳ · אונ׳ חיפה</div>
+        <div style="width:1px;background:#e1ddd6"></div>
+        <div style="flex:1;font:600 13px Assistant;color:#5c564d;padding:4px 8px">מאות הורים ממליצים</div>
+        <div style="width:1px;background:#e1ddd6"></div>
+        <div style="flex:1;font:600 13px Assistant;color:#5c564d;padding:4px 8px">משלוח מהיר עד הבית</div>
+      </div>
+    </div>
+    <div class="note"><span class="nt">למה</span>רצועה דקה של ביטחון מיד אחרי ההבטחה — מורידה חשש לפני שההורה ממשיך לגלול.</div>
+  </div>
+
+  <!-- ===== 4 · EMPATHY ===== -->
+  <div class="secname">סיפור · ״מהקליניקה אליכם״</div>
+  <div class="row">
+    <div class="wire">
+      <div class="badge">4</div>
+      <div style="display:flex;gap:20px;align-items:center">
+        <div class="ph" style="width:130px;height:130px;flex-shrink:0;border-radius:50%">איור<br>דייגו</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+          <div class="h">מהקליניקה אליכם</div>
+          <div class="sub">הסדרה נולדה משנים של עבודה טיפולית עם ילדים והורים. כשילד מקבל כלים בשפה שמתאימה לו — הוא מבין את עצמו טוב יותר ומתמודד בריא יותר. זו ההשראה: להביא לכל בית את הידע מהקליניקה, דרך סיפור שילדים אוהבים.</div>
+        </div>
+      </div>
+    </div>
+    <div class="note"><span class="nt">למה</span>קצר ואישי. בונה את הסמכות שלך כפסיכולוג <b>לפני</b> שמבקשים כסף — אבל לא מאריך, כדי לא לעצור את התנופה.</div>
+  </div>
+
+  <!-- ===== 5 · TESTIMONIALS ===== -->
+  <div class="secname">המלצות · הסקשן המוביל ★</div>
+  <div class="row">
+    <div class="wire">
+      <div class="badge">5</div>
+      <div class="h" style="text-align:center;margin-bottom:16px">הורים מספרים על ״אדם ודייגו״</div>
+      <!-- featured story -->
+      <div style="border:1px solid #e4e0d9;border-radius:9px;padding:18px;background:#faf8f4;margin-bottom:14px">
+        <div style="font:600 13px Assistant;color:#b07a4a;margin-bottom:7px">⭐ סיפור מוביל</div>
+        <div class="sub" style="font-size:15px;color:#46413a">״אחרי חודשים שתבור פחד לישון לבד — קראנו את הסיפור, ובאותו ערב הוא אמר 'אני מוכן לחזור למיטה שלי'. תודה!״</div>
+        <div style="font:600 12px Assistant;color:#9a948c;margin-top:8px">שולמית · אמא של תבור</div>
+      </div>
+      <!-- pro endorsements row -->
+      <div style="display:flex;gap:12px">
+        <div style="flex:1;border:1px solid #e4e0d9;border-radius:8px;padding:13px;display:flex;flex-direction:column;gap:7px">
+          <div class="ph" style="width:40px;height:40px;border-radius:50%">תמונה</div>
+          <div class="sub" style="font-size:12px">״עוסק בחוכמה ורגישות בהבדל בין פחד טבעי לחרדה.״</div>
+          <div style="font:700 11px Assistant;color:#5c564d">פרופ׳ תומר שכנר · אונ׳ חיפה</div>
+        </div>
+        <div style="flex:1;border:1px solid #e4e0d9;border-radius:8px;padding:13px;display:flex;flex-direction:column;gap:7px">
+          <div class="ph" style="width:40px;height:40px;border-radius:50%">תמונה</div>
+          <div class="sub" style="font-size:12px">״כלים מעשיים לוויסות רגשי, להורים ולילדים יחד.״</div>
+          <div style="font:700 11px Assistant;color:#5c564d">ד״ר אבישי שני · פסיכיאטר ילדים</div>
+        </div>
+        <div style="flex:1;border:1px solid #e4e0d9;border-radius:8px;padding:13px;display:flex;flex-direction:column;gap:7px">
+          <div class="ph" style="width:40px;height:40px;border-radius:50%">תמונה</div>
+          <div class="sub" style="font-size:12px">״הילדים מתחברים לדמויות ואף מזדהים.״</div>
+          <div style="font:700 11px Assistant;color:#5c564d">נירה גולן · מטפלת CBT</div>
+        </div>
+      </div>
+      <div style="text-align:center;font:700 13px Assistant;color:#c4673f;margin-top:14px;text-decoration:underline">↓ עוד המלצות הורים</div>
+    </div>
+    <div class="note"><span class="nt">החלטה שלך</span>אמרת שההמלצות הכי חשובות לך — לכן הן <b>גבוה ולפני המכירה</b>. היררכיה: סיפור הורה מרגש אחד גדול, ואז שורת ממליצים מקצועיים (פרופ׳/פסיכיאטר) שנותנים גושפנקה.</div>
+  </div>
+
+  <!-- ===== 6 · TWO BOOKS ===== -->
+  <div class="secname">מוצר · שני הספרים בנפרד</div>
+  <div class="row">
+    <div class="wire">
+      <div class="badge">6</div>
+      <div class="h" style="text-align:center;margin-bottom:16px">שני הספרים בסדרה</div>
+      <div style="display:flex;gap:18px">
+        <div style="flex:1;border:1px solid #e4e0d9;border-radius:9px;padding:15px;display:flex;flex-direction:column;gap:10px">
+          <div class="ph" style="height:165px">כריכה<br>יער המחשבות המפחידות</div>
+          <span class="tag">פחדים וחרדות</span>
+          <div style="font:800 17px Assistant">יער המחשבות המפחידות</div>
+          <div class="sub" style="font-size:12px">אדם ודייגו לומדים כלים להתמודד עם חרדה ומחשבות מפחידות.</div>
+          <div style="font:700 12px Assistant;color:#c4673f;text-decoration:underline">↳ הצצה לעמודים הראשונים</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:auto"><div style="font:800 19px Assistant">59₪</div><div class="cta2" style="flex:1;padding:10px;font-size:13px">הוספה לעגלה</div></div>
+        </div>
+        <div style="flex:1;border:1px solid #e4e0d9;border-radius:9px;padding:15px;display:flex;flex-direction:column;gap:10px">
+          <div class="ph" style="height:165px">כריכה<br>הר כעס</div>
+          <span class="tag">כעס וויסות רגשי</span>
+          <div style="font:800 17px Assistant">הר כעס</div>
+          <div class="sub" style="font-size:12px">אדם ודייגו לומדים לעצור ולווסת כעסים חזקים והתפרצויות.</div>
+          <div style="font:700 12px Assistant;color:#c4673f;text-decoration:underline">↳ הצצה לעמודים הראשונים</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:auto"><div style="font:800 19px Assistant">59₪</div><div class="cta2" style="flex:1;padding:10px;font-size:13px">הוספה לעגלה</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="note"><span class="nt">למה</span>כל ספר עומד בפני עצמו (59₪) — ההורה בוחר לפי הקושי של הילד. ה<b>״הצצה לעמודים״</b> מורידה סיכון: רואים את האיורים והשפה לפני קנייה.</div>
+  </div>
+
+  <!-- ===== 7 · BUNDLE ===== -->
+  <div class="secname">חבילה · השדרוג (המטרה ★)</div>
+  <div class="row">
+    <div class="wire" style="background:#2f2a25;border-color:#2f2a25">
+      <div class="badge" style="background:#c4673f">7</div>
+      <div style="display:flex;gap:20px;align-items:center">
+        <div class="ph" style="width:165px;height:135px;flex-shrink:0;background:repeating-linear-gradient(45deg,#3a342d,#3a342d 7px,#443d35 7px,#443d35 14px);border-color:#4a4339;color:#cfc7bb">שתי הכריכות יחד</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+          <div style="font:600 12px Assistant;color:#e0b9a6">⭐ הבחירה הפופולרית של הורים</div>
+          <div style="font:800 22px Assistant;color:#fff">החבילה המלאה — שני ספרים, שפה רגשית אחת</div>
+          <div style="font:500 13px Assistant;color:#c9c2b8;line-height:1.5">גם פחדים וגם כעסים, באותה שפה משותפת. מענה רחב לכל העולם הרגשי של הילד.</div>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:6px">
+            <div style="font:800 26px Assistant;color:#fff">89₪</div>
+            <div style="font:600 14px Assistant;color:#9a948c;text-decoration:line-through">118₪</div>
+            <div class="cta" style="flex:1">קנו את החבילה ←</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note"><span class="nt">המטרה</span>מוצג <b>אחרי</b> שני הספרים, כדי שה־89₪ ייראו כמו מציאה מול 2×59. רקע כהה + ״מחיר לפני״ מחוק = עוגן הנחה. זה ה־CTA שאנחנו הכי רוצים שילחצו.</div>
+  </div>
+
+  <!-- ===== 8 · THERAPISTS ===== -->
+  <div class="secname">משני · למטפלים ואנשי חינוך</div>
+  <div class="row">
+    <div class="wire">
+      <div class="badge">8</div>
+      <div style="display:flex;gap:20px;align-items:center">
+        <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+          <div class="h" style="font-size:19px">למטפלים ואנשי חינוך</div>
+          <div class="sub" style="font-size:13px">הסדרה נכתבה בהשראת עקרונות CBT עם ילדים ומשמשת מטפלים ויועצות כגשר לשיחה. לכל ספר מצורפים דפי הנחיות מקצועיות ודפי עבודה.</div>
+          <div style="font:700 13px Assistant;color:#c4673f;text-decoration:underline;margin-top:2px">לאזור המטפלים ←</div>
+        </div>
+        <div class="ph" style="width:160px;height:100px;flex-shrink:0">איור / דפי עבודה</div>
+      </div>
+    </div>
+    <div class="note"><span class="nt">למה כאן</span>קהל משני — לכן <b>בלוק אחד נמוך</b>, לא מתחרה על תשומת הלב של ההורה. מי שזה רלוונטי לו — ימשיך פנימה.</div>
+  </div>
+
+  <!-- ===== 9 · ABOUT ===== -->
+  <div class="secname">אודות · רועי ודייגו</div>
+  <div class="row">
+    <div class="wire">
+      <div class="badge">9</div>
+      <div style="display:flex;gap:20px;align-items:center">
+        <div class="ph" style="width:170px;height:130px;flex-shrink:0">תמונה<br>רועי + דייגו</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+          <div class="h" style="font-size:19px">נעים להכיר — אני רועי וזה דייגו</div>
+          <div class="sub" style="font-size:13px">כפסיכולוג חינוכי מומחה ב־CBT פגשתי מאות ילדים בקליניקה. הקסם קורה כשנותנים לילדים את הכלים הנכונים — וזה החלום מאחורי הסדרה.</div>
+        </div>
+      </div>
+    </div>
+    <div class="note"><span class="nt">למה</span>פנים אנושיות מחזקות אמון לפני שלב ההחלטה. מופיע מאוחר — כבר ״מכרנו״, עכשיו מבססים קשר אישי.</div>
+  </div>
+
+  <!-- ===== 10 · FAQ ===== -->
+  <div class="secname">שאלות נפוצות · הסרת חסמים</div>
+  <div class="row">
+    <div class="wire">
+      <div class="badge">10</div>
+      <div class="h" style="font-size:19px;margin-bottom:14px">שאלות נפוצות</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="border:1px solid #e4e0d9;border-radius:7px;padding:12px 14px;display:flex;justify-content:space-between;font:600 14px Assistant;color:#46413a">לאילו גילים הספרים מתאימים? <span style="color:#b3ada4">+</span></div>
+        <div style="border:1px solid #e4e0d9;border-radius:7px;padding:12px 14px;display:flex;justify-content:space-between;font:600 14px Assistant;color:#46413a">תוך כמה זמן הספרים יגיעו? <span style="color:#b3ada4">+</span></div>
+        <div style="border:1px solid #e4e0d9;border-radius:7px;padding:12px 14px;display:flex;justify-content:space-between;font:600 14px Assistant;color:#46413a">אפשר לקנות ספר אחד או חייבים חבילה? <span style="color:#b3ada4">+</span></div>
+        <div style="border:1px solid #e4e0d9;border-radius:7px;padding:12px 14px;display:flex;justify-content:space-between;font:600 14px Assistant;color:#46413a">מה ההבדל בין שני הספרים? <span style="color:#b3ada4">+</span></div>
+      </div>
+    </div>
+    <div class="note"><span class="nt">למה</span>עונה על ההתנגדויות האחרונות (גיל, משלוח, ״חייבים חבילה?״) בדיוק לפני ה־CTA הסופי — כדי שלא יישאר תירוץ לא לקנות.</div>
+  </div>
+
+  <!-- ===== 11 · FINAL CTA ===== -->
+  <div class="secname">סגירה · קריאה אחרונה לפעולה</div>
+  <div class="row">
+    <div class="wire" style="background:#f3ece3;border-color:#d8c3ad;text-align:center">
+      <div class="badge" style="background:#c4673f">11</div>
+      <div style="font:800 24px Assistant;margin-bottom:6px">תנו לילד את הכלים — בשפה שהוא אוהב</div>
+      <div class="sub" style="margin-bottom:16px">החבילה המלאה של ״אדם ודייגו״ · משלוח מהיר עד הבית</div>
+      <div style="display:flex;gap:12px;justify-content:center;max-width:460px;margin:0 auto"><div class="cta" style="flex:1.4">קנו את החבילה · 89₪</div><div class="cta2" style="flex:1">לכל הספרים</div></div>
+    </div>
+    <div class="note"><span class="nt">למה</span>מי שגלל עד הסוף ועדיין מתלבט — מקבל הזדמנות אחרונה נקייה, עם אותו CTA של החבילה.</div>
+  </div>
+
+  <!-- ===== 12 · CONTACT + FOOTER ===== -->
+  <div class="secname">משני · יצירת קשר + פוטר</div>
+  <div class="row">
+    <div class="wire">
+      <div class="badge">12</div>
+      <div class="h" style="font-size:19px;margin-bottom:14px">בואו נדבר</div>
+      <div style="display:flex;gap:12px;margin-bottom:10px"><div class="gl" style="flex:1;height:38px;background:#f4f2ee;border:1px solid #e4e0d9;border-radius:6px"></div><div class="gl" style="flex:1;height:38px;background:#f4f2ee;border:1px solid #e4e0d9;border-radius:6px"></div></div>
+      <div class="gl" style="height:80px;background:#f4f2ee;border:1px solid #e4e0d9;border-radius:6px;margin-bottom:12px"></div>
+      <div class="cta2" style="display:inline-block;padding:10px 26px">שליחה</div>
+      <div style="border-top:1px solid #e4e0d9;margin-top:18px;padding-top:14px;display:flex;gap:18px;color:#9a948c;font:600 12px Assistant"><span>תקנון</span><span>נגישות</span><span>פרטיות</span><span>קהילת הפייסבוק</span></div>
+    </div>
+    <div class="note"><span class="nt">למה</span>טופס יצירת קשר וקהילת הפייסבוק נשארים — אבל בתחתית, כערוץ משני. הם לא מתחרים במטרת המכירה.</div>
+  </div>
+
+</div>
+
+</x-dc>
+</body>
+</html>

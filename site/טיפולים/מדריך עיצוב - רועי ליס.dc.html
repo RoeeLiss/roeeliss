@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Assistant:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #FFFFFF; }
+    * { box-sizing: border-box; }
+    a { color: #4A7FB5; text-decoration: none; }
+    a:hover { color: #2E5C8A; text-decoration: underline; }
+    pre { white-space: pre-wrap; word-break: break-word; direction: ltr; text-align: left; }
+  </style>
+</helmet>
+
+<div dir="rtl" lang="he" style="font-family: 'Assistant', sans-serif; color: #2F3A47; background: #FDFCFA; width: 100%; padding: 64px 32px 100px;">
+  <div style="max-width: 960px; margin: 0 auto;">
+
+    <div style="margin-bottom: 56px;">
+      <div style="font-size: 14px; font-weight: 600; color: #4A7FB5; letter-spacing: 0.5px; margin-bottom: 8px;">מדריך עיצוב</div>
+      <h1 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 36px; color: #2E5C8A; margin: 0;">רועי ליס — הגדרות עיצוב לאתר</h1>
+      <p style="font-size: 16px; color: #2F3A47; max-width: 600px; margin: 16px 0 0;">
+        המסמך הזה מרכז את הצבעים, הפונטים, וקוד הסרגל העליון והפוטר של עמוד הבית — כדי שיהיה קל להדביק ולהמשיך אותם באופן עקבי בכל עמוד חדש באתר.
+      </p>
+    </div>
+
+    <!-- COLORS -->
+    <div style="margin-bottom: 56px;">
+      <h2 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 24px; color: #2E5C8A; margin: 0 0 20px;">צבעים</h2>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <sc-for list="{{ colors }}" as="c" hint-placeholder-count="9">
+          <div style="border: 1px solid #EDF3FA; border-radius: 12px; overflow: hidden;">
+            <div style="height: 72px; background: {{ c.hex }};"></div>
+            <div style="padding: 10px 12px; background: #FFFFFF;">
+              <div style="font-size: 13px; font-weight: 600;">{{ c.name }}</div>
+              <div style="font-size: 12px; color: #7C8794; direction: ltr; text-align: right;">{{ c.hex }}</div>
+              <div style="font-size: 11px; color: #7C8794; margin-top: 2px;">{{ c.use }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- TYPOGRAPHY -->
+    <div style="margin-bottom: 56px;">
+      <h2 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 24px; color: #2E5C8A; margin: 0 0 20px;">טיפוגרפיה</h2>
+      <div style="background: #FFFFFF; border: 1px solid #EDF3FA; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 24px;">
+        <div>
+          <div style="font-size: 12px; font-weight: 600; color: #4A7FB5; margin-bottom: 8px;">כותרות · Rubik, weight 500</div>
+          <div style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 34px; color: #2E5C8A;">בואו לטפל בזה, ברצינות, ובמשחק</div>
+        </div>
+        <div style="height: 1px; background: #EDF3FA;"></div>
+        <div>
+          <div style="font-size: 12px; font-weight: 600; color: #4A7FB5; margin-bottom: 8px;">טקסט רץ · Assistant, weight 400, 18px, ריווח שורות 1.7</div>
+          <div style="font-size: 18px; line-height: 1.7; max-width: 560px;">אני פסיכולוג חינוכי מומחה, ובקליניקה שלי ילדים ובני נוער מקבלים מענה מקצועי, ממוקד ומותאם אישית — בגישת CBT.</div>
+        </div>
+        <div style="height: 1px; background: #EDF3FA;"></div>
+        <div>
+          <div style="font-size: 12px; font-weight: 600; color: #4A7FB5; margin-bottom: 8px;">כפתור פעולה · Assistant weight 600, פיל מעוגל, טורקיז בלבד</div>
+          <div style="display: inline-block; background: #3E8E9E; color: #FFFFFF; font-weight: 600; font-size: 18px; padding: 16px 40px; border-radius: 999px; font-family: 'Assistant', sans-serif;">בואו נכיר</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER SNIPPET -->
+    <div style="margin-bottom: 56px;">
+      <h2 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 24px; color: #2E5C8A; margin: 0 0 12px;">סרגל עליון</h2>
+      <p style="font-size: 15px; color: #7C8794; margin: 0 0 16px;">צף לאורך הגלילה (position: sticky), מרחוק משוליים העמוד, פיל מעוגל עם צל עדין.</p>
+      <div style="background: #22456A; border-radius: 16px; padding: 24px; overflow-x: auto;">
+        <pre style="margin: 0; color: #EDF3FA; font-family: 'SF Mono', Menlo, monospace; font-size: 13px; line-height: 1.6;">{{ headerCode }}</pre>
+      </div>
+    </div>
+
+    <!-- FOOTER SNIPPET -->
+    <div>
+      <h2 style="font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 24px; color: #2E5C8A; margin: 0 0 12px;">פוטר</h2>
+      <p style="font-size: 15px; color: #7C8794; margin: 0 0 16px;">רקע כחול לילה, שלוש עמודות: זהות, פרטי קשר, קישורים מהירים.</p>
+      <div style="background: #22456A; border-radius: 16px; padding: 24px; overflow-x: auto;">
+        <pre style="margin: 0; color: #EDF3FA; font-family: 'SF Mono', Menlo, monospace; font-size: 13px; line-height: 1.6;">{{ footerCode }}</pre>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      colors: [
+        { name: 'לבן', hex: '#FFFFFF', use: 'רקע ראשי' },
+        { name: 'שמנת', hex: '#FDFCFA', use: 'רקע חלופי לסקשנים' },
+        { name: 'כחול עומק', hex: '#2E5C8A', use: 'כותרות, סקשן כהה, זהות' },
+        { name: 'טורקיז', hex: '#3E8E9E', use: 'כפתורי פעולה בלבד' },
+        { name: 'כחול ביניים', hex: '#4A7FB5', use: 'אייקונים, קישורים' },
+        { name: 'תכלת רכה', hex: '#B8CFE5', use: 'תגיות, מסגרות' },
+        { name: 'תכלת-רקע', hex: '#EDF3FA', use: 'סקשנים מוטים, קווי הפרדה' },
+        { name: 'פחם כחלחל', hex: '#2F3A47', use: 'טקסט רץ' },
+        { name: 'כחול לילה', hex: '#22456A', use: 'פוטר' },
+      ],
+      headerCode: `<div style="position: sticky; top: 16px; z-index: 50; padding: 0 24px;">
+  <div style="max-width: 1120px; margin: 0 auto; padding: 14px 28px; display: flex;
+       align-items: center; justify-content: space-between; background: rgba(255,255,255,0.9);
+       backdrop-filter: blur(10px); border: 1px solid #EDF3FA; border-radius: 999px;
+       box-shadow: 0 12px 32px -16px rgba(46,92,138,0.25);">
+    <div>
+      <div style="font-family: 'Rubik', sans-serif; font-weight: 600; font-size: 20px; color: #2E5C8A;">רועי ליס</div>
+      <div style="font-size: 13px; color: #4A7FB5; margin-top: 2px;">פסיכולוג חינוכי מומחה</div>
+      <div style="font-size: 13px; color: #4A7FB5;">מומחה בטיפול קוגניטיבי התנהגותי</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 28px; font-size: 16px;">
+      <a href="#" style="color: #2F3A47;">טיפולים</a>
+      <a href="#" style="color: #2F3A47;">אדם ודייגו בארץ הרגשות</a>
+      <a href="#" style="color: #2F3A47;">סדנאות למטפלים</a>
+      <a href="#" style="color: #2F3A47;">מאמרים</a>
+      <a href="#" style="color: #2F3A47;">מתנות של ידע</a>
+      <a href="#" style="background: #3E8E9E; color: #FFFFFF; padding: 10px 22px;
+         border-radius: 999px; font-weight: 600;">בואו נדבר</a>
+    </div>
+  </div>
+</div>`,
+      footerCode: `<div style="background: #22456A; color: #EDF3FA; padding: 56px 32px 32px;">
+  <div style="max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between;
+       flex-wrap: wrap; gap: 32px;">
+    <div>
+      <div style="font-family: 'Rubik', sans-serif; font-weight: 600; font-size: 20px;
+           color: #FFFFFF; margin-bottom: 12px;">רועי ליס</div>
+      <p style="font-size: 15px; line-height: 1.7; color: #B8CFE5; margin: 0; max-width: 280px;">
+        פסיכולוג חינוכי מומחה, טיפול CBT לילדים ונוער</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px;">
+      <span>שפרינצק 3, תל אביב</span>
+      <a href="tel:0549107047" style="color: #EDF3FA;">054-910-7047</a>
+      <a href="mailto:roee@roeeliss.co.il" style="color: #EDF3FA;">roee@roeeliss.co.il</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px;">
+      <a href="#contact" style="color: #EDF3FA;">צור קשר</a>
+      <a href="https://roeeliss.co.il/%d7%aa%d7%a7%d7%a0%d7%95%d7%9f/" target="_blank" rel="noopener" style="color: #EDF3FA;">תקנון</a>
+      <a href="https://roeeliss.co.il/privacy/" target="_blank" rel="noopener" style="color: #EDF3FA;">מדיניות פרטיות</a>
+    </div>
+  </div>
+  <div style="max-width: 1120px; margin: 36px auto 0; padding-top: 28px; border-top: 1px solid #2E5C8A; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+    <div style="display: flex; gap: 12px;">
+      <a href="https://www.facebook.com/AdamVeDiego" target="_blank" rel="noopener" aria-label="פייסבוק" style="width: 34px; height: 34px; border-radius: 50%; background: #2E5C8A; display: flex; align-items: center; justify-content: center; color: #EDF3FA;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.23 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.23 22 17.08 22 12.06z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/adamanddiego/" target="_blank" rel="noopener" aria-label="אינסטגרם" style="width: 34px; height: 34px; border-radius: 50%; background: #2E5C8A; display: flex; align-items: center; justify-content: center; color: #EDF3FA;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@AdamandDiego" target="_blank" rel="noopener" aria-label="יוטיוב" style="width: 34px; height: 34px; border-radius: 50%; background: #2E5C8A; display: flex; align-items: center; justify-content: center; color: #EDF3FA;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 7.2s-.22-1.55-.9-2.23c-.86-.9-1.82-.9-2.26-.96C16.2 3.75 12 3.75 12 3.75h-.01s-4.2 0-7.34.26c-.44.06-1.4.06-2.26.96-.68.68-.9 2.23-.9 2.23S1.25 9 1.25 10.8v1.4c0 1.8.24 3.6.24 3.6s.22 1.55.9 2.23c.86.9 1.99.87 2.5.97 1.8.17 7.11.26 7.11.26s4.2-.01 7.34-.27c.44-.06 1.4-.06 2.26-.96.68-.68.9-2.23.9-2.23s.24-1.8.24-3.6v-1.4c0-1.8-.24-3.6-.24-3.6zM9.9 14.9V8.9l6.1 3-6.1 3z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@adamanddiego" target="_blank" rel="noopener" aria-label="טיקטוק" style="width: 34px; height: 34px; border-radius: 50%; background: #2E5C8A; display: flex; align-items: center; justify-content: center; color: #EDF3FA;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v13.6a3 3 0 1 1-2.4-2.94v-3.1a6.1 6.1 0 1 0 5.4 6.06V8.9a7.6 7.6 0 0 0 4.5 1.46V7.4a4.6 4.6 0 0 1-4.5-4.4z"/></svg>
+      </a>
+    </div>
+    <div style="font-size: 13px; color: #8FAAC7;">© 2026 רועי ליס · פסיכולוג חינוכי מומחה · תל אביב</div>
+  </div>
+</div>`,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
