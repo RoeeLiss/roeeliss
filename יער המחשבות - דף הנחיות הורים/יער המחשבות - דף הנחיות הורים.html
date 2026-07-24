@@ -36,8 +36,6 @@
 </style>
 </head>
 <body>
-<div id="readProgress" style="position: fixed; top: 0; right: 0; height: 4px; width: 0%; background: linear-gradient(90deg, #8FE0D0, #F0A95E); z-index: 60; transition: width .12s linear;"></div>
-
 <div dir="rtl" style="font-family: 'Assistant', sans-serif; color: #2A2350; background: #FBF6EC; overflow-x: clip; line-height: 1.6;">
 
   <!-- ============ HEADER ============ -->
@@ -484,6 +482,7 @@
   </footer>
 
 </div>
+<div id="readProgress" style="position: fixed; top: 0; left: 0; right: 0; height: 4px; width: 0%; background: linear-gradient(90deg, #8FE0D0, #F0A95E); z-index: 9999; transition: width .12s linear; pointer-events: none;"></div>
 <script>
 (function(){
   function init(){
